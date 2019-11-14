@@ -57,7 +57,7 @@ public class LoanManager extends Employee {
 		int sumOverall=0;
 		int rate = 0;
 		double bonus=0;
-		for(int i=0; i<=employees.size(); i++) {
+		for(int i=0; i<employees.size(); i++) {
 			Employee emp = employees.get(i);
 			if (emp.getDepartment()=="BusinessServiceManager" 
 					|| emp.getDepartment()=="CostumerServiceManager" 
@@ -66,7 +66,7 @@ public class LoanManager extends Employee {
 				nmbrOfEmployees =+ 1;
 				sumOverall =+ overalls.get(i);
 			}
-		for(int j=0; i<=employees.size(); j++) {
+		for(int j=0; j<employees.size(); j++) {
 				Employee empLM = employees.get(j);
 				if(empLM.getDepartment()=="LoanManager") {
 					rate=sumOverall/nmbrOfEmployees;
@@ -83,7 +83,6 @@ public class LoanManager extends Employee {
 		return bonus;
 	}
 	
-	
 	public void leaves() {
 		System.out.println("1.Εμφάνηση εναπομείναντων αδειών"
 							+ "\n2.Αίτηση άδειας");
@@ -92,14 +91,18 @@ public class LoanManager extends Employee {
 		if(select==1) {
 			System.out.println("Δικαιούστε ακόμα " + this.getLeaves() + "ημέρες άδειας!");
 		}else if (select==2) {
-			System.out.print("Επιθυμητές μέρες άδειας: ");
-			int days = sc.nextInt();
-			if (days>this.getLeaves()) {
-				System.out.println("\nΣας απομένουν μόλις" + this.getLeaves() + "μέρες άδειας!");
-			}else {
-				this.setLeaves(this.getLeaves()-days);
-				System.out.println("Το αίτημα σας έγινε δεκτό!"
+			if(this.getLeaves()>0) {
+				System.out.print("Επιθυμητές μέρες άδειας: ");
+				int days = sc.nextInt();
+				if (days>this.getLeaves()) {
+					System.out.println("\nΣας απομένουν μόλις" + this.getLeaves() + "μέρες άδειας!");
+				}else {
+					this.setLeaves(this.getLeaves()-days);
+					System.out.println("Το αίτημα σας έγινε δεκτό!"
 						+ "\nΕναπομείναντες άδειες: " + this.getLeaves() );
+				}
+			}else {
+				System.out.println("");
 			}
 		}
 		String goBack = sc.next();
