@@ -73,7 +73,7 @@ public class Business {
 		this.amount = amount;
 	}
 	
-	public void addPrivate(int selectList) {
+	public void addBusiness(int selectList) {
 		switch (selectList) {
 		case 1:
 			bSM.add(this);
