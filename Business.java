@@ -18,8 +18,8 @@ public class Business {
 	public static ArrayList <Business> tellerBusiness= new ArrayList<Business>();
 	
 	
-	public static void setTellerBusiness(ArrayList<Business> tellerBusiness) {
-		Business.tellerBusiness = tellerBusiness;
+	public static ArrayList<Business> getTellerBusiness() {
+		return tellerBusiness;
 	}
 	public static ArrayList<Business> getbSM() {
 		return bSM;
