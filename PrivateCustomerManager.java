@@ -206,7 +206,7 @@ public class PrivateCustomerManager extends Employee{
 				case 1:
 					custMenu();
 				case 2:
-					DepostitManager.goals();
+					DepositManager.goals();
 				case 3:
 					DepositManager.computeBonus();
 				case 4:
