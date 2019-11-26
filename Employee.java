@@ -8,7 +8,7 @@ public abstract class Employee {
 	public static ArrayList <Employee> employees= new ArrayList<Employee>();
 	public static ArrayList <String> employees2= new ArrayList<String>();
 	public static ArrayList <Integer> idEmployees= new ArrayList<Integer>();
-	public static ArrayList <Integer> overalls= new ArrayList<Integer>();
+	public static ArrayList <Double> overalls= new ArrayList<Double>();
 	
 	private String fullname;
 	private static int count=0;
@@ -20,10 +20,10 @@ public abstract class Employee {
 	private int leaves;
 	private String username;
 	private String password;
-	private int overall;
+	private double overall;
 
 	public Employee(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
-			int leaves, String username, String password, int overall) {
+			int leaves, String username, String password, Double overall) {
 		super();
 		this.fullname = fullname;
 		this.idEmployee = count++;
@@ -50,7 +50,7 @@ public abstract class Employee {
 		return idEmployees;
 	}
 
-	public static ArrayList<Integer> getOveralls() {
+	public static ArrayList<Double> getOveralls() {
 		return overalls;
 	}
 
@@ -127,11 +127,11 @@ public abstract class Employee {
 		this.password = password;
 	}
 
-	public int getOverall() {
+	public double getOverall() {
 		return overall;
 	}
 
-	public void setOverall(int overall) {
+	public void setOverall(double overall) {
 		this.overall = overall;
 	}
 
@@ -140,6 +140,7 @@ public abstract class Employee {
 	public abstract void setGoals();
 	public abstract double computeBonus();
 	public abstract void getMenu();
+	public abstract void leaves();
 	
 	public static void getNews() {
 		
