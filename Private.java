@@ -12,7 +12,7 @@ public class Private {
 	private static int count=1;
 	
 	public static ArrayList <Private> pCM= new ArrayList<Private>();
-	public static ArrayList <Private> teller= new ArrayList<Private>();
+	public static ArrayList <Private> tellerPrivate= new ArrayList<Private>();
 	public static ArrayList <Private> pCMGold= new ArrayList<Private>();
 	public static ArrayList <Private> pCMDelays= new ArrayList<Private>();
 	
@@ -21,7 +21,7 @@ public class Private {
 		return pCM;
 	}
 	public static ArrayList<Private> getTeller() {
-		return teller;
+		return tellerPrivate;
 	}
 	public static ArrayList<Private> getpCMGold() {
 		return pCMGold;
@@ -72,7 +72,7 @@ public class Private {
 			pCM.add(this);
 			break;
 		case 2:
-			teller.add(this);
+			tellerPrivate.add(this);
 			break;
 		case 3:
 			pCMGold.add(this);
