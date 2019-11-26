@@ -15,8 +15,12 @@ public class Business {
 	public static ArrayList <Business> cSM= new ArrayList<Business>();
 	public static ArrayList <Business> cSMGold= new ArrayList<Business>();
 	public static ArrayList <Business> cSMDelays= new ArrayList<Business>();
+	public static ArrayList <Business> tellerBusiness= new ArrayList<Business>();
 	
 	
+	public static void setTellerBusiness(ArrayList<Business> tellerBusiness) {
+		Business.tellerBusiness = tellerBusiness;
+	}
 	public static ArrayList<Business> getbSM() {
 		return bSM;
 	}
@@ -83,6 +87,8 @@ public class Business {
 		case 4:
 			cSMDelays.add(this);
 			break;	
+		case 5:
+			tellerBusiness.add(this);
 		}	
 	}
 	public String toString() {
