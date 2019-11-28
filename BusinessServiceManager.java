@@ -158,16 +158,16 @@ public class BusinesServiceManager extends Employee {
 						+ "\n5.Display of bank's news"
 						+ "\n6.Log Out");
 				select=sc.nextInt();
-				if (select>0 && select<7) {
+				if (select>0 && select<6) {
 					value=false;
 				}else {
-					System.out.printf("You did't insert an integer between 1 and 7.Please try again");
+					System.out.printf("You did't insert an integer between 1 and 6.Please try again");
 					}
 				}
 			catch (InputMismatchException inputmismatchexception) {
 				System.err.printf("%nException%n: %s%n" , inputmismatchexception);
 				sc.nextLine();
-				System.out.printf("You did't insert an integer between 1 and 7.Please try again");
+				System.out.printf("You did't insert an integer between 1 and 6.Please try again");
 			}
 		} while (value);
 				switch (select) {
