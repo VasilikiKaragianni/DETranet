@@ -157,16 +157,16 @@ public class PrivateCustomerManagerVip extends Employee {
 							+ "\n5.Display of the bank's news"
 							+ "\n6.Log Out");
 					option=sc.nextInt();
-					if (option>0 && option<7) {
+					if (option>0 && option<=6) {
 						flag=false;
 					}else {
-						System.out.printf("Please insert an integer between 1-7.Try again...");
+						System.out.printf("Please insert an integer between 1-6.Try again...");
 						}
 					}
 				catch (InputMismatchException inputmismatchexception) {
 					System.err.printf("%nException%n: %s%n" , inputmismatchexception);
 					sc.nextLine();
-					System.out.printf("Please insert an integer between 1-7.Try again...");
+					System.out.printf("Please insert an integer between 1-6.Try again...");
 				}
 			} while (flag);
 					switch (option) {
