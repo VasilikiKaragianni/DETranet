@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Teller extends Employee{
 
 	public Teller(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
-			int leaves, String username, String password, int overall) {
+			int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 	}
 	
@@ -39,6 +39,7 @@ public class Teller extends Employee{
 			custMenu();
 		sc.close();
 	}
+	
 	
 	public void busMenu() {
 		boolean flag=true;
@@ -93,6 +94,7 @@ public class Teller extends Employee{
 	}
 
 	public void removePrivate(int id) {
+		@SuppressWarnings("unlikely-arg-type")
 		int index=Private.pCM.indexOf(id);
 		if (index== -1) {
 			System.out.println("The id you gave is not valid");
@@ -103,6 +105,7 @@ public class Teller extends Employee{
 	}
 	
 	public void removeBusiness(int id) {
+		@SuppressWarnings("unlikely-arg-type")
 		int index=Business.tellerBusiness.indexOf(id);
 		if (index== -1) {
 			System.out.println("The id you gave is not valid");
@@ -110,6 +113,24 @@ public class Teller extends Employee{
 			Business.tellerBusiness.remove(index);
 			System.out.println("The business is deleted successfully");
 		}
+	}
+	
+	@Override
+	public void goals() {
+		Scanner sc = new Scanner(System.in);
+		if (DepositManager.gettellerGoals()==null) {
+			System.out.println("No available goals!");
+		}else {
+			System.out.println("Department goals:\n" + DepositManager.gettellerGoals());
+		}
+		sc.close();
+		getMenu();	
+	}
+	
+	@Override
+	public double computeBonus() {
+		double rate = this.getOverall() ;
+		return rate * 3;
 	}
 	
 	public void custMenu() {
@@ -226,7 +247,6 @@ public class Teller extends Employee{
 				System.out.println("\nThere are not remaining days of leave!");
 			}
 		}
-		String goBack = sc.next();
 		getMenu();
 		sc.close();
 	}
@@ -263,17 +283,17 @@ public class Teller extends Employee{
 				case 1:
 					chooseCategory();
 				case 2:
-					DepositManager.goals();
+					goals();
 				case 3:
-					DepositManager.computeBonus();
+					computeBonus();
 				case 4:
 					leaves();
 				case 5:
 					PrivateCustomerManager.getNews();
 				case 6:
-					Main.main();
-					
-		}
+					Main.main(null);
+				}
+			sc.close();
 	}
 }
 
