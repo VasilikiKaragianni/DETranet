@@ -1,19 +1,18 @@
 package detranet;
 
 import java.util.Scanner;
-
 import java.util.InputMismatchException;
 
 public class PrivateCustomerManagerVip extends Employee {
 	
 
 		public PrivateCustomerManagerVip(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, int overall) {
+			String firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
-		// TODO Auto-generated constructor stub
-	}
+		}
 
 		public void removePrivate(int id) {
+			@SuppressWarnings("unlikely-arg-type")
 			int index=Private.pCMDelays.indexOf(id);
 			if (index== -1) {
 				System.out.println("The id you gave is not valid");
@@ -23,6 +22,23 @@ public class PrivateCustomerManagerVip extends Employee {
 			}
 		}
 		
+		@Override
+		public void goals() {
+			Scanner sc = new Scanner(System.in);
+			if (DepositManager.getpCMGoldGoals()==null) {
+				System.out.println("No available goals!");
+			}else {
+				System.out.println("Department goals:\n" + DepositManager.getpCMGoldGoals());
+			}
+			sc.close();
+			getMenu();	
+		}
+		
+		@Override
+		public double computeBonus() {
+			double rate = this.getOverall() ;
+			return rate * 3;
+		}
 		public void custMenu() {
 			boolean flag=true;
 			Scanner sc= new Scanner (System.in);
@@ -137,7 +153,6 @@ public class PrivateCustomerManagerVip extends Employee {
 					System.out.println("\nThere are not remaining days of leave!");
 				}
 			}
-			String goBack = sc.next();
 			getMenu();
 			sc.close();
 		}
@@ -173,16 +188,17 @@ public class PrivateCustomerManagerVip extends Employee {
 					case 1:
 						custMenu();
 					case 2:
-						DepositManager.goals();
+						goals();
 					case 3:
-						DepositManager.computeBonus();
+						computeBonus();
 					case 4:
 						leaves();
 					case 5:
 						PrivateCustomerManager.getNews();
 					case 6:
-						Main.main();
+						Main.main(null);
 						
 			}
+		sc.close();
 		}
 }
