@@ -30,6 +30,7 @@ public class PrivateCustomerManager extends Employee{
 	
 
 	public void removePrivate(int id) {
+		@SuppressWarnings("unlikely-arg-type")
 		int index=Private.pCM.indexOf(id);
 		if (index== -1) {
 			System.out.println("The id you gave is not valid");
@@ -37,6 +38,24 @@ public class PrivateCustomerManager extends Employee{
 			Private.pCM.remove(index);
 			System.out.println("The customer is deleted successfully");
 		}
+	}
+	
+	@Override
+	public void goals() {
+		Scanner sc = new Scanner(System.in);
+		if (DepositManager.getpCMGoals()==null) {
+			System.out.println("No available goals!");
+		}else {
+			System.out.println("Department goals:\n" + DepositManager.getpCMGoals());
+		}
+		sc.close();
+		getMenu();	
+	}
+	
+	@Override
+	public double computeBonus() {
+		double rate = this.getOverall() ;
+		return rate * 3;
 	}
 	
 	public void custMenu() {
@@ -153,7 +172,6 @@ public class PrivateCustomerManager extends Employee{
 				System.out.println("\nThere are not remaining days of leave!");
 			}
 		}
-		String goBack = sc.next();
 		getMenu();
 		sc.close();
 	}
@@ -206,19 +224,20 @@ public class PrivateCustomerManager extends Employee{
 				case 1:
 					custMenu();
 				case 2:
-					DepositManager.goals();
+					goals();
 				case 3:
-					DepositManager.computeBonus();
+					computeBonus();
 				case 4:
 					leaves();
 				case 5:
-					PrivateCustomerManager.getNews();
+					Employee.getNews();
 				case 6:
 					ReadComplains();
 				case 7:
-					Main.main();
+					Main.main(null);
 					
 		}
+		sc.close();
 	}
 }
 
