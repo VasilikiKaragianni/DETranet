@@ -5,29 +5,28 @@ import java.util.Scanner;
 
 public class DepositManager extends Employee {
 	
-	public static String pCMGoals;
-	public static String tellerGoals;
-	public static String pCMGoldGoals;
-	public static String pCMDelaysGoals;
+	private static String pCMGoals;
+	private static String tellerGoals;
+	private static String pCMGoldGoals;
+	private static String pCMDelaysGoals;
 	
 	public DepositManager(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, int overall) {
+			String firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 	}
 
 	@Override
 	public void goals() {
 		Scanner sc = new Scanner(System.in);
-		if (Manager.goalsDepositManager==null) {
+		if (Manager1.getDepositGoals()==null) {
 			System.out.println("No available goals!");
 		}else {
-			System.out.println("Department goals:\n" + Manager.goalsDepositManager);
+			System.out.println("Department goals:\n" + Manager1.getDepositGoals());
 		}
 		String goBack = sc.next();
 		getMenu();	
 	}
-
-	@Override
+	
 	public void setGoals() {
 		for(;;) {
 			boolean flag=true;
@@ -74,7 +73,21 @@ public class DepositManager extends Employee {
 				}
 			}
 	}
-
+	public static String getpCMGoals() {
+		return pCMGoals;
+	}
+	public static String gettellerGoals() {
+		return tellerGoals;
+	}
+	public static String getpCMGoldGoals() {
+		return pCMGoldGoals;
+	}
+	public static String getpCMDelaysGoals() {
+		return pCMDelaysGoals;
+	}
+	
+	
+	
 	@Override
 	public double computeBonus() {
 		int nmbrOfEmployees=0;
@@ -105,7 +118,7 @@ public class DepositManager extends Employee {
 		}
 		return bonus;
 	}
-
+	@Override
 	public void leaves() {
 		Scanner sc = new Scanner(System.in);
 		int select=0;
@@ -178,7 +191,7 @@ public class DepositManager extends Employee {
 		boolean flag=true;
 		do {
 			try  {
-				System.out.println("\nMenu"
+				System.out.println("\n Welcome to the Deposit Manager menu!"
 						+ "\n1.Display department goals"
 						+ "\n2.Goals sharing"
 						+ "\n3.Leaves"
@@ -201,7 +214,7 @@ public class DepositManager extends Employee {
 		
 		switch (select) {
 		case 1:
-			goals(DepositMngrGoals);
+			goals();
 			break;
 		case 2:
 			setGoals();
@@ -217,7 +230,7 @@ public class DepositManager extends Employee {
 			this.getNews();
 			break;
 		case 6:
-			Main.main();
+			Main.main(null);
 			break;
 		}
 	}
