@@ -2,21 +2,17 @@ package detranet;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.InputMismatchException;
 
 public class Manager extends Employee {
 	
 	public static ArrayList <Integer> managersOverall= new ArrayList<Integer>();
-
 	private static String goalsLoanManager;
 	private static String goalsDepositManager;
 	
 	public Manager(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
-				   int leaves, String username, String password, double overall,String goalsLoanManager, String goalsDepositManager) {
+				   int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
-		goalsLoanManager=this.goalsLoanManager;
-		goalsDepositManager=this.goalsDepositManager;
 	}
 
 	@Override
@@ -95,7 +91,7 @@ public class Manager extends Employee {
 					break;
 				case 5:
 					double rate;
-					rate=computeBonus()/3;
+					rate=computeBonus()/ 3;
 					int j=0;
 					int num=0;
 					while(num<1) {
@@ -114,7 +110,7 @@ public class Manager extends Employee {
 					getNews();
 					break;
 				case 7:
-					Main.main();
+					Main.main(null);
 					break;
 			}
 		}
@@ -125,8 +121,16 @@ public class Manager extends Employee {
 		System.out.println("The goals for Loan Manager are: "+  goalsLoanManager + ". \n"
 				         +"The goals for Depositor Manager are: " +  goalsDepositManager + ".");
 	}
+	
+	public static String getLoanGoals() {
+		return goalsLoanManager;
+	}
+	
+	public static String getDepositGoals() {
+		return goalsDepositManager;
+	}
 
-	@Override
+
 	public void setGoals() {
 		Scanner sc=new Scanner(System.in);
 		int select=0;
