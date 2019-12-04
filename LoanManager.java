@@ -5,29 +5,28 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoanManager extends Employee {
-	public static String bSMGoals;
-	public static String cSMGoals;
-	public static String cSMGoldGoals;
-	public static String cSMDelaysGoals;
+	private static String bSMGoals;
+	private static String cSMGoals;
+	private static String cSMGoldGoals;
+	private static String cSMDelaysGoals;
 
 	public LoanManager(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, int overall) {
+			String firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 	}
 
 	@Override
 	public void goals() {
 		Scanner sc = new Scanner(System.in);
-		if (Manager.goalsLoanManager==null) {
+		if (Manager.getLoanGoals()==null) {
 			System.out.println("No available goals!");
 		}else {
-			System.out.println("Department goals:\n" + Manager.goalsLoanManager);
+			System.out.println("Department goals:\n" + Manager.getLoanGoals());
 		}
 		String goBack = sc.next();
 		getMenu();
 	}
 
-	@Override
 	public void setGoals() {
 		for(;;) {
 			boolean flag=true;
@@ -73,6 +72,23 @@ public class LoanManager extends Employee {
 			}
 		}
 	}
+	
+	public static String getbSMGoals() {
+		return bSMGoals;
+	}
+	
+	public static String getcSMGoals() {
+		return cSMGoals;
+	}
+	
+	public static String getcSMGoldGoals() {
+		return cSMGoldGoals;
+	}
+	
+	public static String getcSMDelaysGoals() {
+		return cSMDelaysGoals;
+	}
+	
 
 	@Override
 	public double computeBonus() {
@@ -104,7 +120,7 @@ public class LoanManager extends Employee {
 		}	
 		return bonus;
 	}
-	
+	@Override
 	public void leaves() {
 		Scanner sc = new Scanner(System.in);
 		int select=0;
@@ -199,7 +215,7 @@ public class LoanManager extends Employee {
 		}while(flag);
 		switch (select) {
 		case 1:
-			goals(LoanMngrGoals);
+			goals();
 		case 2:
 			setGoals();
 			break;
@@ -214,7 +230,7 @@ public class LoanManager extends Employee {
 			this.getNews();
 			break;
 		case 6:
-			Main.main();
+			Main.main(null);
 			break;
 		}
 	}
