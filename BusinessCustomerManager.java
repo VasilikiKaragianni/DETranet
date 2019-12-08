@@ -222,7 +222,6 @@ public class BusinessCustomerManager extends Employee {
 				switch (select) {
 				case 1:
 					employeeList();
-					break;
 				case 2:
 					goals();
 				case 3:
