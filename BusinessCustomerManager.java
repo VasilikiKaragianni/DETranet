@@ -20,6 +20,8 @@ public class BusinessCustomerManager extends Employee {
 		// TODO Auto-generated constructor stub
 	}
 
+	//Delete a customer based on the id given by the employee//
+	
 	public void removeCust(int id) {
 		@SuppressWarnings("unlikely-arg-type")
 		int index = Business.cSM.indexOf(id);
@@ -170,7 +172,6 @@ public class BusinessCustomerManager extends Employee {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
 	
 	@Override
 	public void goals() {
