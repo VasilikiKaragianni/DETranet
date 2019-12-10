@@ -18,10 +18,10 @@ public class DepositManager extends Employee {
 	@Override
 	public void goals() {
 		Scanner sc = new Scanner(System.in);
-		if (Manager1.getDepositGoals()==null) {
+		if (Manager.getDepositGoals()==null) {
 			System.out.println("No available goals!");
 		}else {
-			System.out.println("Department goals:\n" + Manager1.getDepositGoals());
+			System.out.println("Department goals:\n" + Manager.getDepositGoals());
 		}
 		String goBack = sc.next();
 		getMenu();	
