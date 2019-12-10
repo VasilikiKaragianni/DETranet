@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 
 public class BusinessServiceManager extends Employee {
 
-	public BusinesServiceManager(String fullname, int idEmployee, String department, String email, double salary,
+	public BusinessServiceManager(String fullname, int idEmployee, String department, String email, double salary,
 			String firstDate, int leaves, String username, String password, Double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
