@@ -13,7 +13,7 @@ public class Business {
 	/* Lists for each employee */
 	public static ArrayList <Business> bSM= new ArrayList<Business>();
 	public static ArrayList <Business> cSM= new ArrayList<Business>();
-	public static ArrayList <Business> cSMGold= new ArrayList<Business>();
+	public static ArrayList <Business> cSMVip= new ArrayList<Business>();
 	public static ArrayList <Business> cSMDelays= new ArrayList<Business>();
 	public static ArrayList <Business> tellerBusiness= new ArrayList<Business>();
 	
@@ -28,7 +28,7 @@ public class Business {
 		return cSM;
 	}
 	public static ArrayList<Business> getcSMGold() {
-		return cSMGold;
+		return cSMVip;
 	}
 	public static ArrayList<Business> getcSMDelays() {
 		return cSMDelays;
@@ -83,7 +83,7 @@ public class Business {
 			cSM.add(this);
 			break;
 		case 3:
-			cSMGold.add(this);
+			cSMVip.add(this);
 			break;
 		case 4:
 			cSMDelays.add(this);
