@@ -172,6 +172,7 @@ public class BusinessCustomerManager extends Employee {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 	
 	@Override
 	public void goals() {
