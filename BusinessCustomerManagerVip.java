@@ -1,34 +1,40 @@
 package detranet;
 
-/*This class is about one of the Business's employees and more specifically the one that manages the business's customers delays.
+/*This class is about one of the Business's employees and more specifically the one that manages the business's VIP customers.
  * He/She can see the list of customers,delete an old customer or add a new one.
  * He/She can also see the goals that he/she must accomplish, the bonus that he/she deserves, 
- * the remaining days of leaves or ask for a new leave and the news of the bank */
+ * the remaining days of leaves or ask for a new leave, the news of the bank and he/she can manages any complaints 
+ * given by the VIPcustomers*/
 
-import java.util.Scanner;
 import java.util.InputMismatchException;
-/*
- * Business Customer Manager of Delays
- */
-public class BusinessCustomerManagerDelays extends Employee {
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
-	/*Constructor of class*/
-	public BusinessCustomerManagerDelays(String fullname, int idEmployee, String department, String email,
-			double salary, String firstDate, int leaves, String username, String password, Double overall) {
+/*
+ * Business Customer Manager Vip
+ */
+
+public class BusinessCustomerManagerVip extends Employee {
+
+     /*Constructor of class*/
+	
+	public BusinessCustomerManagerVip(String fullname, int idEmployee, String department, String email, double salary,
+			String firstDate, int leaves, String username, String password, Double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}
 
 	/* This method deletes an already existing customer based on the id 
-	 * that the Business Customer Manager of Delays gives
+	 * that the Business Customer Manager of Vip clients gives
 	 */
 	public void removeCust(int id) {
 		@SuppressWarnings("unlikely-arg-type")
-		int index = Business.cSMDelays.indexOf(id);
+		int index = Business.cSMGold.indexOf(id);
 		if (index == -1) {
 			System.out.println("The id you gave is not valid");
 		}else {
-			Business.bSM.remove(index);
+			Business.cSMGold.remove(index);
 			System.out.println("The customer was deleted succesfuly");
 		}
 	}
@@ -78,7 +84,7 @@ public class BusinessCustomerManagerDelays extends Employee {
 			newCust.setType(type);
 			newCust.setAmount(amount);
 			newCust.setNmbrLoans(nmbrLoans);
-			newCust.addBusiness(4);
+			newCust.addBusiness(3);
 			System.out.println("Your new customer was added succesfully");
 
 		case 2:
@@ -87,21 +93,39 @@ public class BusinessCustomerManagerDelays extends Employee {
 			removeCust(id2);
 
 		case 3:
-			for(int i=0; i<=Business.cSMDelays.size(); i++)
+			for(int i=0; i<=Business.cSMGold.size(); i++)
 				toString();
 			}
 		sc.close();
 	}
 
+	/* This method reads a CSV file 
+	 * which contains some complaints from the Vip clients*/
+	public void ReadComplaints() {
+		String Filename= "Complains.csv";
+		File file = new File(Filename);
+		try {
+			Scanner sc=new Scanner(file);
+			while (sc.hasNext()) {
+				String data=sc.nextLine();
+				System.out.println(data);
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/* This method is inherited from the class Employee 
 	 * and shows the goals to the manager*/
 	@Override
 	public void goals() {
 		Scanner sc = new Scanner(System.in);
-		if (LoanManager.getcSMDelaysGoals()==null) {
+		if (LoanManager.getcSMGoldGoals()==null) {
 			System.out.println("No available goals!");
 		}else {
-			System.out.println("Department goals:\n" + LoanManager.getcSMDelaysGoals());
+			System.out.println("Department goals:\n" + LoanManager.getcSMGoldGoals());
 		}
 		sc.close();
 		getMenu();	
@@ -115,6 +139,7 @@ public class BusinessCustomerManagerDelays extends Employee {
 		double rate = this.getOverall() ;
 		return rate * 3;
 	}
+
 
 	/*This method shows all the functions that a Business Customer Manager of Vip clients
 	 * can have
@@ -132,33 +157,36 @@ public class BusinessCustomerManagerDelays extends Employee {
 						+ "\n3.Bonus"
 						+ "\n4.Permission for absence"
 						+ "\n5.Display of bank's news"
-						+ "\n6.Log Out");
+						+ "\n6.Management of complaints"
+						+ "\n7.Log Out");
 				select=sc.nextInt();
-				if (select>0 && select<6) {
+				if (select>0 && select<7) {
 					value=false;
 				}else {
-					System.out.printf("You did't insert an integer between 1 and 6.Please try again");
+					System.out.printf("You did't insert an integer between 1 and 7.Please try again");
 					}
 				}
 			catch (InputMismatchException inputmismatchexception) {
 				System.err.printf("%nException%n: %s%n" , inputmismatchexception);
 				sc.nextLine();
-				System.out.printf("You did't insert an integer between 1 and 6.Please try again");
+				System.out.printf("You did't insert an integer between 1 and 7.Please try again");
 			}
 		} while (value);
 				switch (select) {
 				case 1:
 					employeeList();
+					break;
 				case 2:
 					goals();
 				case 3:
 					computeBonus();
 				case 4:
 					leaves();
-					break;
 				case 5:
 					Employee.getNews();
 				case 6:
+					ReadComplaints();
+				case 7:
 					Main.main(null);
 		}
 				sc.close();
