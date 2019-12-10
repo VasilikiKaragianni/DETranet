@@ -1,17 +1,42 @@
+/*
+ * Teller
+ */
 package detranet;
-
 
 import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
+/**
+ * This class is for the Teller.The Teller is responsible for the cash transactions of the private customers and also the business customers.
+ * It includes a Menu that Manager chooses what actions want to make and by this way Manager can control his customers,his leaves and his bonuses.
+ *
+ * 
+ */
+
 public class Teller extends Employee{
 
+/**
+ * This is the constructor of the class.
+ * @param fullname
+ * @param idEmployee
+ * @param department
+ * @param email
+ * @param salary
+ * @param firstDate
+ * @param leaves
+ * @param username
+ * @param password
+ * @param overall
+ */
 	public Teller(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
 			int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 	}
-	
+
+/*
+ * This method is responsible for choosing if the customer is private or business.
+ */
 	public void chooseCategory () {
 		boolean flag=true;
 		Scanner sc = new Scanner(System.in);
@@ -40,7 +65,9 @@ public class Teller extends Employee{
 		sc.close();
 	}
 	
-	
+/*
+ * This method is responsible for showing the menu for the Business Customer's management and it has 3 options: addition, delete and display of customers.	
+ */	
 	public void busMenu() {
 		boolean flag=true;
 		Scanner sc= new Scanner (System.in);
@@ -93,6 +120,9 @@ public class Teller extends Employee{
 				sc.close();
 	}
 
+/*
+ * This method removes the private clients from the list.
+ */
 	public void removePrivate(int id) {
 		@SuppressWarnings("unlikely-arg-type")
 		int index=Private.pCM.indexOf(id);
@@ -104,6 +134,9 @@ public class Teller extends Employee{
 		}
 	}
 	
+/*
+ * This method removes the business clients from the list.
+ */
 	public void removeBusiness(int id) {
 		@SuppressWarnings("unlikely-arg-type")
 		int index=Business.tellerBusiness.indexOf(id);
@@ -115,6 +148,9 @@ public class Teller extends Employee{
 		}
 	}
 	
+/*
+ * This method is inherited from the class Employee and shows the goals that the Teller has.
+ */	
 	@Override
 	public void goals() {
 		Scanner sc = new Scanner(System.in);
@@ -126,13 +162,19 @@ public class Teller extends Employee{
 		sc.close();
 		getMenu();	
 	}
-	
+
+/* 
+ * This method is inherited by the class Employee and it returns the bonus that the Teller will gain.
+ */
 	@Override
 	public double computeBonus() {
 		double rate = this.getOverall() ;
 		return rate * 3;
 	}
 	
+/*
+ * This method is responsible for showing the menu for the Customer's management and it has 3 options: addition, delete and display of customers.	
+ */
 	public void custMenu() {
 		boolean flag=true;
 		Scanner sc= new Scanner (System.in);
@@ -186,71 +228,9 @@ public class Teller extends Employee{
 				sc.close();
 	}
 	
-	public void leaves() {
-		Scanner sc = new Scanner(System.in);
-		int select=0;
-		boolean flag=true;
-		do {
-			try {
-				System.out.println("1.Display remaining leaves"
-									+ "\n2.Request for leave");
-			select=sc.nextInt();
-			if(select==1 ||select==2) {
-				flag=false;	
-			}else {
-				System.out.println("Please enter 1 for display or 2 for register.Try again...");
-				}
-			}
-			catch (InputMismatchException inputmismatchexception) {
-				System.err.printf("%nException%n: %s%n" , inputmismatchexception);
-				sc.nextLine();
-				System.out.println("Please enter 1 for display or 2 for register.Try again...");
-			}
-			
-		}while(flag);
-		int days=0;
-		if(select==1) {
-			System.out.println("Remaining days of leave: " + this.getLeaves() + "!");
-		}else if (select==2) {
-			if (this.getLeaves()>0) {
-				boolean newRequest=true;
-				do {
-					flag=true;
-					do {
-						try {
-								System.out.printf("\nNumber of days needed: ");
-								days = sc.nextInt();
-								flag=false;
-						}catch (InputMismatchException inputmismatchexception) {
-							System.err.printf("%nException%n: %s%n" , inputmismatchexception);
-							sc.nextLine();
-							System.out.printf("Please enter an integer.Try again...");
-						}
-					}while(flag);
-					if (days>this.getLeaves()) {
-						System.out.println("\nSorry.Only " + this.getLeaves() + " remaining days of leave!");
-						String ans;
-						do {
-							System.out.println("\nDo you want to apply again?;(Y/N)");
-							ans=sc.next();
-							ans=ans.toUpperCase();
-						}while(!ans.equals("Y")  && !ans.equals("N"));
-						if(ans.equals("N")) newRequest=false;	
-					}else {
-						newRequest=false;
-						this.setLeaves(this.getLeaves()-days);
-						System.out.println("Υour request has been accepted!"
-								+ "\nRemaining days of leave: " + this.getLeaves());
-					}
-				}while (newRequest);
-			}else {
-				System.out.println("\nThere are not remaining days of leave!");
-			}
-		}
-		getMenu();
-		sc.close();
-	}
-	
+/*
+ *This method includes the main menu which shows all the functions that Teller can have.
+ */
 	
 	@Override
 	public void getMenu() {
