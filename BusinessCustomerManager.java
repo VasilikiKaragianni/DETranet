@@ -10,18 +10,21 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+/*
+ * Business Customer Manager
+ */
 public class BusinessCustomerManager extends Employee {
 
-	
+	/*Constructor of class*/
 	public BusinessCustomerManager(String fullname, int idEmployee, String department, String email, double salary,
 			String firstDate, int leaves, String username, String password, Double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}
 
-	//Delete a customer based on the id given by the employee//
-	
+	/* This method deletes an already existing customer based on the id 
+	 * that the Business Customer Manager gives
+	 */
 	public void removeCust(int id) {
 		@SuppressWarnings("unlikely-arg-type")
 		int index = Business.cSM.indexOf(id);
@@ -32,7 +35,9 @@ public class BusinessCustomerManager extends Employee {
 			System.out.println("The customer was deleted succesfuly");
 		}
 	}
-
+	
+	/*This method displays the menu to the employee 
+	 * who has 3 options to choose between*/
 	public void employeeList() {
 		int select=0;
 		boolean value=true;
@@ -91,73 +96,8 @@ public class BusinessCustomerManager extends Employee {
 		sc.close();
 	}
 	
-	
-
-	public void leaves() {
-		Scanner sc = new Scanner(System.in);
-		int select=0;
-		boolean value=true;
-		do {
-			try {
-				System.out.println("1.Display of days left for absence"
-						+ "\n2.Permission for absence");
-			select=sc.nextInt();
-			if(select==1 ||select==2) {
-				value=false;
-			}else {
-				System.out.println("You didn't enter 1 or 2.Please try again");
-				}
-			}
-			catch (InputMismatchException inputmismatchexception) {
-				System.err.printf("%nException%n: %s%n" , inputmismatchexception);
-				sc.nextLine();
-				System.out.println("You didn't enter 1 or 2.Please try again");
-			}
-
-		}while(value);
-		int days=0;
-		if(select==1) {
-			System.out.println("Remaining days of absence: " + this.getLeaves() + "!");
-		}else if (select==2) {
-			if (this.getLeaves()>0) {
-				boolean newRequest=true;
-				do {
-					value=true;
-					do {
-						try {
-								System.out.printf("\nNumber of days needed: ");
-								days = sc.nextInt();
-								value=false;
-						}catch (InputMismatchException inputmismatchexception) {
-							System.err.printf("%nException%n: %s%n" , inputmismatchexception);
-							sc.nextLine();
-							System.out.printf("Please enter an integer.Try again...");
-						}
-					}while(value);
-					if (days>this.getLeaves()) {
-						System.out.println("\nI am sorry but you only have " + this.getLeaves() + " remaining days of absence!");
-						String ans;
-						do {
-							System.out.println("\nDo you want to apply again?;(Y/N)");
-							ans=sc.next();
-							ans=ans.toUpperCase();
-						}while(!ans.equals("Y")  && !ans.equals("N"));
-						if(ans.equals("N")) newRequest=false;
-					}else {
-						newRequest=false;
-						this.setLeaves(this.getLeaves()-days);
-						System.out.println("?our request has been accepted!"
-								+ "\nRemaining days of leave: " + this.getLeaves());
-					}
-				}while (newRequest);
-			}else {
-				System.out.println("\nThere are not remaining days of leave!");
-			}
-		}
-		getMenu();
-		sc.close();
-	}
-
+	/* This method reads a CSV file
+	 *  which contains some complaints from the clients*/
 	public void ReadComplaints() {
 		String Filename= "Complains.csv";
 		File file = new File(Filename);
@@ -173,7 +113,8 @@ public class BusinessCustomerManager extends Employee {
 			e.printStackTrace();
 		}
 	}
-	
+	/* This method is inherited from the class Employee 
+	 * and shows the goals to the manager*/
 	@Override
 	public void goals() {
 		Scanner sc = new Scanner(System.in);
@@ -186,13 +127,18 @@ public class BusinessCustomerManager extends Employee {
 		getMenu();	
 	}
 	
+	/*This method is inherited from Employee class and returns the bonus 
+	 * that the manager has accomplished to take
+	 */
 	@Override
 	public double computeBonus() {
 		double rate = this.getOverall() ;
 		return rate * 3;
 	}
 
-
+	/*This method shows all the functions that a Business Customer Manager
+	 * can have
+	 */
 	@Override
 	public void getMenu() {
 		boolean value=true;
@@ -237,5 +183,8 @@ public class BusinessCustomerManager extends Employee {
 				case 7:
 					Main.main(null);
 		}
+				sc.close();
 	}
+
+
 }
