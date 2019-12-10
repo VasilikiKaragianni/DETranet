@@ -1,16 +1,42 @@
+/*
+ * PrivateCustomerManagerVip
+ */
 package detranet;
 
 import java.util.Scanner;
+
 import java.util.InputMismatchException;
+
+/**
+ * This class is for the Manager who is responsible for the Private Customers of the Bank who are Vip,which means that they have some more benefits that the other clients.
+ * It includes a Menu that Manager chooses what actions want to make and by this way Manager can control his customers,his leaves and his bonuses.
+ *
+ * 
+ */
 
 public class PrivateCustomerManagerVip extends Employee {
 	
-
+/**
+ * This is the constructor of the class.
+ * @param fullname
+ * @param idEmployee
+ * @param department
+ * @param email
+ * @param salary
+ * @param firstDate
+ * @param leaves
+ * @param username
+ * @param password
+ * @param overall
+ */
 		public PrivateCustomerManagerVip(String fullname, int idEmployee, String department, String email, double salary,
 			String firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		}
 
+/*
+* This method removes the private Vip clients from the list.
+*/
 		public void removePrivate(int id) {
 			@SuppressWarnings("unlikely-arg-type")
 			int index=Private.pCMDelays.indexOf(id);
@@ -21,7 +47,11 @@ public class PrivateCustomerManagerVip extends Employee {
 				System.out.println("The customer is deleted successfully");
 			}
 		}
-		
+
+/*
+ * This method is inherited from the class Employee and shows the goals that the Private Customer Manager of Vip clients has.
+ * 
+ */
 		@Override
 		public void goals() {
 			Scanner sc = new Scanner(System.in);
@@ -34,11 +64,18 @@ public class PrivateCustomerManagerVip extends Employee {
 			getMenu();	
 		}
 		
+/* 
+ * This method is inherited by the class Employee and it returns the bonus that the Private Customer Manager of Vip clients will gain.
+ */
 		@Override
 		public double computeBonus() {
 			double rate = this.getOverall() ;
 			return rate * 3;
 		}
+		
+/*
+ * This method is responsible for showing the menu for the Customer's management and it has 3 options: addition, delete and display of customers.	
+ */		
 		public void custMenu() {
 			boolean flag=true;
 			Scanner sc= new Scanner (System.in);
@@ -92,71 +129,10 @@ public class PrivateCustomerManagerVip extends Employee {
 					sc.close();
 		}
 		
-		public void leaves() {
-			Scanner sc = new Scanner(System.in);
-			int select=0;
-			boolean flag=true;
-			do {
-				try {
-					System.out.println("1.Display remaining leaves"
-										+ "\n2.Request for leave");
-				select=sc.nextInt();
-				if(select==1 ||select==2) {
-					flag=false;	
-				}else {
-					System.out.println("Please enter 1 for display or 2 for register.Try again...");
-					}
-				}
-				catch (InputMismatchException inputmismatchexception) {
-					System.err.printf("%nException%n: %s%n" , inputmismatchexception);
-					sc.nextLine();
-					System.out.println("Please enter 1 for display or 2 for register.Try again...");
-				}
-				
-			}while(flag);
-			int days=0;
-			if(select==1) {
-				System.out.println("Remaining days of leave: " + this.getLeaves() + "!");
-			}else if (select==2) {
-				if (this.getLeaves()>0) {
-					boolean newRequest=true;
-					do {
-						flag=true;
-						do {
-							try {
-									System.out.printf("\nNumber of days needed: ");
-									days = sc.nextInt();
-									flag=false;
-							}catch (InputMismatchException inputmismatchexception) {
-								System.err.printf("%nException%n: %s%n" , inputmismatchexception);
-								sc.nextLine();
-								System.out.printf("Please enter an integer.Try again...");
-							}
-						}while(flag);
-						if (days>this.getLeaves()) {
-							System.out.println("\nSorry.Only " + this.getLeaves() + " remaining days of leave!");
-							String ans;
-							do {
-								System.out.println("\nDo you want to apply again?;(Y/N)");
-								ans=sc.next();
-								ans=ans.toUpperCase();
-							}while(!ans.equals("Y")  && !ans.equals("N"));
-							if(ans.equals("N")) newRequest=false;	
-						}else {
-							newRequest=false;
-							this.setLeaves(this.getLeaves()-days);
-							System.out.println("Υour request has been accepted!"
-									+ "\nRemaining days of leave: " + this.getLeaves());
-						}
-					}while (newRequest);
-				}else {
-					System.out.println("\nThere are not remaining days of leave!");
-				}
-			}
-			getMenu();
-			sc.close();
-		}
-		
+	
+/*
+ *This method includes the main menu which shows all the functions that Private Customer Manager of Vip clients can have.
+ */		
 		@Override
 		public void getMenu() {
 			boolean flag=true;
