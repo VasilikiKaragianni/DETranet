@@ -1,17 +1,19 @@
 package detranet;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 
 public abstract class Employee {
 	
-	public static ArrayList <Employee> employees= new ArrayList<Employee>();
-	public static ArrayList <String> employees2= new ArrayList<String>();
-	public static ArrayList <Integer> idEmployees= new ArrayList<Integer>();
-	public static ArrayList <Double> overalls= new ArrayList<Double>();
+	public static ArrayList <Employee> employees = new ArrayList<Employee>();
+	public static ArrayList <String> employees2 = new ArrayList<String>();
+	public static ArrayList <Integer> idEmployees = new ArrayList<Integer>();
+	public static ArrayList <Double> overalls = new ArrayList<Double>();
 	
 	private String fullname;
-	private static int count=0;
+	public static int count = 0;
 	private int idEmployee;
 	private String department;
 	private String email;
@@ -23,7 +25,7 @@ public abstract class Employee {
 	private double overall;
 
 	public Employee(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
-			int leaves, String username, String password, Double overall) {
+			int leaves, String username, String password, double overall) {
 		super();
 		this.fullname = fullname;
 		this.idEmployee = count++;
@@ -36,7 +38,7 @@ public abstract class Employee {
 		this.password = password;
 		this.overall = overall;
 		employees.add(this);
-		employees2.add(email+password);
+		employees2.add(username+password);
 		idEmployees.add(idEmployee);
 		overalls.add(overall);
 	}
@@ -137,17 +139,77 @@ public abstract class Employee {
 
 	
 	public abstract void goals();
-	public abstract void setGoals();
 	public abstract double computeBonus();
 	public abstract void getMenu();
-	public abstract void leaves();
+	public static void getNews() {  }
 	
-	public static void getNews() {
-		
-		   
-		  
+	public void leaves() {
+		Scanner sc = new Scanner(System.in);
+		int choice = 0;
+		do {
+			boolean loop = true;
+			do {
+				try {	
+					System.out.println("Please press 1 if you want to see the remaining leave days. \n "
+					 		 		 + "Please press 2 if you want to aply for leave.");
+					choice = sc.nextInt();
+					if (choice < 1 || choice > 2)
+						System.out.println("Please insert either 1 or 2: ");
+					loop = false;
+				}
+				catch (InputMismatchException ex) {
+					System.err.println("exception "+ ex);
+					sc.nextLine();
+					System.out.println("Please insert an integer number! ");
+				}
+			}while(loop);
+		}while(choice<1 || choice>2);
+		if(choice == 1) 
+			System.out.println("You have " + this.getLeaves() + "days of leave!");
+		if (choice == 2) {
+			boolean loop = true;
+			while (loop) {
+				if(this.getLeaves() > 0) {
+					System.out.print("Please insert the number of days of leave you want to take: ");
+					int days = sc.nextInt();
+					if (days > this.getLeaves()) {
+						System.out.println("You have just" + this.getLeaves() + "days of leave!");
+						int ans = 0;
+						do {
+							boolean cloop = true;
+							do {
+								try {
+									System.out.println("Please press 3 if you want to aply for leave again"
+													 + "or press 4 if you want to return to menu.");
+									ans = sc.nextInt();
+									if (ans<3 || ans>4)
+										System.out.println("Please insert either 3 or 4: ");
+									cloop = false;
+								}
+								catch (InputMismatchException ex) {
+									System.err.println("exception "+ ex);
+									sc.nextLine();
+									System.out.println("Please insert an integer number! ");
+								}
+							}while(cloop);
+						}while(ans<3 || ans>4);
+						if (ans == 3)
+							System.out.print("Please insert the number of days of leave you want to take: ");
+						else
+							getMenu();
+					}else {
+						this.setLeaves(this.getLeaves()-days);
+						System.out.println("Your request has been accepted! \n"
+										 + "remaining days of leave: " + this.getLeaves() );
+						loop = false;
+					}
+				}else {
+					System.out.println("Yoy have not remaining days of leave!");
+					loop = false;
+				}
+			}
+		}
 	}
-
 	public static Employee logIn(String email, String password) {
 		if(employees2.contains(email+password))
 			return employees.get(employees2.indexOf(email+password));
