@@ -1,19 +1,19 @@
 package detranet;
 
 import java.util.ArrayList;
-
+/* Class for private customers */
 public class Private { 
-	
+	/* Private customer's characteristics */
 	private String name;
 	private int idPrivate;
 	private double amount;
 	private int cards;
 	private int nmbrLoans;
 	private static int count=1;
-	
+	/* Lists for each employee */
 	public static ArrayList <Private> pCM= new ArrayList<Private>();
 	public static ArrayList <Private> tellerPrivate= new ArrayList<Private>();
-	public static ArrayList <Private> pCMGold= new ArrayList<Private>();
+	public static ArrayList <Private> pCMVip= new ArrayList<Private>();
 	public static ArrayList <Private> pCMDelays= new ArrayList<Private>();
 	
 	
@@ -24,11 +24,12 @@ public class Private {
 		return tellerPrivate;
 	}
 	public static ArrayList<Private> getpCMGold() {
-		return pCMGold;
+		return pCMVip;
 	}
 	public static ArrayList<Private> getpCMDelays() {
 		return pCMDelays;
 	}
+	
 	public Private(String name, int idPrivate, double amountOfDeposit, int cards, int nmbrLoans) {
 		super();
 		this.name = name;
@@ -66,6 +67,7 @@ public class Private {
 		this.nmbrLoans = nmbrLoans;
 	}
 	
+	/* Method add customer depending the employee who manage the customer */
 	public void addPrivate(int selectList) {
 		switch (selectList) {
 		case 1:
@@ -75,13 +77,15 @@ public class Private {
 			tellerPrivate.add(this);
 			break;
 		case 3:
-			pCMGold.add(this);
+			pCMVip.add(this);
 			break;
 		case 4:
 			pCMDelays.add(this);
 			break;	
 		}	
 	}
+	
+	/* Method return customer's characteristics */
 	public String toString() {
 		return ("Costumer information:\nName: " + getName() 
 				+"\nID: " + getIdPrivate() 

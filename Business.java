@@ -1,16 +1,16 @@
 package detranet;
 
 import java.util.ArrayList;
-
+/* Class for business customers */
 public class Business {
-	
+	/* Business customer's characteristics */
 	private static int count=1; 
 	private String name;
 	private String type;
 	private int idBusiness;
 	private double amount;
 	private int nmbrLoans;
-	
+	/* Lists for each employee */
 	public static ArrayList <Business> bSM= new ArrayList<Business>();
 	public static ArrayList <Business> cSM= new ArrayList<Business>();
 	public static ArrayList <Business> cSMGold= new ArrayList<Business>();
@@ -73,6 +73,7 @@ public class Business {
 		this.amount = amount;
 	}
 	
+	/* Method add customer depending the employee who manage the customer */
 	public void addBusiness(int selectList) {
 		switch (selectList) {
 		case 1:
@@ -91,12 +92,12 @@ public class Business {
 			tellerBusiness.add(this);
 		}	
 	}
+	
+	/* Method return customer's characteristics */
 	public String toString() {
 		return ("Costumer information:\nName: " + getName() + getType() 
 			+"\nID: " + getIdBusiness() 
 			+ "\nAmount: " + getAmount() 
 			+ "\nLoans: " + getNmbrLoans()) ;
 	}
-	
-
 }
