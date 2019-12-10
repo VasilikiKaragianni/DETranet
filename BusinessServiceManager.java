@@ -9,7 +9,7 @@ package detranet;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class BusinesServiceManager extends Employee {
+public class BusinessServiceManager extends Employee {
 
 	public BusinesServiceManager(String fullname, int idEmployee, String department, String email, double salary,
 			String firstDate, int leaves, String username, String password, Double overall) {
