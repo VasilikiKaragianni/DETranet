@@ -6,7 +6,6 @@ import java.util.InputMismatchException;
 // class for manager of bank
 public class Manager extends Employee {
 
-	public static ArrayList <Integer> managersOverall= new ArrayList<Integer>();
 	private static String goalsLoanManager;
 	private static String goalsDepositManager;
 	
