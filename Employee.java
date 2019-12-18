@@ -1,14 +1,15 @@
-
 package detranet;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.awt.Desktop;
-import java.io.IOException;
-import java. net.URI;
-import java.net.URISyntaxException;
 
 
 public abstract class Employee {
@@ -24,13 +25,13 @@ public abstract class Employee {
 	private String department;
 	private String email;
 	private double salary;
-	private Date firstDate;
+	private String firstDate;
 	private int leaves;
 	private String username;
 	private String password;
 	private double overall;
 
-	public Employee(String fullname, int idEmployee, String department, String email, double salary, Date firstDate,
+	public Employee(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
 			int leaves, String username, String password, double overall) {
 		super();
 		this.fullname = fullname;
@@ -103,11 +104,11 @@ public abstract class Employee {
 		this.salary = salary;
 	}
 
-	public Date getFirstDate() {
+	public String getFirstDate() {
 		return firstDate;
 	}
 
-	public void setFirstDate(Date firstDate) {
+	public void setFirstDate(String firstDate) {
 		this.firstDate = firstDate;
 	}
 
@@ -143,23 +144,94 @@ public abstract class Employee {
 		this.overall = overall;
 	}
 
-	
-	public abstract void goals();
 	public abstract double computeBonus();
 	public abstract void getMenu();
 	
 	public static void getNews() { 
-			Desktop d = Desktop.getDesktop();
-			try {
-				d.browse(new URI("http://www.gazzetta.gr"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+		Desktop d = Desktop.getDesktop();
+		try {
+			d.browse(new URI("http://www.gazzetta.gr"));
+		} catch (IOException e) {
 				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
 		}
+	}
+	
+	
+	public void setGoals(String goals) {
+		File file = new File (goals+".txt");
+		int select = 0;
+		Scanner sc = new Scanner(System.in);
+		boolean flag = true;
+		/* select for add more goals or write goals in an empty file */
+		do {
+			try {
+				System.out.print("1.Add goals"
+						+ "\n2.Set new goals\n");
+				select = sc.nextInt();
+				if (select == 1 || select == 2) {
+					flag = false;
+				}else {
+					System.out.printf("Please insert 1 or 2.Try again...");				
+				}
+			} catch (InputMismatchException inputmismatchexception) {
+				System.err.printf("%nException%n: %s%n", inputmismatchexception);
+				sc.nextLine();
+				System.out.printf("Please insert an integer between 1-2.Try again...");
+			}
+		} while (flag);
+		boolean newFile = true;
+		if (select == 2) {
+			newFile = false;
+		}		
+		try {
+			FileWriter out = new FileWriter(file , newFile);
+			boolean addGoal=true;
+			do {
+				System.out.print("Add goal: ");
+				String goal="";
+				Scanner scanner = new Scanner(System.in);
+		    	goal = scanner.nextLine() + ""; 
+				try {
+					out.write (goal);
+					out.write(System.getProperty("line.separator")); /* go to next line */
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				String ans;
+				do {
+					System.out.printf("End of procedure (Y/N)");
+					ans=sc.next();
+					ans=ans.toUpperCase();
+				}while(!ans.equals("Y")  && !ans.equals("N"));
+				if (ans.equals("Y")) {
+					addGoal=false;
+				}
+			} while (addGoal==true);
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}	
+		
+
+	public void goals (String goal){
+		String Filename= goal + ".txt";
+		String path = Filename ;
+		File file = new File(path);
+		try {
+			Scanner sc=new Scanner(file);
+			while (sc.hasNext()) {
+				String data=sc.nextLine();
+				System.out.println(data);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+	}	
 	
 	public void leaves() {
 		Scanner sc = new Scanner(System.in);
