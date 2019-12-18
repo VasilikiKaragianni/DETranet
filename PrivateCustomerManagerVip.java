@@ -163,16 +163,22 @@ public class PrivateCustomerManagerVip extends Employee {
 					switch (option) {
 					case 1:
 						custMenu();
+						break;
 					case 2:
 						goals();
+						break;
 					case 3:
 						computeBonus();
+						break;
 					case 4:
 						leaves();
+						break;
 					case 5:
 						PrivateCustomerManager.getNews();
+						break;
 					case 6:
 						Main.main(null);
+						break;
 						
 			}
 		sc.close();

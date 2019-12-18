@@ -229,7 +229,7 @@ public class Teller extends Employee{
 	}
 	
 /*
- *This method includes the main menu which shows all the functions that Teller can have.
+ *This method includes the main menu which shows all the functions that Teller2 can have.
  */
 	
 	@Override
@@ -262,16 +262,22 @@ public class Teller extends Employee{
 				switch (option) {
 				case 1:
 					chooseCategory();
+					break;
 				case 2:
 					goals();
+					break;
 				case 3:
 					computeBonus();
+					break;
 				case 4:
 					leaves();
+					break;
 				case 5:
 					PrivateCustomerManager.getNews();
+					break;
 				case 6:
 					Main.main(null);
+					break;
 				}
 			sc.close();
 	}

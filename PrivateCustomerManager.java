@@ -137,7 +137,7 @@ public class PrivateCustomerManager extends Employee{
 	
 	
 /*
- * This method is responsible for openning and reading a csv file which includes the complains that the customers may have.	
+ * This method is responsible for opening and reading a csv file which includes the complains that the customers may have.	
  */
 	public void ReadComplains() {
 		String Filename= "Complains.csv";
@@ -189,18 +189,25 @@ public class PrivateCustomerManager extends Employee{
 				switch (option) {
 				case 1:
 					custMenu();
+					break;
 				case 2:
 					goals();
+					break;
 				case 3:
 					computeBonus();
+					break;
 				case 4:
 					leaves();
+					break;
 				case 5:
 					Employee.getNews();
+					break;
 				case 6:
 					ReadComplains();
+					break;
 				case 7:
 					Main.main(null);
+					break;
 					
 		}
 		sc.close();
