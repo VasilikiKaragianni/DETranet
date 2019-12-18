@@ -2,15 +2,17 @@ package detranet;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 // class for manager of bank
 public class Manager extends Employee {
 
+	public static ArrayList <Integer> managersOverall= new ArrayList<Integer>();
 	private static String goalsLoanManager;
 	private static String goalsDepositManager;
 	
 	//10-argument constructor
-	public Manager(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
+	public Manager(String fullname, int idEmployee, String department, String email, double salary, Date firstDate,
 				   int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 	}

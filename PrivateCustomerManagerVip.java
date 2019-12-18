@@ -4,7 +4,7 @@
 package detranet;
 
 import java.util.Scanner;
-
+import java.util.Date;
 import java.util.InputMismatchException;
 
 /**
@@ -30,7 +30,7 @@ public class PrivateCustomerManagerVip extends Employee {
  * @param overall
  */
 		public PrivateCustomerManagerVip(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, double overall) {
+			Date firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		}
 
@@ -43,7 +43,7 @@ public class PrivateCustomerManagerVip extends Employee {
 			if (index== -1) {
 				System.out.println("The id you gave is not valid");
 			} else {
-				Private.pCMGold.remove(index);
+				Private.pCMVip.remove(index);
 				System.out.println("The customer is deleted successfully");
 			}
 		}
@@ -123,7 +123,7 @@ public class PrivateCustomerManagerVip extends Employee {
 						int delid = sc.nextInt();
 						removePrivate(delid);
 					case 3:
-						for(int i=0; i<=Private.pCMGold.size(); i++)
+						for(int i=0; i<=Private.pCMVip.size(); i++)
 						toString();
 					}
 					sc.close();

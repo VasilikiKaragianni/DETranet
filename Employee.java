@@ -1,6 +1,8 @@
+
 package detranet;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.awt.Desktop;
@@ -22,13 +24,13 @@ public abstract class Employee {
 	private String department;
 	private String email;
 	private double salary;
-	private String firstDate;
+	private Date firstDate;
 	private int leaves;
 	private String username;
 	private String password;
 	private double overall;
 
-	public Employee(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
+	public Employee(String fullname, int idEmployee, String department, String email, double salary, Date firstDate,
 			int leaves, String username, String password, double overall) {
 		super();
 		this.fullname = fullname;
@@ -101,11 +103,11 @@ public abstract class Employee {
 		this.salary = salary;
 	}
 
-	public String getFirstDate() {
+	public Date getFirstDate() {
 		return firstDate;
 	}
 
-	public void setFirstDate(String firstDate) {
+	public void setFirstDate(Date firstDate) {
 		this.firstDate = firstDate;
 	}
 

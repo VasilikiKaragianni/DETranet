@@ -1,82 +1,79 @@
 package detranet;
 
+import java.io.PrintStream;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-/* Class for loan Manager */
+
 public class LoanManager extends Employee {
 	private static String bSMGoals;
 	private static String cSMGoals;
-	private static String cSMVipGoals;
+	private static String cSMGoldGoals;
 	private static String cSMDelaysGoals;
 
 	public LoanManager(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, double overall) {
-		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
+			Date string, int leaves, String username, String password, double overall) {
+		super(fullname, idEmployee, department, email, salary, string, leaves, username, password, overall);
 	}
-	
-	/* Display the goals for the loan department set by the manager */
+
 	@Override
 	public void goals() {
-		if (Manager.getLoanGoals() == null) {
-			System.out.printf("No available goals!");
+		Scanner sc = new Scanner(System.in);
+		if (Manager.getLoanGoals()==null) {
+			System.out.println("No available goals!");
 		}else {
-			System.out.printf("Department goals:\n" + Manager.getLoanGoals());
+			System.out.println("Department goals:\n" + Manager.getLoanGoals());
 		}
+		String goBack = sc.next();
+		getMenu();
 	}
-	
-	/* Method for goals assignment for employees of loan department */
+
 	public void setGoals() {
-		Scanner sc = new Scanner (System.in);
-		boolean endOfProcedure = true;
-		do {
-			boolean flag = true;
-			int select = 0;
+		for(;;) {
+			boolean flag=true;
+			Scanner sc = new Scanner (System.in);
+			int select=0;;
 			do {
 				try {
-					System.out.printf("\nGoals sharing for loans."
+					System.out.println("\nGoals sharing for loans."
 							+ "\n1.Business service manager"
-							+ "\n2.Customer service manager"
-							+ "\n3.Customer service manager vip"
-							+ "\n4.Customer service manager delays"
-							+ "\n5.Εnd of procedure\n");
-					select = sc.nextInt();
-					if (select > 0 && select < 6) {
-						flag = false;
+							+ "\n2.Costumer service manager"
+							+ "\n3.Costumer service manager GOLD"
+							+ "\n4.Costumer service manager delays"
+							+ "\n5.Εnd of procedure");
+					select=sc.nextInt();
+					if (select>0 && select<6) {
+						flag=false;
 					}else {
 						System.out.printf("Please insert an integer between 1-5.Try again...");
 						}
 					}
 				catch (InputMismatchException inputmismatchexception) {
-					System.err.printf("%nException%n: %s%n", inputmismatchexception);
+					System.err.printf("%nException%n: %s%n" , inputmismatchexception);
 					sc.nextLine();
 					System.out.printf("Please insert an integer between 1-5.Try again...");
 				}
 			}while (flag);
 			switch (select) {
 			case 1:
-				System.out.printf("Business service manager goals:\n");
-				bSMGoals = sc.next();
+				bSMGoals = sc.nextLine();
 				break;
 			case 2:
-				System.out.printf("Customer service manager goals:\n");
-				cSMGoals = sc.next();
+				cSMGoals = sc.nextLine();
 				break;
 			case 3:
-				System.out.printf("Customer service manager Vip goals:\n");
-				cSMVipGoals = sc.next();
+				cSMGoldGoals = sc.nextLine();
 				break;
 			case 4:
-				System.out.printf("Customer service manager delays goals:\n");
-				cSMDelaysGoals = sc.next();
+				cSMDelaysGoals = sc.nextLine();
 				break;
 			case 5:
-				endOfProcedure = false;
+				getMenu();
 				break;
 			}
-		} while (endOfProcedure);
+		}
 	}
 	
-	/* Methods return goals for employees of loan department */
 	public static String getbSMGoals() {
 		return bSMGoals;
 	}
@@ -86,115 +83,156 @@ public class LoanManager extends Employee {
 	}
 	
 	public static String getcSMGoldGoals() {
-		return cSMVipGoals;
+		return cSMGoldGoals;
 	}
 	
 	public static String getcSMDelaysGoals() {
 		return cSMDelaysGoals;
 	}
 	
-	/* Method compute bonus for loan manager 
-	 * based on the average overall of the employees of the loan department */
+
 	@Override
 	public double computeBonus() {
-		int nmbrOfEmployees = 0;
-		double sumOverall = 0;
+		int nmbrOfEmployees=0;
+		double sumOverall=0;
 		double rate = 0;
-		double bonus = 0;
-		/* Find loan employees and sum overalls */
-		for(int i=0; i < employees.size(); i++) {
+		double bonus=0;
+		for(int i=0; i<employees.size(); i++) {
 			Employee emp = employees.get(i);
-			if (emp.getDepartment() == "Business Service Manager" 
-					|| emp.getDepartment() == "Custumer Service Manager" 
-					|| emp.getDepartment() == "Customer Service Manager Vip" 
-					|| emp.getDepartment() == "Customer Service Manager Delays") {
-				int idCurrEmployee = emp.getIdEmployee();
-				nmbrOfEmployees += 1;
-				for (int j = 0; j < idEmployees.size(); j++ ) {		/* The positions of employees are not the same in lists employees and idEmployees */
-					if (idCurrEmployee == idEmployees.get(j)) { 	/* the same in lists employees and idEmployees */
-						sumOverall += overalls.get(j);
-						break;
-					}
-				}
+			if (emp.getDepartment()=="BusinessServiceManager" 
+					|| emp.getDepartment()=="CostumerServiceManager" 
+					|| emp.getDepartment()=="CostumerServiceGoldManager" 
+					|| emp.getDepartment()=="CostumerServiceDelaysManager") {
+				nmbrOfEmployees =+ 1;
+				sumOverall =+ overalls.get(i);
 			}
-		}
-		rate = sumOverall / nmbrOfEmployees;
-		if(rate > 75) {
+		}	
+		for(int j=0; j<employees.size(); j++) {
+			Employee empLM = employees.get(j);
+			if(empLM.getDepartment()=="LoanManager") {
+				rate=sumOverall/nmbrOfEmployees;
+				empLM.setOverall(rate);
+				idEmployees.add(empLM.getIdEmployee());
+				overalls.add(rate);
+				}
+		} 
+		if(rate>75) {
 			bonus = rate * 3;
 		}	
 		return bonus;
 	}
-	
-	/* Add rate of loan manager */
-	public void evaluationLoanManager() {
-		double rate = (computeBonus()/3);
-		for(int j = 0; j < employees.size(); j++) {
-			Employee empLM = employees.get(j);
-			if(empLM.getDepartment() == "Loan Manager") {
-				empLM.setOverall(rate);
-				idEmployees.add(empLM.getIdEmployee());
-				overalls.add(rate);
-				break;
+	@Override
+	public void leaves() {
+		Scanner sc = new Scanner(System.in);
+		int select=0;
+		boolean flag=true;
+		do {
+			try {
+				System.out.println("1.Display remaining leaves"
+									+ "\n2.Request for leave");
+			select=sc.nextInt();
+			if(select==1 ||select==2) {
+				flag=false;	
+			}else {
+				System.out.println("Please enter 1 for display or 2 for register.Try again...");
+				}
 			}
-		}	
+			catch (InputMismatchException inputmismatchexception) {
+				System.err.printf("%nException%n: %s%n" , inputmismatchexception);
+				sc.nextLine();
+				System.out.println("Please enter 1 for display or 2 for register.Try again...");
+			}
+			
+		}while(flag);
+		int days=0;
+		if(select==1) {
+			System.out.println("Remaining days of leave: " + this.getLeaves() + "!");
+		}else if (select==2) {
+			if (this.getLeaves()>0) {
+				boolean newRequest=true;
+				do {
+					flag=true;
+					do {
+						try {
+								System.out.printf("\nNumber of days needed: ");
+								days = sc.nextInt();
+								flag=false;
+						}catch (InputMismatchException inputmismatchexception) {
+							System.err.printf("%nException%n: %s%n" , inputmismatchexception);
+							sc.nextLine();
+							System.out.printf("Please enter an integer.Try again...");
+						}
+					}while(flag);
+					if (days>this.getLeaves()) {
+						System.out.println("\nSorry.Only " + this.getLeaves() + " remaining days of leave!");
+						String ans;
+						do {
+							System.out.println("\nDo you want to apply again?;(Y/N)");
+							ans=sc.next();
+							ans=ans.toUpperCase();
+						}while(!ans.equals("Y")  && !ans.equals("N"));
+						if(ans.equals("N")) newRequest=false;	
+					}else {
+						newRequest=false;
+						this.setLeaves(this.getLeaves()-days);
+						System.out.println("Υour request has been accepted!"
+								+ "\nRemaining days of leave: " + this.getLeaves());
+					}
+				}while (newRequest);
+			}else {
+				System.out.println("\nThere are not remaining days of leave!");
+			}
+		}
+		String goBack = sc.next();
+		getMenu();
 	}
-	
-	public double finalSalary() {
-		return (this.getSalary() + computeBonus());
-	}
-	
-	/* Display the menu for loan manager */
+
 	@Override
 	public void getMenu() {
 		Scanner sc = new Scanner (System.in);
-		for(;;) {
-			int select=0;
-			boolean flag=true;
-			do {
-				try {
-					System.out.printf("\nWelcome to the Loan Manager menu!"
-							+ "\n1.Display department goals"
-							+ "\n2.Goals sharing"
-							+ "\n3.Leaves"
-							+ "\n4.Compute BONUS"
-							+ "\n5.News"
-							+ "\n6.Log Out\n");
-					select = sc.nextInt();
-					if (select > 0 && select < 7) {
-						flag=false;
-					}else {
-						System.out.printf("Please insert an integer between 1-6.Try again...");
-					}
-				}	
-				catch (InputMismatchException inputmismatchexception) {
-					System.err.printf("%nException%n: %s%n", inputmismatchexception);
-					sc.nextLine();
+		int select=0;
+		boolean flag=true;
+		do {
+			try {
+				System.out.println("\nMenu"
+						+ "\n1.Εμφάνηση στόχων τμήματος"
+						+ "\n2.Καταμερισμός στόχων"
+						+ "\n3.Αίτηση για άδεια"
+						+ "\n4.Υπολογισμός BONUS"
+						+ "\n5.Εμφάνηση νέων τράπεζας"
+						+ "\n6.Log Out");
+				select=sc.nextInt();
+				if (select>0 && select<7) {
+					flag=false;
+				}else {
 					System.out.printf("Please insert an integer between 1-6.Try again...");
 				}
-			}while(flag);
-			switch (select) {
-			case 1:
-				goals();
-				break;
-			case 2:
-				setGoals();
-				break;
-			case 3:
-				leaves();
-				break;
-			case 4:
-				evaluationLoanManager();
-				System.out.println("Goals achievment rate for loan manager: " + (computeBonus()/3) + "%" +
-						"\nBonus: " + computeBonus() + "$" +
-						"\nFinal salary: " + finalSalary() + "$");
-				break;
-			case 5:
-				Employee.getNews();
-				break;
-			case 6:
-				Main.main(null);
-				break;
+			}	
+			catch (InputMismatchException inputmismatchexception) {
+				System.err.printf("%nException%n: %s%n" , inputmismatchexception);
+				sc.nextLine();
+				System.out.printf("Please insert an integer between 1-6.Try again...");
 			}
+		}while(flag);
+		switch (select) {
+		case 1:
+			goals();
+		case 2:
+			setGoals();
+			break;
+		case 3:
+			leaves();
+			break;
+		case 4:
+			System.out.println("Το ποσοστό επίτευξης των στόχων του τμήματος χορηγήσεων είναι: " + this.getOverall() +
+					"\nBonus: " + computeBonus() + "$");
+			break;
+		case 5:
+			this.getNews();
+			break;
+		case 6:
+			Main.main(null);
+			break;
 		}
 	}
 }

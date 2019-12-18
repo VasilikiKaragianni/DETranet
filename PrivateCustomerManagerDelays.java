@@ -4,6 +4,7 @@
 package detranet;
 
 import java.util.Scanner;
+import java.util.Date;
 
 /**
  * This class is for the Manager who is responsible for the Private Customers of the Bank who have delays
@@ -30,7 +31,7 @@ public class PrivateCustomerManagerDelays extends Employee {
  * @param overall
  */
 	public PrivateCustomerManagerDelays(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, double overall) {
+			Date firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}

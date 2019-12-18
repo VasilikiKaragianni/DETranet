@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 	
 	public static void loadObjects() {
-		 Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,"20-02-2010",31,"alex","ab1",0);
+		 Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,20/02/2010,31,"alex","ab1",0);
 		 LoanManager lnmngr= new LoanManager("anna", 1, "Loan Manager" ,"anna@hotmail.com",1700,"32-09-2011",31,"anna","ab2",0);
 		 DepositManager dpmngr= new DepositManager("george", 2, "Deposit Manager" ,"g@gmail.com",1700,"31-01-2009",31,"george","ac23",0);
 		 PrivateCustomerManager prcumn= new PrivateCustomerManager("max", 3, "Private Customer Manager" ,"max23@gmail.com",1400,"22-09-2008",31,"max23","ma21",0);
@@ -129,7 +129,7 @@ public class Main {
 			case 11:
 				BusinessServiceManager busermn = new BusinessServiceManager (inputFullname, id, "Business service manager" ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
 			}		
-		}else {
+		} else {
 			boolean successLogIn = true;
 			do {
 				System.out.println("Log In"

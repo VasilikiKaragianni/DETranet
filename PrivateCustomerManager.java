@@ -7,7 +7,7 @@ package detranet;
 import java.io.File;
 
 import java.io.FileNotFoundException;
-
+import java.util.Date;
 import java.util.InputMismatchException;
 
 import java.util.Scanner;
@@ -35,7 +35,7 @@ public class PrivateCustomerManager extends Employee{
  * @param overall
  */
 	public PrivateCustomerManager(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, double overall) {
+			Date firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}

@@ -6,6 +6,7 @@ package detranet;
  * the remaining days of leaves or ask for a new leave and the news of the bank */
 
 import java.util.Scanner;
+import java.util.Date;
 import java.util.InputMismatchException;
 /*
  * Business Customer Manager of Delays
@@ -14,7 +15,7 @@ public class BusinessCustomerManagerDelays extends Employee {
 
 	/*Constructor of class*/
 	public BusinessCustomerManagerDelays(String fullname, int idEmployee, String department, String email,
-			double salary, String firstDate, int leaves, String username, String password, Double overall) {
+			double salary, Date firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}

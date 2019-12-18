@@ -7,6 +7,7 @@ package detranet;
 
 
 import java.util.Scanner;
+import java.util.Date;
 import java.util.InputMismatchException;
 
 /*Business Service Manager*/
@@ -14,7 +15,7 @@ public class BusinessServiceManager extends Employee {
 	
 	/*Constructor of the class*/
 	public BusinessServiceManager(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, Double overall) {
+			Date firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}
