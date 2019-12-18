@@ -3,6 +3,10 @@ package detranet;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.awt.Desktop;
+import java.io.IOException;
+import java. net.URI;
+import java.net.URISyntaxException;
 
 
 public abstract class Employee {
@@ -141,7 +145,19 @@ public abstract class Employee {
 	public abstract void goals();
 	public abstract double computeBonus();
 	public abstract void getMenu();
-	public static void getNews() {  }
+	
+	public static void getNews() { 
+			Desktop d = Desktop.getDesktop();
+			try {
+				d.browse(new URI("http://www.gazzetta.gr"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 	public void leaves() {
 		Scanner sc = new Scanner(System.in);
