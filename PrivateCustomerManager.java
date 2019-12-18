@@ -66,7 +66,6 @@ public class PrivateCustomerManager extends Employee{
 		}else {
 			System.out.println("Department goals:\n" + DepositManager.getpCMGoals());
 		}
-		sc.close();
 		getMenu();	
 	}
 
@@ -93,7 +92,7 @@ public class PrivateCustomerManager extends Employee{
 						+ "\n2.Delete of Customer"
 						+ "\n3.Display of Customer");
 				option=sc.nextInt();
-				if (option>0 && option<3) {
+				if (option>0 && option<=3) {
 					flag=false;
 				}else {
 					System.out.printf("Please insert an integer between 1-3.Try again...");
@@ -123,36 +122,38 @@ public class PrivateCustomerManager extends Employee{
 					p.setCards(cards);
 					p.setNmbrLoans(loans);
 					p.addPrivate(1);
-					
+					break;
 				case 2:
 					System.out.println("Give customer's id that you want to delete");
 					int delid = sc.nextInt();
 					removePrivate(delid);
+					break;
 				case 3:
 					for(int i=0; i<=Private.pCM.size(); i++)
 					toString();
+					break;
 				}
-				sc.close();
 	}
 	
 	
 /*
  * This method is responsible for opening and reading a csv file which includes the complains that the customers may have.	
  */
-	public void ReadComplains() {
+	public void readComplains (){
 		String Filename= "Complains.csv";
-		File file = new File(Filename);
+		String path = "C:\\Users\\Kalliroi\\git\\DETranet\\" + Filename ;
+		File file = new File(path);
 		try {
 			Scanner sc=new Scanner(file);
 			while (sc.hasNext()) {
 				String data=sc.nextLine();
 				System.out.println(data);
 			}
-			sc.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
+		getMenu();
 	}
 	
 /*
@@ -203,14 +204,13 @@ public class PrivateCustomerManager extends Employee{
 					Employee.getNews();
 					break;
 				case 6:
-					ReadComplains();
+					readComplains();
 					break;
 				case 7:
 					Main.main(null);
 					break;
 					
 		}
-		sc.close();
 	}
 }
 
