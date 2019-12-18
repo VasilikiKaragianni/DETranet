@@ -5,7 +5,18 @@ import java.util.Scanner;
 
 public class Main {
 	
+	public static void loadObjects() {
+		 Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,"20-02-2010",31,"alex","ab1",0);
+		 LoanManager lnmngr= new LoanManager("anna", 1, "Loan Manager" ,"anna@hotmail.com",1700,"32-09-2011",31,"anna","ab2",0);
+		 DepositManager dpmngr= new DepositManager("george", 2, "Deposit Manager" ,"g@gmail.com",1700,"31-01-2009",31,"george","ac23",0);
+		 PrivateCustomerManager prcumn= new PrivateCustomerManager("max", 3, "Private Customer Manager" ,"max23@gmail.com",1400,"22-09-2008",31,"max23","ma21",0);
+		 Teller teller = new Teller("adrian", 4, "Private Customer Manager" ,"ad_po@gmail.com",1400,"22-03-2008",31,"adri","abc",0);
+		 PrivateCustomerManagerVip prcumngold = new PrivateCustomerManagerVip("leo",5, "Private Customer Manager" ,"leoo@gmail.com",1400,"22-09-2012",31,"leoo","op21",0); 
+		 PrivateCustomerManagerDelays prcumndel = new PrivateCustomerManagerDelays ("kate", 6, "Private Customer Manager" ,"kk@gmail.com",1400,"22-09-2018",31,"kate","345g",0);
+	}
+	
 	public static void main(String[] args) {
+		loadObjects();
 		Scanner sc = new Scanner(System.in);
 		int select=0;
 		boolean flag=true;
@@ -106,7 +117,17 @@ public class Main {
 			case 7:
 				PrivateCustomerManagerDelays prcumndel = new PrivateCustomerManagerDelays (inputFullname, id, "Private customer manager delays" ,inputEmail,1300,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
-		
+			case 8:
+				BusinessCustomerManager bucumn = new BusinessCustomerManager (inputFullname, id, "Business customer manager" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
+				break;
+			case 9:
+				BusinessCustomerManagerDelays bucumndel = new BusinessCustomerManagerDelays (inputFullname, id, "Business customer manager delays" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
+				break;
+			case 10:
+				BusinessCustomerManagerVip bucumnvip = new BusinessCustomerManagerVip (inputFullname, id, "Business customer manager Vip " ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
+				break;
+			case 11:
+				BusinessServiceManager busermn = new BusinessServiceManager (inputFullname, id, "Business service manager" ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
 			}		
 		}else {
 			boolean successLogIn = true;
