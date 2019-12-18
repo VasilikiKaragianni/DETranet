@@ -151,10 +151,11 @@ public abstract class Employee {
 			do {
 				try {	
 					System.out.println("Please press 1 if you want to see the remaining leave days. \n "
-					 		 		 + "Please press 2 if you want to aply for leave.");
+					 		 		 + "Please press 2 if you want to aply for leave. \n"
+					 		 		 + "Please press 3 if you want to return to menu.");
 					choice = sc.nextInt();
-					if (choice < 1 || choice > 2)
-						System.out.println("Please insert either 1 or 2: ");
+					if (choice < 1 || choice > 3)
+						System.out.println("Please insert either 1 or 2 or 3: ");
 					loop = false;
 				}
 				catch (InputMismatchException ex) {
@@ -163,9 +164,9 @@ public abstract class Employee {
 					System.out.println("Please insert an integer number! ");
 				}
 			}while(loop);
-		}while(choice<1 || choice>2);
+		}while(choice<1 || choice>3);
 		if(choice == 1) 
-			System.out.println("You have " + this.getLeaves() + "days of leave!");
+			System.out.println("You have " + this.getLeaves() + " days of leave!");
 		if (choice == 2) {
 			boolean loop = true;
 			while (loop) {
@@ -173,17 +174,17 @@ public abstract class Employee {
 					System.out.print("Please insert the number of days of leave you want to take: ");
 					int days = sc.nextInt();
 					if (days > this.getLeaves()) {
-						System.out.println("You have just" + this.getLeaves() + "days of leave!");
+						System.out.println("You have just " + this.getLeaves() + " days of leave!");
 						int ans = 0;
 						do {
 							boolean cloop = true;
 							do {
 								try {
-									System.out.println("Please press 3 if you want to aply for leave again"
-													 + "or press 4 if you want to return to menu.");
+									System.out.println("Please press 4 if you want to aply for leave again"
+													 + " or press 5 if you want to return to menu.");
 									ans = sc.nextInt();
-									if (ans<3 || ans>4)
-										System.out.println("Please insert either 3 or 4: ");
+									if (ans != 4 && ans != 5)
+										System.out.println("Please insert either 4 or 5: ");
 									cloop = false;
 								}
 								catch (InputMismatchException ex) {
@@ -192,8 +193,8 @@ public abstract class Employee {
 									System.out.println("Please insert an integer number! ");
 								}
 							}while(cloop);
-						}while(ans<3 || ans>4);
-						if (ans == 3)
+						}while(ans<4 || ans>5);
+						if (ans == 4)
 							System.out.print("Please insert the number of days of leave you want to take: ");
 						else
 							getMenu();
@@ -202,13 +203,17 @@ public abstract class Employee {
 						System.out.println("Your request has been accepted! \n"
 										 + "remaining days of leave: " + this.getLeaves() );
 						loop = false;
+						getMenu();
 					}
 				}else {
 					System.out.println("Yoy have not remaining days of leave!");
 					loop = false;
+					getMenu();
 				}
 			}
 		}
+		if (choice==3)
+			getMenu();
 	}
 	public static Employee logIn(String email, String password) {
 		if(employees2.contains(email+password))
