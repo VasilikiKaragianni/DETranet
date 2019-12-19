@@ -31,11 +31,11 @@ public class BusinessCustomerManagerVip extends Employee {
 	 */
 	public void removeCust(int id) {
 		@SuppressWarnings("unlikely-arg-type")
-		int index = Business.cSMGold.indexOf(id);
+		int index = Business.cSMVip.indexOf(id);
 		if (index == -1) {
 			System.out.println("The id you gave is not valid");
 		}else {
-			Business.cSMGold.remove(index);
+			Business.cSMVip.remove(index);
 			System.out.println("The customer was deleted succesfuly");
 		}
 	}
@@ -94,7 +94,7 @@ public class BusinessCustomerManagerVip extends Employee {
 			removeCust(id2);
 
 		case 3:
-			for(int i=0; i<=Business.cSMGold.size(); i++)
+			for(int i=0; i<=Business.cSMVip.size(); i++)
 				toString();
 			}
 		sc.close();
