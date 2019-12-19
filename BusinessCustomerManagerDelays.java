@@ -6,7 +6,6 @@ package detranet;
  * the remaining days of leaves or ask for a new leave and the news of the bank */
 
 import java.util.Scanner;
-import java.util.Date;
 import java.util.InputMismatchException;
 /*
  * Business Customer Manager of Delays
@@ -15,7 +14,7 @@ public class BusinessCustomerManagerDelays extends Employee {
 
 	/*Constructor of class*/
 	public BusinessCustomerManagerDelays(String fullname, int idEmployee, String department, String email,
-			double salary, Date firstDate, int leaves, String username, String password, double overall) {
+			double salary, String firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}
@@ -93,20 +92,6 @@ public class BusinessCustomerManagerDelays extends Employee {
 			}
 		sc.close();
 	}
-
-	/* This method is inherited from the class Employee 
-	 * and shows the goals to the manager*/
-	@Override
-	public void goals() {
-		Scanner sc = new Scanner(System.in);
-		if (LoanManager.getcSMDelaysGoals()==null) {
-			System.out.println("No available goals!");
-		}else {
-			System.out.println("Department goals:\n" + LoanManager.getcSMDelaysGoals());
-		}
-		sc.close();
-		getMenu();	
-	}
 	
 	/*This method is inherited from Employee class and returns the bonus 
 	 * that the manager has accomplished to take
@@ -151,12 +136,11 @@ public class BusinessCustomerManagerDelays extends Employee {
 				case 1:
 					employeeList();
 				case 2:
-					goals();
+					goals("Business Customer Manager Delays");
 				case 3:
 					computeBonus();
 				case 4:
 					leaves();
-					break;
 				case 5:
 					Employee.getNews();
 				case 6:

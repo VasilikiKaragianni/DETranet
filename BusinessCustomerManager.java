@@ -1,7 +1,5 @@
 package detranet;
 
-import java.util.Date;
-
 /*This class is about one of the Business's employees and more specifically the one that manages the business's customers.
  * He/She can see the list of customers,delete an old customer or add a new one.
  * He/She can also see the goals that he/she must accomplish, the bonus that he/she deserves, 
@@ -19,7 +17,7 @@ public class BusinessCustomerManager extends Employee {
 
 	/*Constructor of class*/
 	public BusinessCustomerManager(String fullname, int idEmployee, String department, String email, double salary,
-			Date firstDate, int leaves, String username, String password,double overall) {
+			String firstDate, int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}
@@ -115,20 +113,7 @@ public class BusinessCustomerManager extends Employee {
 			e.printStackTrace();
 		}
 	}
-	/* This method is inherited from the class Employee 
-	 * and shows the goals to the manager*/
-	@Override
-	public void goals() {
-		Scanner sc = new Scanner(System.in);
-		if (LoanManager.getcSMGoals()==null) {
-			System.out.println("No available goals!");
-		}else {
-			System.out.println("Department goals:\n" + LoanManager.getcSMGoals());
-		}
-		sc.close();
-		getMenu();	
-	}
-	
+
 	/*This method is inherited from Employee class and returns the bonus 
 	 * that the manager has accomplished to take
 	 */
@@ -173,7 +158,7 @@ public class BusinessCustomerManager extends Employee {
 				case 1:
 					employeeList();
 				case 2:
-					goals();
+					goals("Business Customer Manager goals");
 				case 3:
 					computeBonus();
 				case 4:
