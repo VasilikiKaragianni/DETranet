@@ -137,7 +137,7 @@ public class BusinessCustomerManagerDelays extends Employee {
 				case 1:
 					employeeList();
 				case 2:
-					goals("Business Customer Manager Delays");
+					goals("Customer service manager delays goals");
 				case 3:
 					computeBonus();
 				case 4:

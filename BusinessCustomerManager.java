@@ -160,7 +160,7 @@ public class BusinessCustomerManager extends Employee {
 				case 1:
 					employeeList();
 				case 2:
-					goals("Business Customer Manager goals");
+					goals("Customer service manager goals");
 				case 3:
 					computeBonus();
 				case 4:

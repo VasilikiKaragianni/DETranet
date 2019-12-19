@@ -140,7 +140,7 @@ public class BusinessServiceManager extends Employee {
 					employeeList();
 					break;
 				case 2:
-					goals("Business Service Manager");
+					goals("Business service manager goals");
 				case 3:
 					computeBonus();
 				case 4:

@@ -164,7 +164,7 @@ public class BusinessCustomerManagerVip extends Employee {
 					employeeList();
 					break;
 				case 2:
-					goals("Business Customer Manager Vip");
+					goals("Customer service manager vip goals");
 				case 3:
 					computeBonus();
 				case 4:
