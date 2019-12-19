@@ -1,11 +1,16 @@
 package detranet;
 
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 // class for manager of bank
 public class Manager extends Employee {
+	
+	private static String depositManagerGoals;
+	private static String loanManagerGoals;
 
 	public static ArrayList <Integer> managersOverall= new ArrayList<Integer>();
 	private static String goalsLoanManager;
@@ -106,44 +111,8 @@ public class Manager extends Employee {
 		}
 	}//end of method
 	
-	// method for goals assignment for loan and deposit manager
-	public void setGoals() {
-		Scanner sc=new Scanner(System.in);
-		int select = 0;
-		do {
-			boolean loop = true;
-			do {
-				try {	
-					System.out.println("Please press 1 if you want to set goals for loan Manager. \n"
-							 		 + "Please press 2 if you want to set goals gor deposit Manager.");
-					select = sc.nextInt();
-					if (select<1 || select>2)
-						System.out.println("Please insert either 1 or 2: ");
-					loop=false;
-				}
-				catch (InputMismatchException ex) {
-					System.err.println("exception "+ ex);
-					sc.nextLine();
-					System.out.println("Please insert an integer number! ");
-				}
-			}while(loop);
-		}while(select<1 || select>2);
-		switch (select) {
-		case 1:
-			goalsLoanManager = sc.next();
-			break;
-		case 2:
-			goalsDepositManager = sc.next();
-			break;
-		}
-	}//end of method
 	
-	//method for printing of goals of loan and deposit manager
-	@Override
-	public void goals() {
-		System.out.println("The goals for Loan Manager are: "+  goalsLoanManager + ". \n"
-				         +"The goals for Depositor Manager are: " +  goalsDepositManager + ".");
-	}// end of method
+
 	
 	//method for computing bonus of Manager based on average of overalls of loan and deposit manager
 	@Override
@@ -155,13 +124,18 @@ public class Manager extends Employee {
 		int i = 0;
 		while (num < 2){
 			Employee man = employees.get(i);
-			if(man.getDepartment() == "Loan Manager"
+			if (man.getDepartment() == "Loan Manager"
 			|| man.getDepartment() == "Deposit Manager") {
+				int idCurrEmployee=man.getIdEmployee();
 				num += 1;
-				//fills the arrayList overalls 
-				sum += overalls.get(i);
+				for (int j=0; j<idEmployees.size(); j++) {
+					if (idCurrEmployee == idEmployees.get(j)) {
+						//fills the arrayList overalls 
+						sum += overalls.get(j);
+					}
+				}
 			}
-			i++;
+		i++;
 		}
 		rate = (sum / num);
 		if (rate > 75)
@@ -169,6 +143,9 @@ public class Manager extends Employee {
 		return bonus;
 	}// end of method
 	
+	public double finalSalary(double salary) {
+		return salary + computeBonus();
+	}
 	//method for filling the arrayList overalls on position of manager
 	public void evaluationManager() {
 		double rate;
@@ -200,7 +177,7 @@ public class Manager extends Employee {
 					System.out.println("Please press 1 if you want to manage employees. \n"
 									+  "Please press 2 if you want to set goals. \n"
 									+  "Please press 3 if you want to see the goals. \n"
-									+  "Please press 4 if you want to apply for a leave. \n"
+									+  "Please press 4 if you want to apply for a leave or to see the remaining number of leaves. \n"
 									+  "Please press 5 if you want to compute bonuses. \n"
 									+  "Please press 6 if you want to see the news. \n"
 									+  "Please press 7 if you want to log out. \n ");
@@ -227,10 +204,11 @@ public class Manager extends Employee {
 							try {	
 								System.out.println("Please press 1 if you want to evaluate. \n"
 											    +  "Please press 2 if you want to make redudnants. \n"
-											    +  "Please press 3 if you want to see efficiencies. \n");
+											    +  "Please press 3 if you want to see efficiencies. \n"
+											    +  "Please press 4 if you want to return to menu.");
 								ans=sc.nextInt();
 								if (ans<1 || ans>3)
-									System.out.println("Please insert either 1 or 2 or 3: ");
+									System.out.println("Please insert either 1 or 2 or 3 or 4: ");
 								loop=false;
 							}
 							catch (InputMismatchException ex2) {
@@ -239,7 +217,7 @@ public class Manager extends Employee {
 								System.out.println("Please insert an integer number! ");
 							}
 						}while(loop);
-					}while(ans<1 || ans>3);
+					}while(ans<1 || ans>4);
 					switch (ans) {
 						case 1:
 							evaluation();							
@@ -249,25 +227,92 @@ public class Manager extends Employee {
 							break;
 						case 3:
 							sorting();
+							for(int i=0; i < idEmployees.size(); i++) {
+								System.out.println(idEmployees.get(i) + "" + overalls.get(i));			
+							}
+							break;
+						case 4:
+							getMenu();
 							break;
 						}
 						break;
 					
 				case 2:
-					setGoals();
+					Scanner in = new Scanner(System.in);
+					System.out.println("set goals for:  ");
+					int select=0;
+					do {
+						boolean loop=true;
+						do {
+							try {
+								System.out.println("Please press 1 if you want to set goals for deposit Manager \n"
+												+  "Please press 2 if you want to set goals for loan Manager. \n");
+								select=in.nextInt();
+								if (select<1 || select>2)
+									System.out.println("Please insert either 1 or 2 ");
+								loop=false;
+							}
+							catch (InputMismatchException ex) {
+								System.err.println("exception "+ ex);
+								in.nextLine();
+								System.out.println("Please insert an integer number! ");
+							}
+						}while(loop);
+					}while(select<1 || select>2);
+					switch(select) {
+						case 1:
+							setGoals("depositManager");
+							break;
+						case 2:
+							setGoals("loanManager");
+							break;
+					}
+					getMenu();
 					break;
 				case 3:
-					goals();
+					Scanner scanner = new Scanner(System.in);
+					System.out.println("set goals for:  ");
+					int selection=0;
+					do {
+						boolean loop=true;
+						do {
+							try {
+								System.out.println("Please press 1 if you want to see goals for deposit Manager \n"
+												+  "Please press 2 if you want to see goals for loan Manager. \n");
+								selection=scanner.nextInt();
+								if (selection < 1 || selection > 2)
+									System.out.println("Please insert either 1 or 2 ");
+								loop=false;
+							}
+							catch (InputMismatchException ex) {
+								System.err.println("exception "+ ex);
+								scanner.nextLine();
+								System.out.println("Please insert an integer number! ");
+							}
+						}while(loop);
+					}while(selection<1 ||selection>2);
+					switch(selection) {
+					case 1:
+						goals("depositManager");
+						break;
+					case 2:
+						goals("loanManager");
+						break;
+					}
+					getMenu();
 					break;
 				case 4:
 					leaves();
 					break;
 				case 5:
 					evaluationManager();
-					computeBonus();
+					System.out.println("The bonus is: " + computeBonus());
+					System.out.println("The final salary is: " + finalSalary(getSalary()));
+					getMenu();
 					break;
 				case 6:
 					getNews();
+					getMenu();
 					break;
 				case 7:
 					Main.main(null);
@@ -276,13 +321,5 @@ public class Manager extends Employee {
 		}
 	}// end of method
 	
-	//returns goals of loan manager
-	public static String getLoanGoals() {
-		return goalsLoanManager;
-	}// end of method
-	
-	// returns goals of deposit manager
-	public static String getDepositGoals() {
-		return goalsDepositManager;
-	}//end of method
+
 }//end of class

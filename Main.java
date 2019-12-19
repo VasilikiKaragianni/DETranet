@@ -1,12 +1,17 @@
 package detranet;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 	
+	
+
 	public static void loadObjects() {
-		 Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,20/02/2010,31,"alex","ab1",0);
+		Date date= new Date(2000,8,12);
+		 Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,date,31,"alex","ab1",0);
 		 LoanManager lnmngr= new LoanManager("anna", 1, "Loan Manager" ,"anna@hotmail.com",1700,"32-09-2011",31,"anna","ab2",0);
 		 DepositManager dpmngr= new DepositManager("george", 2, "Deposit Manager" ,"g@gmail.com",1700,"31-01-2009",31,"george","ac23",0);
 		 PrivateCustomerManager prcumn= new PrivateCustomerManager("max", 3, "Private Customer Manager" ,"max23@gmail.com",1400,"22-09-2008",31,"max23","ma21",0);
@@ -15,8 +20,11 @@ public class Main {
 		 PrivateCustomerManagerDelays prcumndel = new PrivateCustomerManagerDelays ("kate", 6, "Private Customer Manager" ,"kk@gmail.com",1400,"22-09-2018",31,"kate","345g",0);
 	}
 	
+	
+	
 	public static void main(String[] args) {
 		loadObjects();
+		Employee.reloadLeaves();		
 		Scanner sc = new Scanner(System.in);
 		int select=0;
 		boolean flag=true;
@@ -46,18 +54,18 @@ public class Main {
 			flag=true;
 			do {
 				try {
-					System.out.println("\nWelcome to the bank! Select your department:" 
+					System.out.println("Welcome to the bank! Select your department:" 
 							+ "\n1.Manager"
 							+ "\n2.Deposit manager"
 							+ "\n3.Loan manager"
-							+ "\n4.Private costumer manager"
+							+ "\n4.Private customer manager"
 							+ "\n5.Teller"
-							+ "\n6.Private costumer manager GOLD"
-							+ "\n7.Private costumer manager delays"
+							+ "\n6.Private customer manager GOLD"
+							+ "\n7.Private customer manager delays"
 							+ "\n8.Business service manager"
-							+ "\n9.Costumer service manager"
-							+ "\n10.Costumer service manager GOLD"
-							+ "\n11.Costumer service manager delays");
+							+ "\n9.Customer service manager"
+							+ "\n10.Customer service manager GOLD"
+							+ "\n11.Customer service manager delays");
 					selectDep=sc.nextInt();
 					if (selectDep>0 && selectDep<12) {
 						flag=false;
@@ -78,7 +86,15 @@ public class Main {
 			System.out.printf("\nE-mail: ");
 			String inputEmail = sc.next();
 			System.out.printf("\nFirst day: ");
-			String firstday = sc.next();
+			int year = 2009;
+			int month = 0; // January
+			int date = 1;
+			Calendar cal = Calendar.getInstance();
+			cal.clear();
+			cal.set(Calendar.YEAR, year);
+			cal.set(Calendar.MONTH, month);
+			cal.set(Calendar.DATE, date);
+			java.util.Date firstday = cal.getTime();
 			System.out.printf("\nUsername: ");
 			String inputUsername = sc.next();
 			flag=true;
@@ -129,7 +145,7 @@ public class Main {
 			case 11:
 				BusinessServiceManager busermn = new BusinessServiceManager (inputFullname, id, "Business service manager" ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
 			}		
-		} else {
+		}else {
 			boolean successLogIn = true;
 			do {
 				System.out.println("Log In"

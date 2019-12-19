@@ -1,6 +1,8 @@
 package detranet;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,13 +27,13 @@ public abstract class Employee {
 	private String department;
 	private String email;
 	private double salary;
-	private String firstDate;
+	private Date firstDate;
 	private int leaves;
 	private String username;
 	private String password;
 	private double overall;
 
-	public Employee(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
+	public Employee(String fullname, int idEmployee, String department, String email, double salary, Date firstDate,
 			int leaves, String username, String password, double overall) {
 		super();
 		this.fullname = fullname;
@@ -104,11 +106,11 @@ public abstract class Employee {
 		this.salary = salary;
 	}
 
-	public String getFirstDate() {
+	public Date getFirstDate() {
 		return firstDate;
 	}
 
-	public void setFirstDate(String firstDate) {
+	public void setFirstDate(Date firstDate) {
 		this.firstDate = firstDate;
 	}
 
@@ -305,6 +307,17 @@ public abstract class Employee {
 		if (choice==3)
 			getMenu();
 	}
+	
+	
+	public static void reloadLeaves() {
+		Calendar cal = Calendar.getInstance();
+		if ((cal.get(Calendar.MONTH) == 0 ) && (cal.get(Calendar.DAY_OF_MONTH) == 4)) {
+			for (Employee emp : employees) {
+				emp.setLeaves(31);
+			}
+		}
+	}
+	
 	public static Employee logIn(String email, String password) {
 		if(employees2.contains(email+password))
 			return employees.get(employees2.indexOf(email+password));
