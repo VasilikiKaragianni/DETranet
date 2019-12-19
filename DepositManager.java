@@ -40,7 +40,7 @@ public class DepositManager extends Employee {
 					System.out.printf("Please insert an integer between 1-5.Try again...");
 				}
 			}while (flag);
-			
+			/* create or open and write a new file for chosen employee */
 			switch (select) {
 			case 1:
 				System.out.printf("Private service manager goals:\n");

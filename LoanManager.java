@@ -1,9 +1,5 @@
 package detranet;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -44,6 +40,7 @@ public class LoanManager extends Employee {
 					System.out.printf("Please insert an integer between 1-5.Try again...");
 				}
 			}while (flag);
+			/* create or open and write a new file for chosen employee */
 			switch (select) {
 			case 1:
 				System.out.printf("Business service manager goals:\n");
