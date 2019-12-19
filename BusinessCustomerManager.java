@@ -1,5 +1,7 @@
 package detranet;
 
+import java.util.Date;
+
 /*This class is about one of the Business's employees and more specifically the one that manages the business's customers.
  * He/She can see the list of customers,delete an old customer or add a new one.
  * He/She can also see the goals that he/she must accomplish, the bonus that he/she deserves, 
@@ -14,11 +16,11 @@ import java.io.FileNotFoundException;
  * Business Customer Manager
  */
 public class BusinessCustomerManager extends Employee {
-
+	
 	/*Constructor of class*/
 	public BusinessCustomerManager(String fullname, int idEmployee, String department, String email, double salary,
-			String firstDate, int leaves, String username, String password, double overall) {
-		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
+			Date firstDate2, int leaves, String username, String password, double overall) {
+		super(fullname, idEmployee, department, email, salary, firstDate2, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}
 

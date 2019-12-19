@@ -6,19 +6,20 @@ package detranet;
  * the remaining days of leaves or ask for a new leave and the news of the bank */
 
 import java.util.Scanner;
+import java.util.Date;
 import java.util.InputMismatchException;
 /*
  * Business Customer Manager of Delays
  */
 public class BusinessCustomerManagerDelays extends Employee {
-
+	
 	/*Constructor of class*/
 	public BusinessCustomerManagerDelays(String fullname, int idEmployee, String department, String email,
-			double salary, String firstDate, int leaves, String username, String password, double overall) {
-		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
+			double salary, Date firstDate2, int leaves, String username, String password, double overall) {
+		super(fullname, idEmployee, department, email, salary, firstDate2, leaves, username, password, overall);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	/* This method deletes an already existing customer based on the id 
 	 * that the Business Customer Manager of Delays gives
 	 */
