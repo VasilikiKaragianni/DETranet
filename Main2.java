@@ -24,9 +24,9 @@ public class Main {
 	      		dbcon = DriverManager.getConnection(url);
 	      		stmt = dbcon.createStatement();
 	      		
-	      		String s = "SELECT * FROM Employee";
+	            String s = ("SELECT * FROM Employee");
 	            ResultSet rs = stmt.executeQuery(s);
-	      	    while (rs.next()) {
+	            while (rs.next()) {
 	      	    	String f = rs.getString("fullname");
 	      	    	int id = rs.getInt("idEmployee");
 	      	    	String d = rs.getString("department");
@@ -37,31 +37,32 @@ public class Main {
 	      	    	String u = rs.getString("username");
 	      	    	String p = rs.getString("password");
 	      	    	double o = rs.getDouble("overall");
-	      	    	//System.out.print(o + f);
-	      	    	if (d == "Manager") {
+	      	    
+	      	    	if (d.equals("Manager")) {
 	      	    		new Manager (f, id, d, e, sa, da, l, u, p, o);
-	      	    	} else if (d == "Loan Manager") {
+	      	    	} else if (d.equals("Loan Manager")) {
 	      	    		new LoanManager(f, id, d, e, sa, da, l, u, p, o);	      	    	
-	      	    	} else if (d == "Deposit Manager") {
+	      	    	} else if (d.equals("Deposit Manager")) {
 	      	    		new DepositManager(f, id, d, e, sa, da, l, u, p, o);
-	      	    	} else if (d == "Private Customer Manager" ) {
+	      	    	} else if (d.equals("Private Customer Manager")) {
 	      	    		new PrivateCustomerManager(f, id, d, e, sa, da, l, u, p, o);	      	    		
-	      	    	} else if (d == "Teller") {
+	      	    	} else if (d.equals("Teller")) {
 	      	    		new Teller(f, id, d, e, sa, da, l, u, p, o);
-	      	    	} else if (d == "Private Customer Manager Vip") {
+	      	    	} else if (d.equals("Private Customer Manager Vip")) {
 	      	    		new PrivateCustomerManagerVip(f, id, d, e, sa, da, l, u, p, o);
-	      	    	} else if (d == "Private Customer Manager Delays") {
+	      	    	} else if (d.equals("Private Customer Manager Delays")) {
 	      	    		new PrivateCustomerManagerDelays (f, id, d, e, sa, da, l, u, p, o);
-	      	    	} else if (d == "Business Customer Manager Vip") {
+	      	    	} else if (d.equals("Business Customer Manager Vip")) {
 	      	    		new BusinessCustomerManagerVip (f, id, d, e, sa, da, l, u, p, o);	      	    		
-	      	    	} else if (d == "Business Customer Manager Delays") {
+	      	    	} else if (d.equals("Business Customer Manager Delays")) {
 	      	    		new BusinessCustomerManagerDelays (f, id, d, e, sa, da, l, u, p, o);	      	    		
-	      	    	} else if (d == "Business Service Manager") {
+	      	    	} else if (d.equals("Business Service Manager")) {
 	      	    		new BusinessServiceManager (f, id, d, e, sa, da, l, u, p, o);	      	    		
 	      	    	} 
 	      	    }
 	      	    
-	      	    s = "SELECT * FROM BusinessCustomer"; // +Business
+	      	    
+	      	    s = "SELECT * FROM Business"; // +Business
 	            rs = stmt.executeQuery(s);
 	            while (rs.next()) {
 	            	int i = rs.getInt("idBusiness");
@@ -74,29 +75,29 @@ public class Main {
 	            	for(int c=0; c < Employee.getEmployees().size(); c++) {
 	            		Employee e = Employee.getEmployees().get(c);
 	            		if( e.getIdEmployee()== id &&
-	            				Employee.getEmployees().get(c).getDepartment() == "Business Customer Manager") {
+	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager")) {
 	            			Business.cSM.add(b);
 	            			break;
 	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment() == "Business Customer Manager Vip") {
+	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager Vip")) {
 	            			Business.cSMVip.add(b);
 	            			break;
 	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment() == "Business Customer Manager Delays") {
+	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager Delays")) {
 	            			Business.cSMDelays.add(b);
 	            			break;
 	            		} else if(e.getIdEmployee() == id &&
-        				Employee.getEmployees().get(c).getDepartment() == "Business Service Manager") {
+        				Employee.getEmployees().get(c).getDepartment().equals("Business Service Manager")) {
 	            			Business.bSM.add(b);
 	            			break;
 	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment() == "Teller") {
+	            				Employee.getEmployees().get(c).getDepartment().equals("Teller")) {
 	            			Business.tellerBusiness.add(b);
 	            		}
 	            	}
 	            }
 	            
-	            s = "SELECT * FROM PrivateCustomer"; // +Business
+	            s = "SELECT * FROM Private"; // +Business
 	            rs = stmt.executeQuery(s);
 	            while (rs.next()) {
 	            	int i = rs.getInt("idPrivate");
@@ -109,19 +110,19 @@ public class Main {
 	            	for(int c=0; c < Employee.getEmployees().size(); c++) {
 	            		Employee e = Employee.getEmployees().get(c);
 	            		if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment() == "Private Customer Manager") {
+	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager")) {
 	            			Private.pCM.add(p);
 	            			break;
 	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment() == "Private Customer Manager Vip") {
+	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager Vip")) {
 	            			Private.pCMVip.add(p);
 	            			break;
 	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment() == "Private Customer Manager Delays") {
+	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager Delays")) {
 	            			Private.pCMDelays.add(p);
 	            			break;
 	            		} else if(e.getIdEmployee() == id &&
-        				Employee.getEmployees().get(c).getDepartment() == "Teller") {
+        				Employee.getEmployees().get(c).getDepartment().equals("Teller")) {
 	            			Private.tellerPrivate.add(p);
 	            			break;
 	            		}
@@ -230,37 +231,37 @@ public class Main {
 			}while(flag);
 			switch (selectDep) {
 			case 1:
-				Manager manager = new Manager (inputFullname, id, "Manager" ,inputEmail,2000,firstday,startLeaves,inputUsername,inputPassword,0);
+				new Manager (inputFullname, id, "Manager" ,inputEmail,2000,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 2:
-				LoanManager lnmngr= new LoanManager(inputFullname, id, "Loan Manager" ,inputEmail,1700,firstday,startLeaves,inputUsername,inputPassword,0);
+				new LoanManager(inputFullname, id, "Loan Manager" ,inputEmail,1700,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 3:
-				DepositManager dpmngr= new DepositManager(inputFullname, id, "Deposit Manager" ,inputEmail,1700,firstday,startLeaves,inputUsername,inputPassword,0);
+				new DepositManager(inputFullname, id, "Deposit Manager" ,inputEmail,1700,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 4:
-				PrivateCustomerManager prcumn= new PrivateCustomerManager(inputFullname, id, "Private Customer Manager" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
+				new PrivateCustomerManager(inputFullname, id, "Private Customer Manager" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 5:
-				Teller teller = new Teller(inputFullname, id, "Teller" ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
+				new Teller(inputFullname, id, "Teller" ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 6:
-				PrivateCustomerManagerVip prcumngold = new PrivateCustomerManagerVip(inputFullname, id, "Private costumer manager Vip" ,inputEmail,1300,firstday,startLeaves,inputUsername,inputPassword,0); 
+				new PrivateCustomerManagerVip(inputFullname, id, "Private costumer manager Vip" ,inputEmail,1300,firstday,startLeaves,inputUsername,inputPassword,0); 
 				break;
 			case 7:
-				PrivateCustomerManagerDelays prcumndel = new PrivateCustomerManagerDelays (inputFullname, id, "Private customer manager delays" ,inputEmail,1300,firstday,startLeaves,inputUsername,inputPassword,0);
+				new PrivateCustomerManagerDelays (inputFullname, id, "Private customer manager delays" ,inputEmail,1300,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 8:
-				BusinessCustomerManager bucumn = new BusinessCustomerManager (inputFullname, id, "Business customer manager" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
+				new BusinessCustomerManager (inputFullname, id, "Business customer manager" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 9:
-				BusinessCustomerManagerDelays bucumndel = new BusinessCustomerManagerDelays (inputFullname, id, "Business customer manager delays" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
+				new BusinessCustomerManagerDelays (inputFullname, id, "Business customer manager delays" ,inputEmail,1400,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 10:
-				BusinessCustomerManagerVip bucumnvip = new BusinessCustomerManagerVip (inputFullname, id, "Business customer manager Vip " ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
+				new BusinessCustomerManagerVip (inputFullname, id, "Business customer manager Vip " ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
 				break;
 			case 11:
-				BusinessServiceManager busermn = new BusinessServiceManager (inputFullname, id, "Business service manager" ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
+				new BusinessServiceManager (inputFullname, id, "Business service manager" ,inputEmail,1500,firstday,startLeaves,inputUsername,inputPassword,0);
 			}		
 		}else {
 			boolean successLogIn = true;
