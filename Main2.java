@@ -13,7 +13,7 @@ import java.util.*;
 public class Main {
 	public static void loadSQLDatabaseConnection() {
 	        String url =
-	                "jdbc:sqlserver://sqlserver.dmst.aueb.gr;1433"
+	                "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;"
 	                        + "database=DB79;"
 	                        + "user=G579;"
 	                        + "password=3webh0534;";
