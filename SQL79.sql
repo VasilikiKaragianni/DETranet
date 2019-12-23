@@ -29,13 +29,13 @@ CREATE TABLE Business
 	FOREIGN KEY (idEmployee) REFERENCES Employee);
 
 CREATE TABLE Private
-	(idCustomer INT,
+	(idPrivate INT,
 	cards INT,
 	name VARCHAR(30),
 	nmbrLoans INT,
 	amount NUMERIC,
 	idEmployee INT,
-	PRIMARY KEY (idCustomer),
+	PRIMARY KEY (idPrivate),
 	FOREIGN KEY (idEmployee) REFERENCES Employee);
 
 INSERT INTO Employee(idEmployee, fullName, department, leaves, overall, firstDate, salary, email, username, password) VALUES (1, 'Konstantinos Alexopoulos', 'Manager', 23, 50, '2010-7-17', 2500, 'konstantinosAl@gmail.com', 'KA1', '1772019'); 
@@ -59,15 +59,15 @@ INSERT INTO Business(idBusiness, name, nmbrLoans, amount, type, idEmployee) VALU
 INSERT INTO Business(idBusiness, name, nmbrLoans, amount, type, idEmployee) VALUES (6, 'Metaferw.gr', 9, 78000, 'metaforiki', 11);
 INSERT INTO Business(idBusiness, name, nmbrLoans, amount, type, idEmployee) VALUES (7, 'Tsifoutis', 6, 99000, 'emporiko site', 12);
 
-INSERT INTO Private(idCustomer, cards, name, nmbrLoans, amount, idEmployee) VALUES (1, 3, 'Aggelos Giannakopoulos', 2, 20000, 3);
-INSERT INTO Private(idCustomer, cards, name, nmbrLoans, amount, idEmployee) VALUES (2, 7, 'Panagiotis Mpampis', 3, 17000, 4);
-INSERT INTO Private(idCustomer, cards, name, nmbrLoans, amount, idEmployee) VALUES (3, 1, 'Kyriakos Mourtos', 4, 30000, 5);
-INSERT INTO Private(idCustomer, cards, name, nmbrLoans, amount, idEmployee) VALUES (4, 2, 'Dionusis Karoulis', 1, 27000, 6);
-INSERT INTO Private(idCustomer, cards, name, nmbrLoans, amount, idEmployee) VALUES (5, 6, 'Vasilis Dominis', 3, 150000, 12);
-INSERT INTO Private(idCustomer, cards, name, nmbrLoans, amount, idEmployee) VALUES (6, 1, 'Spuros Toutsikas', 9, 10000, 11);
+INSERT INTO Private(idPrivate, cards, name, nmbrLoans, amount, idEmployee) VALUES (1, 3, 'Aggelos Giannakopoulos', 2, 20000, 3);
+INSERT INTO Private(idPrivate, cards, name, nmbrLoans, amount, idEmployee) VALUES (2, 7, 'Panagiotis Mpampis', 3, 17000, 4);
+INSERT INTO Private(idPrivate, cards, name, nmbrLoans, amount, idEmployee) VALUES (3, 1, 'Kyriakos Mourtos', 4, 30000, 5);
+INSERT INTO Private(idPrivate, cards, name, nmbrLoans, amount, idEmployee) VALUES (4, 2, 'Dionusis Karoulis', 1, 27000, 6);
+INSERT INTO Private(idPrivate, cards, name, nmbrLoans, amount, idEmployee) VALUES (5, 6, 'Vasilis Dominis', 3, 150000, 12);
+INSERT INTO Private(idPrivate, cards, name, nmbrLoans, amount, idEmployee) VALUES (6, 1, 'Spuros Toutsikas', 9, 10000, 11);
 
 
 
 
-/* Θα μπουν και επιπλέον inserts, απλά φρόντισα να εισάγω τα απαραίτητα ώστε να λειτουργεί το πρόγραμμα*/
-/* Δεν είμαι σίγουρος για την αντιστοιχία των τύπων. Να ελεγχθούν από την αρχηγό που έχει το κομμάτι κώδικα της σύνδεσης*/
+/* ΓΓ΅ Γ¬Γ°Γ―ΓµΓ­ ΓªΓ΅Γ© Γ¥Γ°Γ©Γ°Γ«ΓΓ―Γ­ inserts, Γ΅Γ°Γ«Γ Γ¶Γ±ΓΌΓ­Γ΄Γ©Γ³Γ΅ Γ­Γ΅ Γ¥Γ©Γ³ΓΓ£ΓΉ Γ΄Γ΅ Γ΅Γ°Γ΅Γ±Γ΅ΓΓ΄Γ§Γ΄Γ΅ ΓΎΓ³Γ΄Γ¥ Γ­Γ΅ Γ«Γ¥Γ©Γ΄Γ―ΓµΓ±Γ£Γ¥Γ Γ΄Γ― Γ°Γ±ΓΌΓ£Γ±Γ΅Γ¬Γ¬Γ΅*/
+/* Γ„Γ¥Γ­ Γ¥ΓΓ¬Γ΅Γ© Γ³ΓΓ£Γ―ΓµΓ±Γ―Γ² Γ£Γ©Γ΅ Γ΄Γ§Γ­ Γ΅Γ­Γ΄Γ©Γ³Γ΄Γ―Γ©Γ·ΓΓ΅ Γ΄ΓΉΓ­ Γ΄Γ½Γ°ΓΉΓ­. ΓΓ΅ Γ¥Γ«Γ¥Γ£Γ·Γ¨Γ―Γ½Γ­ Γ΅Γ°ΓΌ Γ΄Γ§Γ­ Γ΅Γ±Γ·Γ§Γ£ΓΌ Γ°Γ―Γµ ΓΓ·Γ¥Γ© Γ΄Γ― ΓªΓ―Γ¬Γ¬ΓΓ΄Γ© ΓªΓΎΓ¤Γ©ΓªΓ΅ Γ΄Γ§Γ² Γ³Γ½Γ­Γ¤Γ¥Γ³Γ§Γ²*/
