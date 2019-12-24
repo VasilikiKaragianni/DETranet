@@ -50,21 +50,6 @@ public class PrivateCustomerManagerDelays extends Employee {
 			}
 		}
 		
-/*
- * This method is inherited from the class Employee and shows the goals that the Private Customer Manager of Delays has.
- * 
- */
-		@Override
-		public void goals() {
-			Scanner sc = new Scanner(System.in);
-			if (DepositManager.getpCMDelaysGoals()==null) {
-				System.out.println("No available goals!");
-			}else {
-				System.out.println("Department goals:\n" + DepositManager.getpCMDelaysGoals());
-			}
-			sc.close();
-			getMenu();	
-		}
 		
 /* 
 * This method is inherited by the class Employee and it returns the bonus that the Private Customer Manager of Delays will gain.
@@ -166,7 +151,7 @@ public class PrivateCustomerManagerDelays extends Employee {
 						custMenu();
 						break;
 					case 2:
-						goals();
+						goals("Private Customer Manager Delays goals");
 						break;
 					case 3:
 						computeBonus();
