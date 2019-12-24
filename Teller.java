@@ -3,6 +3,7 @@
  */
 package detranet;
 
+import java.util.Date;
 import java.util.InputMismatchException;
 
 import java.util.Scanner;
@@ -29,7 +30,7 @@ public class Teller extends Employee{
  * @param password
  * @param overall
  */
-	public Teller(String fullname, int idEmployee, String department, String email, double salary, String firstDate,
+	public Teller(String fullname, int idEmployee, String department, String email, double salary, Date firstDate,
 			int leaves, String username, String password, double overall) {
 		super(fullname, idEmployee, department, email, salary, firstDate, leaves, username, password, overall);
 	}
@@ -148,21 +149,6 @@ public class Teller extends Employee{
 		}
 	}
 	
-/*
- * This method is inherited from the class Employee and shows the goals that the Teller has.
- */	
-	@Override
-	public void goals() {
-		Scanner sc = new Scanner(System.in);
-		if (DepositManager.gettellerGoals()==null) {
-			System.out.println("No available goals!");
-		}else {
-			System.out.println("Department goals:\n" + DepositManager.gettellerGoals());
-		}
-		sc.close();
-		getMenu();	
-	}
-
 /* 
  * This method is inherited by the class Employee and it returns the bonus that the Teller will gain.
  */
@@ -264,7 +250,7 @@ public class Teller extends Employee{
 					chooseCategory();
 					break;
 				case 2:
-					goals();
+					goals("Teller goals");
 					break;
 				case 3:
 					computeBonus();
