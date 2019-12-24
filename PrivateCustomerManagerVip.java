@@ -48,21 +48,6 @@ public class PrivateCustomerManagerVip extends Employee {
 			}
 		}
 
-/*
- * This method is inherited from the class Employee and shows the goals that the Private Customer Manager of Vip clients has.
- * 
- */
-		@Override
-		public void goals() {
-			Scanner sc = new Scanner(System.in);
-			if (DepositManager.getpCMGoldGoals()==null) {
-				System.out.println("No available goals!");
-			}else {
-				System.out.println("Department goals:\n" + DepositManager.getpCMGoldGoals());
-			}
-			sc.close();
-			getMenu();	
-		}
 		
 /* 
  * This method is inherited by the class Employee and it returns the bonus that the Private Customer Manager of Vip clients will gain.
@@ -165,7 +150,7 @@ public class PrivateCustomerManagerVip extends Employee {
 						custMenu();
 						break;
 					case 2:
-						goals();
+						goals("Private Customer Manager of Vip goals");
 						break;
 					case 3:
 						computeBonus();
