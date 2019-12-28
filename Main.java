@@ -10,14 +10,20 @@ public class Main {
 	
 
 	public static void loadObjects() {
-		Date date= new Date(2000,8,12);
-		 Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,date,31,"alex","ab1",0);
-		 LoanManager lnmngr= new LoanManager("anna", 1, "Loan Manager" ,"anna@hotmail.com",1700,"32-09-2011",31,"anna","ab2",0);
-		 DepositManager dpmngr= new DepositManager("george", 2, "Deposit Manager" ,"g@gmail.com",1700,"31-01-2009",31,"george","ac23",0);
-		 PrivateCustomerManager prcumn= new PrivateCustomerManager("max", 3, "Private Customer Manager" ,"max23@gmail.com",1400,"22-09-2008",31,"max23","ma21",0);
-		 Teller teller = new Teller("adrian", 4, "Private Customer Manager" ,"ad_po@gmail.com",1400,"22-03-2008",31,"adri","abc",0);
-		 PrivateCustomerManagerVip prcumngold = new PrivateCustomerManagerVip("leo",5, "Private Customer Manager" ,"leoo@gmail.com",1400,"22-09-2012",31,"leoo","op21",0); 
-		 PrivateCustomerManagerDelays prcumndel = new PrivateCustomerManagerDelays ("kate", 6, "Private Customer Manager" ,"kk@gmail.com",1400,"22-09-2018",31,"kate","345g",0);
+		Date date1= new Date(2000,9,12);
+		Date date2= new Date(2006,2,1);
+		Date date3= new Date(2010,3,21);
+		Date date4= new Date(2007,8,27);
+		Date date5= new Date(2013,8,9);
+		Date date6= new Date(2011,11,20);
+		Date date7= new Date(2012,1,13);
+		Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,date1,31,"alex","ab1",0);
+		LoanManager lnmngr= new LoanManager("anna", 1, "Loan Manager" ,"anna@hotmail.com",1700,date2,31,"anna","ab2",0);
+		DepositManager dpmngr= new DepositManager("george", 2, "Deposit Manager" ,"g@gmail.com",1700,date3,31,"george","ac23",0);
+		PrivateCustomerManager prcumn= new PrivateCustomerManager("max", 3, "Private Customer Manager" ,"max23@gmail.com",1400,date4,31,"max23","ma21",0);
+		Teller teller = new Teller("adrian", 4, "Private Customer Manager" ,"ad_po@gmail.com",1400,date5,31,"adri","abc",0);
+		PrivateCustomerManagerVip prcumngold = new PrivateCustomerManagerVip("leo",5, "Private Customer Manager" ,"leoo@gmail.com",1400,date6,31,"leoo","op21",0); 
+		PrivateCustomerManagerDelays prcumndel = new PrivateCustomerManagerDelays ("kate", 6, "Private Customer Manager" ,"kk@gmail.com",1400,date7,31,"kate","345g",0);
 	}
 	
 	
@@ -56,16 +62,16 @@ public class Main {
 				try {
 					System.out.println("Welcome to the bank! Select your department:" 
 							+ "\n1.Manager"
-							+ "\n2.Deposit manager"
-							+ "\n3.Loan manager"
+							+ "\n2.Loan manager"
+							+ "\n3.Deposit manager"
 							+ "\n4.Private customer manager"
 							+ "\n5.Teller"
-							+ "\n6.Private customer manager GOLD"
+							+ "\n6.Private customer manager VIP"
 							+ "\n7.Private customer manager delays"
-							+ "\n8.Business service manager"
-							+ "\n9.Customer service manager"
-							+ "\n10.Customer service manager GOLD"
-							+ "\n11.Customer service manager delays");
+							+ "\n8.Business customer manager"
+							+ "\n9.Business customer manager delays"
+							+ "\n10.Business customer manager VIP"
+							+ "\n11.Business service manager");
 					selectDep=sc.nextInt();
 					if (selectDep>0 && selectDep<12) {
 						flag=false;
