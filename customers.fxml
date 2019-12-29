@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="529.0" prefWidth="859.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CustomersController">
+   <children>
+      <TableView fx:id="tableCustomers" layoutX="95.0" layoutY="80.0" prefHeight="369.0" prefWidth="523.0" style="-fx-background-color: #15bcd8;" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="80.0">
+        <columns>
+          <TableColumn fx:id="columnId" editable="false" prefWidth="60.0" text="id" />
+          <TableColumn fx:id="columnName" editable="false" prefWidth="124.0" text="name" />
+            <TableColumn fx:id="columnLoans" editable="false" prefWidth="105.0" text="number of loans" />
+            <TableColumn fx:id="columnAmount" editable="false" prefWidth="109.0" text="amount" />
+            <TableColumn fx:id="columnType" editable="false" minWidth="0.0" prefWidth="124.0" text="type" />
+        </columns>
+      </TableView>
+      <Label layoutX="358.0" layoutY="27.0" text="Customers List" textFill="WHITE" AnchorPane.bottomAnchor="471.0" AnchorPane.leftAnchor="357.5" AnchorPane.rightAnchor="357.5" AnchorPane.topAnchor="27.0">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnLoad" layoutX="689.0" layoutY="93.0" onAction="#loadCustomers" ripplerFill="#15bcd8" style="-fx-background-color: #15bcd8;" text="Load Customers" textFill="WHITE" />
+   </children>
+</AnchorPane>
