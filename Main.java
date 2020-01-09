@@ -91,7 +91,6 @@ public class Main {
 			sc.nextLine(); 
 			System.out.printf("\nE-mail: ");
 			String inputEmail = sc.next();
-			System.out.printf("\nFirst day: ");
 			int year = 2009;
 			int month = 0; // January
 			int date = 1;
