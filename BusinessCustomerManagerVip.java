@@ -20,18 +20,21 @@ import java.util.Scanner;
  */
 
 public class BusinessCustomerManagerVip extends Employee {
-  /*Constructor of class*/
+
+  /**.
+ * Constructor of class
+ **/
   public BusinessCustomerManagerVip(String fullname, int idEmployee, 
       String department, String email, double salary,
-      Date firstDate2, int leaves, String username, String password, double overall) {
-    super(fullname, idEmployee, department, email, salary, firstDate2,
-        leaves, username, password, overall);
+      Date firstDate, int leaves, String password, double overall) {
+    super(fullname, idEmployee, department, email, salary, 
+        firstDate, leaves, password, overall);
         // TODO Auto-generated constructor stub
   }
 
-  /* This method deletes an already existing customer based on the id 
+  /** This method deletes an already existing customer based on the id.
  * that the Business Customer Manager of Vip clients gives
- */
+ **/
   public void removeCust(int id) {
     @SuppressWarnings("unlikely-arg-type")
     int index = Business.cSMVip.indexOf(id);
@@ -43,8 +46,8 @@ public class BusinessCustomerManagerVip extends Employee {
     }
   }
 
-  /*This method displays the menu to the employee 
-* who has 3 options to choose between*/
+  /**This method displays the menu to the employee.
+* who has 3 options to choose between**/
   public void employeeList() {
     int select = 0;
     boolean value = true;
@@ -87,22 +90,25 @@ public class BusinessCustomerManagerVip extends Employee {
         newCust.setNmbrLoans(nmbrLoans);
         newCust.addBusiness(3);
         System.out.println("Your new customer was added succesfully");
+        break;
 
       case 2:
         System.out.println("Type the customer's id you would like to delete");
         int id2 = sc.nextInt();
         removeCust(id2);
+        break;
       case 3:
         for (int i = 0; i <= Business.cSMVip.size(); i++) {
           toString();
         }
+        break;
       default:
         break;
     }
     sc.close();
   }
 
-  /* This method reads a CSV file 
+  /** This method reads a CSV file.
 * which contains some complaints from the Vip clients*/
   public void ReadComplaints() {
     String Filename = "Complains.csv";
@@ -166,17 +172,23 @@ public void getMenu() {
         break;
       case 2:
         goals("Customer service manager vip goals");
+        break;
       case 3:
         computeBonus();
+        break;
       case 4:
         leaves();
+        break;
       case 5:
         Employee.getNews();
+        break;
       case 6:
         ReadComplaints();
+        break;
       case 7:
         Main.main(null);
-	  default:
+        break;
+      default:
         break;
     } 
     sc.close();

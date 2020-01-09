@@ -12,16 +12,19 @@ import java.util.Scanner;
 
 /*Business Service Manager*/
 public class BusinessServiceManager extends Employee {
-  /*Constructor of the class*/
+
+  /**.
+ * Constructor of the class*/
   public BusinessServiceManager(String fullname, int idEmployee, 
       String department, String email, double salary,
-      Date firstDate2, int leaves, String username, String password, double overall) {
+      Date firstDate, int leaves, String password, double overall) {
     super(fullname, idEmployee, department, email, salary, 
-        firstDate2, leaves, username, password, overall);
+        firstDate, leaves, password, overall);
         // TODO Auto-generated constructor stub
   }
+
     
-  /* This method deletes an already existing customer based on the id 
+  /** This method deletes an already existing customer based on the id.
 * that the Business Service Manager gives
 */
   public void removeCust(int id) {
@@ -35,7 +38,7 @@ public class BusinessServiceManager extends Employee {
     }
   } 
 
-  /*This method displays the menu to the employee 
+  /**This method displays the menu to the employee.
 * who has 3 options to choose between*/
   public void employeeList() {
     int select = 0;
@@ -78,15 +81,18 @@ public class BusinessServiceManager extends Employee {
         newCust.setNmbrLoans(nmbrLoans);
         newCust.addBusiness(1);
         System.out.println("Your new customer was added succesfully");
+        break;
 
       case 2:
         System.out.println("Type the customer's id you would like to delete");
         int id2 = sc.nextInt();
         removeCust(id2);
+        break;
       case 3:
         for (int i = 0; i <= Business.bSM.size(); i++) {
           toString();
         }
+        break;
       default:
         break;
     }
@@ -134,16 +140,22 @@ public void getMenu() {
     switch (select) {
       case 1:
         employeeList();
+        break;
       case 2:
         goals("Business service manager goals");
+        break;
       case 3:
         computeBonus();
+        break;
       case 4:
         leaves();
+        break;
       case 5:
         Employee.getNews();
+        break;
       case 6:
         Main.main(null);
+        break;
       default:
         break;
     }
