@@ -2,7 +2,7 @@
  * PrivateCustomerManagerVip
  */
 
-package detranet;
+package gr.dmst.aueb.gr;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -25,9 +25,9 @@ public class PrivateCustomerManagerVip extends Employee {
  */
   public PrivateCustomerManagerVip(String fullname, int idEmployee, String department, 
         String email, double salary,
-      Date firstDate, int leaves, String username, String password, double overall) {
+      Date firstDate, int leaves, String password, double overall) {
     super(fullname, idEmployee, department, email, salary, firstDate, leaves, 
-          username, password, overall);
+             password, overall);
   }
 
   /**
@@ -111,7 +111,6 @@ public class PrivateCustomerManagerVip extends Employee {
       default:
         break;
     }
-    sc.close();
   }
 
 
@@ -167,6 +166,5 @@ public class PrivateCustomerManagerVip extends Employee {
       default:
         break;
     }
-    sc.close();
   }
 }

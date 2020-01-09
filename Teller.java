@@ -3,7 +3,7 @@
  * 
  */
 
-package detranet;
+package gr.dmst.aueb.gr;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -27,9 +27,9 @@ public class Teller extends Employee {
  */
   public Teller(String fullname, int idEmployee, String department,
       String email, double salary, Date firstDate,
-      int leaves, String username, String password, double overall) {
+      int leaves, String password, double overall) {
     super(fullname, idEmployee, department, email, salary, firstDate, leaves, 
-          username, password, overall);
+          password, overall);
   }
 
   /**
@@ -122,7 +122,6 @@ public class Teller extends Employee {
       default:
         break;
     }
-    sc.close();
   }
 
   /**
@@ -220,7 +219,6 @@ public class Teller extends Employee {
       default:
         break;
     }
-    sc.close();
   }
 
   /**
@@ -275,7 +273,6 @@ public class Teller extends Employee {
       default:
         break;
     }
-    sc.close();
   }
 }
 
