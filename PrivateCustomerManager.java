@@ -2,7 +2,7 @@
  * PrivateCustomerManager
  */
 
-package detranet;
+package gr.dmst.aueb.gr;
 
 import java.io.File;
 
@@ -26,9 +26,9 @@ public class PrivateCustomerManager extends Employee {
  * This is the constructor of the class.
  */
   public PrivateCustomerManager(String fullname, int idEmployee, String department,
-      String email, double salary,Date firstDate, int leaves, String username, String password,
+      String email, double salary,Date firstDate, int leaves, String password,
       double overall) {
-    super(fullname, idEmployee, department, email, salary, firstDate, leaves, username,
+    super(fullname, idEmployee, department, email, salary, firstDate, leaves,
         password, overall);
   }
 
@@ -120,9 +120,9 @@ public class PrivateCustomerManager extends Employee {
  * This method is responsible for opening and reading a csv file which includes the complains
  *  that the customers may have.
  */
-  public void readComplains() {
+  public void readComplains(String location) {
     String filename =  "Complains.csv";
-    String path = "C:\\Users\\Kalliroi\\git\\DETranet\\" + filename;
+    String path = location + filename;
     File file = new File(path);
     try {
       Scanner sc = new Scanner(file);
@@ -135,7 +135,7 @@ public class PrivateCustomerManager extends Employee {
     } 
     getMenu();
   }
-	
+
   /**
  *This method includes the main menu which shows all the functions that Private Customer Manager 
  *can have.
@@ -184,7 +184,9 @@ public class PrivateCustomerManager extends Employee {
         getNews();
         break;
       case 6:
-        readComplains();
+    	System.out.println("Give file's path");
+    	String path = sc.next();
+        readComplains(path);
         break;
       case 7:
         Main.main(null);
