@@ -7,29 +7,135 @@ import java.util.Scanner;
 
 public class Main {
 	
-	
+	public static void loadmySQLDatabase() {
+		try{  
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
+		
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://remotemysql.com:3306/sOiwyE9ekg","sOiwyE9ekg","nmOhM09Bay");
+	      	Statement stmt = con.createStatement();
+	      		
+	            String s = ("SELECT * FROM Employee");
+	            ResultSet rs = stmt.executeQuery(s);
+	            while (rs.next()) {
+	      	    	String f = rs.getString("fullname");
+	      	    	int id = rs.getInt("idEmployee");
+	      	    	String d = rs.getString("department");
+	      	    	String e = rs.getString("email");
+	      	    	double sa = rs.getDouble("salary");
+	      	    	Date da = rs.getDate("firstDate");
+	      	    	int l = rs.getInt("leaves");
+	      	    	String u = rs.getString("username");
+	      	    	String p = rs.getString("password");
+	      	    	double o = rs.getDouble("overall");
+	      	    
+	      	    	if (d.equals("Manager")) {
+	      	    		new Manager (f, id, d, e, sa, da, l, u, p, o);
+	      	    	} else if (d.equals("Loan Manager")) {
+	      	    		new LoanManager(f, id, d, e, sa, da, l, u, p, o);	      	    	
+	      	    	} else if (d.equals("Deposit Manager")) {
+	      	    		new DepositManager(f, id, d, e, sa, da, l, u, p, o);
+	      	    	} else if (d.equals("Private Customer Manager")) {
+	      	    		new PrivateCustomerManager(f, id, d, e, sa, da, l, u, p, o);	      	    		
+	      	    	} else if (d.equals("Teller")) {
+	      	    		new Teller(f, id, d, e, sa, da, l, u, p, o);
+	      	    	} else if (d.equals("Private Customer Manager Vip")) {
+	      	    		new PrivateCustomerManagerVip(f, id, d, e, sa, da, l, u, p, o);
+	      	    	} else if (d.equals("Private Customer Manager Delays")) {
+	      	    		new PrivateCustomerManagerDelays (f, id, d, e, sa, da, l, u, p, o);
+	      	    	} else if (d.equals("Business Customer Manager Vip")) {
+	      	    		new BusinessCustomerManagerVip (f, id, d, e, sa, da, l, u, p, o);	      	    		
+	      	    	} else if (d.equals("Business Customer Manager Delays")) {
+	      	    		new BusinessCustomerManagerDelays (f, id, d, e, sa, da, l, u, p, o);	      	    		
+	      	    	} else if (d.equals("Business Service Manager")) {
+	      	    		new BusinessServiceManager (f, id, d, e, sa, da, l, u, p, o);	      	    		
+	      	    	} 
+	      	    }
+	      	    
+	      	    
+	      	    s = "SELECT * FROM Business"; // +Business
+	            rs = stmt.executeQuery(s);
+	            while (rs.next()) {
+	            	int i = rs.getInt("idBusiness");
+	            	String n = rs.getString("name");
+	            	int nl = rs.getInt("nmbrLoans");
+	            	double a = rs.getDouble("amount");
+	            	int id = rs.getInt("idEmployee");
+	            	String t = rs.getString("type");
+	            	Business b = new Business(n, t, i, a, nl);
+	            	for(int c=0; c < Employee.getEmployees().size(); c++) {
+	            		Employee e = Employee.getEmployees().get(c);
+	            		if( e.getIdEmployee()== id &&
+	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager")) {
+	            			Business.cSM.add(b);
+	            			break;
+	            		} else if(e.getIdEmployee() == id &&
+	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager Vip")) {
+	            			Business.cSMVip.add(b);
+	            			break;
+	            		} else if(e.getIdEmployee() == id &&
+	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager Delays")) {
+	            			Business.cSMDelays.add(b);
+	            			break;
+	            		} else if(e.getIdEmployee() == id &&
+        				Employee.getEmployees().get(c).getDepartment().equals("Business Service Manager")) {
+	            			Business.bSM.add(b);
+	            			break;
+	            		} else if(e.getIdEmployee() == id &&
+	            				Employee.getEmployees().get(c).getDepartment().equals("Teller")) {
+	            			Business.tellerBusiness.add(b);
+	            		}
+	            	}
+	            }
+	            
+	            s = "SELECT * FROM Private"; // +Business
+	            rs = stmt.executeQuery(s);
+	            while (rs.next()) {
+	            	int i = rs.getInt("idPrivate");
+	            	String n = rs.getString("name");
+	            	int nl = rs.getInt("nmbrLoans");
+	            	double a = rs.getDouble("amount");
+	            	int id = rs.getInt("idEmployee");
+	            	int ca = rs.getInt("cards");
+	            	Private p = new Private(n, i, a, ca, nl);
+	            	for(int c=0; c < Employee.getEmployees().size(); c++) {
+	            		Employee e = Employee.getEmployees().get(c);
+	            		if(e.getIdEmployee() == id &&
+	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager")) {
+	            			Private.pCM.add(p);
+	            			break;
+	            		} else if(e.getIdEmployee() == id &&
+	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager Vip")) {
+	            			Private.pCMVip.add(p);
+	            			break;
+	            		} else if(e.getIdEmployee() == id &&
+	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager Delays")) {
+	            			Private.pCMDelays.add(p);
+	            			break;
+	            		} else if(e.getIdEmployee() == id &&
+        				Employee.getEmployees().get(c).getDepartment().equals("Teller")) {
+	            			Private.tellerPrivate.add(p);
+	            			break;
+	            		}
+	            	}
+	            }
+		      	rs.close();
+		      	System.out.println();
+		      	stmt.close();
+		        con.close();
+	            }
+	      	catch(SQLException e) {
+	      		System.out.print("SQLException: ");
+	      		System.out.println(e.getMessage());
+	      	} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 
-	public static void loadObjects() {
-		Date date1= new Date(2000,9,12);
-		Date date2= new Date(2006,2,1);
-		Date date3= new Date(2010,3,21);
-		Date date4= new Date(2007,8,27);
-		Date date5= new Date(2013,8,9);
-		Date date6= new Date(2011,11,20);
-		Date date7= new Date(2012,1,13);
-		Manager manager = new Manager ("alex", 0, "Manager" ,"alex@gmail.com",2000,date1,31,"alex","ab1",0);
-		LoanManager lnmngr= new LoanManager("anna", 1, "Loan Manager" ,"anna@hotmail.com",1700,date2,31,"anna","ab2",0);
-		DepositManager dpmngr= new DepositManager("george", 2, "Deposit Manager" ,"g@gmail.com",1700,date3,31,"george","ac23",0);
-		PrivateCustomerManager prcumn= new PrivateCustomerManager("max", 3, "Private Customer Manager" ,"max23@gmail.com",1400,date4,31,"max23","ma21",0);
-		Teller teller = new Teller("adrian", 4, "Private Customer Manager" ,"ad_po@gmail.com",1400,date5,31,"adri","abc",0);
-		PrivateCustomerManagerVip prcumngold = new PrivateCustomerManagerVip("leo",5, "Private Customer Manager" ,"leoo@gmail.com",1400,date6,31,"leoo","op21",0); 
-		PrivateCustomerManagerDelays prcumndel = new PrivateCustomerManagerDelays ("kate", 6, "Private Customer Manager" ,"kk@gmail.com",1400,date7,31,"kate","345g",0);
-	}
-	
-	
-	
+	    
 	public static void main(String[] args) {
-		loadObjects();
+		loadmySQLDatabase();
 		Employee.reloadLeaves();		
 		Scanner sc = new Scanner(System.in);
 		int select=0;
