@@ -1,4 +1,4 @@
-package detranet;
+package gr.dmst.aueb.gr;
 
 /*This class is about one of the Business's employees 
  * and more specifically the one who deals mostly with the transaction processing.

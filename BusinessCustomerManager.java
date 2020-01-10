@@ -1,4 +1,4 @@
-package detranet;
+package gr.dmst.aueb.gr;
 
 /*This class is about one of the Business's employees 
 and more specifically the one that manages the business's customers.
@@ -108,9 +108,10 @@ who has 3 options to choose between*/
   /** This method reads a CSV file.
 which contains some complaints from the clients*/
   
-  public void ReadComplaints() {
+  public void ReadComplaints(String location) {
     String Filename = "Complains.csv";
-    File file = new File(Filename);
+    String path = location + Filename;
+    File file = new File(path);
     try {
       Scanner sc = new Scanner(file);
       while (sc.hasNext()) {
@@ -122,6 +123,7 @@ which contains some complaints from the clients*/
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    getMenu();
   }
 
   /*This method is inherited from Employee class and returns the bonus 
@@ -180,7 +182,9 @@ public void getMenu() {
         Employee.getNews();
         break;
       case 6:
-        ReadComplaints();
+        System.out.println("Give file's path");
+        String path = sc.next();
+        ReadComplaints(path);
         break;
       case 7:
         Main.main(null);
