@@ -9,7 +9,7 @@ public class Main {
 	
 	public static void loadmySQLDatabase() {
 		try{  
-			Class.forName("com.mysql.cj.jdbc.Driver"); 
+			Class.forName("com.mysql.jdbc.Driver"); //if it doesn't work try com.mysql.cj.jdbc.Driver
 		
 			Connection con=DriverManager.getConnection(  
 			"jdbc:mysql://remotemysql.com:3306/sOiwyE9ekg","sOiwyE9ekg","nmOhM09Bay");
