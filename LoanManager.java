@@ -1,4 +1,9 @@
-package detranet;
+/*
+ * LoanManager
+ * 
+ */
+
+package gr.aueb.dmst.detranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -9,13 +14,16 @@ public class LoanManager extends Employee {
 
   public LoanManager(String fullname, int idEmployee, 
       String department, String email, double salary, Date firstDate,
-      int leaves, String username, String password, double overall) {
+      int leaves, String password, double overall) {
     super(fullname, idEmployee, department, email, 
-        salary, firstDate, leaves, username, password, overall);
+        salary, firstDate, leaves, password, overall);
   }
 
-  /* Method for select employees of loan department */
-  public void SelectDepartmentFoSetGoals() {
+  /**
+ * Method for select employees of loan department. 
+ * 
+ */
+  public void selectDepartmentForSetGoals() {
     Scanner sc = new Scanner(System.in);
     boolean endOfProcedure = true;
     do {
@@ -100,7 +108,9 @@ public class LoanManager extends Employee {
     return bonus;
   }
 
-  /* Add rate of loan manager */
+  /**
+  * Add rate of loan manager.
+  */
   public void evaluationLoanManager() {
     double rate = (computeBonus() / 3);
     for (int j = 0; j < employees.size(); j++) {
@@ -147,7 +157,7 @@ public class LoanManager extends Employee {
           goals("Loan manager goals");
           break;
         case 2:
-          SelectDepartmentFoSetGoals();
+          selectDepartmentForSetGoals();
           break;
         case 3:
           leaves();

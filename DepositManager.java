@@ -1,4 +1,9 @@
-package detranet;
+/*
+ * DepositManager
+ * 
+ */
+
+package gr.aueb.dmst.detranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -9,13 +14,16 @@ public class DepositManager extends Employee {
 
   public DepositManager(String fullname, int idEmployee, 
       String department, String email, double salary,
-      Date firstDate, int leaves, String username, String password, double overall) {
+      Date firstDate, int leaves, String password, double overall) {
     super(fullname, idEmployee, department, email, salary, 
-        firstDate, leaves, username, password, overall);
+        firstDate, leaves, password, overall);
   }
 
-  /* Method for select employees of deposit department */
-  public void SelectDepartmentForSetGoals() {
+  /**
+  * Method for select employees of deposit department.
+  *  
+  */
+  public void selectDepartmentForSetGoals() {
     Scanner sc = new Scanner(System.in);
     boolean endOfProcedure = true;
     do {
@@ -100,7 +108,10 @@ public class DepositManager extends Employee {
     return bonus;
   }
 
-  /* Add rate of deposit manager */
+  /**
+ * Add rate of deposit manager.
+ * 
+ */
   public void evaluationDepositManager() {
     double rate = (computeBonus() / 3);
     for (int j = 0; j < employees.size(); j++) {
@@ -147,7 +158,7 @@ public class DepositManager extends Employee {
           goals("Deposit manager goals");
           break;
         case 2:
-          SelectDepartmentForSetGoals();
+          selectDepartmentForSetGoals();
           break;
         case 3:
           leaves();
