@@ -30,7 +30,7 @@ public class Business {
     return cSM;
   }
 
-  public static ArrayList<Business> getcSMGold() {
+  public static ArrayList<Business> getcSMVip() {
     return cSMVip;
   }
 
