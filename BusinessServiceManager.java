@@ -126,7 +126,7 @@ public void getMenu() {
             + "\n5.Display of bank's news"
             + "\n6.Log Out");
         select = sc.nextInt();
-        if (select > 0 && select < 6) {
+        if (select > 0 && select < 7) {
           value = false;
         } else {
           System.out.printf("You did't insert an integer between 1 and 6.Please try again");

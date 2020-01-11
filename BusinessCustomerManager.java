@@ -154,7 +154,7 @@ public void getMenu() {
             + "\n6.Management of complaints"
             + "\n7.Log Out");
         select = sc.nextInt();
-        if (select > 0 && select < 7) {
+        if (select > 0 && select < 8) {
           value = false;
         } else {
           System.out.printf("You did't insert an integer between 1 and 7.Please try again");

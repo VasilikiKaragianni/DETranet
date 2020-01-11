@@ -143,9 +143,9 @@ public double computeBonus() {
  */
   @Override
 public void getMenu() {
+    Scanner sc = new Scanner(System.in);
     boolean value = true;
     int select = 0;
-    Scanner sc = new Scanner(System.in);
     do {
       try {
         System.out.println("Menu"
@@ -157,10 +157,10 @@ public void getMenu() {
             + "\n6.Management of complaints"
             + "\n7.Log Out");
         select = sc.nextInt();
-        if (select > 0 && select < 7) {
+        if (select > 0 && select < 8) {
           value = false;
         } else {
-          System.out.printf("You did't insert an integer between 1 and 7.Please try again");
+          System.out.printf("You did't insert an integer between 1 and 7.Please try again...");
         }
       }  catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
