@@ -301,12 +301,12 @@ public class Database {
 	    	  pstmt.setString(8, em);
 	    	  pstmt.setString(9, p);
 	    	  int i = pstmt.executeUpdate();
-      if(i!=0){
-        System.out.println("added");
-      }
-      else{
-        System.out.println("failed to add");
-      }
+			if(i!=0){
+       			 System.out.println("added");
+      		}
+      		else{
+        		System.out.println("failed to add");
+      		}
 
 		}catch(SQLException e) {
 			System.out.print("SQLException: ");
