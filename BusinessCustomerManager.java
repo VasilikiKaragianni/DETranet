@@ -1,4 +1,3 @@
-package gr.dmst.aueb.gr;
 
 /*This class is about one of the Business's employees 
 and more specifically the one that manages the business's customers.
@@ -39,6 +38,7 @@ public class BusinessCustomerManager extends Employee {
       System.out.println("The id you gave is not valid");
     } else {
       Business.cSM.remove(index);
+      Database.deleteBusinessCust(index);
       System.out.println("The customer was deleted succesfuly");
     }
   }
@@ -86,6 +86,7 @@ who has 3 options to choose between*/
         newCust.setAmount(amount);
         newCust.setNmbrLoans(nmbrLoans);
         newCust.addBusiness(2);
+        Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
         System.out.println("Your new customer was added succesfully");
         break;
 
@@ -93,6 +94,7 @@ who has 3 options to choose between*/
         System.out.println("Type the customer's id you would like to delete");
         int id2 = sc.nextInt();
         removeCust(id2);
+        Database.deleteBusinessCust(id2);
         break;
 
       case 3:
