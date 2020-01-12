@@ -1,4 +1,4 @@
-package gr.dmst.aueb.gr;
+package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
  * and more specifically the one that manages the business's customers delays.
@@ -36,6 +36,7 @@ int index = Business.cSMDelays.indexOf(id);
       System.out.println("The id you gave is not valid");
     } else {
       Business.bSM.remove(index);
+      Database.deleteBusinessCust(index);
       System.out.println("The customer was deleted succesfuly");
     }
   }
@@ -82,6 +83,7 @@ int index = Business.cSMDelays.indexOf(id);
         newCust.setAmount(amount);
         newCust.setNmbrLoans(nmbrLoans);
         newCust.addBusiness(4);
+        Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
         System.out.println("Your new customer was added succesfully");
         break;
         
@@ -164,5 +166,4 @@ public void getMenu() {
     }
     sc.close();
   }
-
 }
