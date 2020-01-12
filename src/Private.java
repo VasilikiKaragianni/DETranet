@@ -1,4 +1,4 @@
-package detranet;
+package gr.aueb.dmst.DETranet;
 
 import java.util.ArrayList;
 
