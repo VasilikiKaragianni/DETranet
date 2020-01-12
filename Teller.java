@@ -1,9 +1,4 @@
-/*
- * Teller
- * 
- */
-
-package gr.dmst.aueb.gr;
+package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -108,11 +103,13 @@ public class Teller extends Employee {
         b.setType(type);
         b.setNmbrLoans(loans);
         b.addBusiness(5);
+        Database.createBusinessCust(name, type, id, amount, loans);
         break;
       case 2:
         System.out.println("Give business's id that you want to delete");
         int delid = sc.nextInt();
         removeBusiness(delid);
+        Database.deleteBusinessCust(delid);
         break;
       case 3:
         for (int i = 0; i <= Business.tellerBusiness.size(); i++) {
@@ -205,11 +202,13 @@ public class Teller extends Employee {
         p.setCards(cards);
         p.setNmbrLoans(loans);
         p.addPrivate(1);
+        Database.createPrivateCust(name, id, amount, cards, loans);
         break;
       case 2:
         System.out.println("Give customer's id that you want to delete");
         int delid = sc.nextInt();
         removePrivate(delid);
+        Database.deletePrivateCust(delid);
         break;
       case 3:
         for (int i = 0; i <= Private.pCM.size(); i++) {
@@ -275,4 +274,3 @@ public class Teller extends Employee {
     }
   }
 }
-

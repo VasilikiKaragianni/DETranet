@@ -1,8 +1,4 @@
-/*
- * PrivateCustomerManagerDelays
- */
-
-package gr.dmst.aueb.gr;
+package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -41,6 +37,7 @@ public class PrivateCustomerManagerDelays extends Employee {
       System.out.println("The id you gave is not valid");
     } else {
       Private.pCMDelays.remove(index);
+      Database.deletePrivateCust(index);
       System.out.println("The customer is deleted successfully");
     }
   }
@@ -99,6 +96,7 @@ public class PrivateCustomerManagerDelays extends Employee {
         p.setCards(cards);
         p.setNmbrLoans(loans);
         p.addPrivate(1);
+        Database.createPrivateCust(name, id, amount, cards, loans);
         break;
       case 2:
         System.out.println("Give customer's id that you want to delete");

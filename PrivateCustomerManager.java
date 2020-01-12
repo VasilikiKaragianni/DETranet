@@ -1,8 +1,4 @@
-/*
- * PrivateCustomerManager
- */
-
-package gr.dmst.aueb.gr;
+package gr.aueb.dmst.DETranet;
 
 import java.io.File;
 
@@ -42,6 +38,7 @@ public class PrivateCustomerManager extends Employee {
       System.out.println("The id you gave is not valid");
     } else {
       Private.pCM.remove(index);
+      Database.deletePrivateCust(index);
       System.out.println("The customer is deleted successfully");
     }
   }
@@ -100,6 +97,7 @@ public class PrivateCustomerManager extends Employee {
         p.setCards(cards);
         p.setNmbrLoans(loans);
         p.addPrivate(1);
+        Database.createPrivateCust(name, id, amount, cards, loans);
         break;
       case 2:
         System.out.println("Give customer's id that you want to delete");
@@ -196,4 +194,3 @@ public class PrivateCustomerManager extends Employee {
     }
   }
 }
-

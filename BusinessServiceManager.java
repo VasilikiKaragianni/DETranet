@@ -1,4 +1,4 @@
-package gr.dmst.aueb.gr;
+package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
  * and more specifically the one who deals mostly with the transaction processing.
@@ -34,6 +34,7 @@ public class BusinessServiceManager extends Employee {
       System.out.println("The id you gave is not valid");
     } else {
       Business.cSM.remove(index);
+      Database.deleteBusinessCust(index);
       System.out.println("The customer was deleted succesfuly");
     }
   } 
@@ -80,6 +81,7 @@ public class BusinessServiceManager extends Employee {
         newCust.setAmount(amount);
         newCust.setNmbrLoans(nmbrLoans);
         newCust.addBusiness(1);
+        Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
         System.out.println("Your new customer was added succesfully");
         break;
 
