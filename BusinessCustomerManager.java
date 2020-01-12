@@ -1,3 +1,4 @@
+package gr.aueb.dmst.DETranet
 
 /*This class is about one of the Business's employees 
 and more specifically the one that manages the business's customers.
@@ -94,7 +95,6 @@ who has 3 options to choose between*/
         System.out.println("Type the customer's id you would like to delete");
         int id2 = sc.nextInt();
         removeCust(id2);
-        Database.deleteBusinessCust(id2);
         break;
 
       case 3:
