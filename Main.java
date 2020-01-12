@@ -1,143 +1,23 @@
-package detranet;
+
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import com.mysql.*;
-import java.sql.*;
 
 public class Main {
 	
-	public static void loadmySQLDatabase() {
-		try{  
-			Class.forName("com.mysql.jdbc.Driver"); //if it doesn't work try com.mysql.cj.jdbc.Driver
-		
-			Connection con=DriverManager.getConnection(  
-			"jdbc:mysql://remotemysql.com:3306/sOiwyE9ekg","sOiwyE9ekg","nmOhM09Bay");
-	      	Statement stmt = con.createStatement();
-	      		
-	            String s = ("SELECT * FROM Employee");
-	            ResultSet rs = stmt.executeQuery(s);
-	            while (rs.next()) {
-	      	    	String f = rs.getString("fullname");
-	      	    	int id = rs.getInt("idEmployee");
-	      	    	String d = rs.getString("department");
-	      	    	String e = rs.getString("email");
-	      	    	double sa = rs.getDouble("salary");
-	      	    	Date da = rs.getDate("firstDate");
-	      	    	int l = rs.getInt("leaves");
-	      	    	String p = rs.getString("password");
-	      	    	double o = rs.getDouble("overall");
-	      	    
-	      	    	if (d.equals("Manager")) {
-	      	    		new Manager (f, id, d, e, sa, da, l, p, o);
-	      	    	} else if (d.equals("Loan Manager")) {
-	      	    		new LoanManager(f, id, d, e, sa, da, l, p, o);	      	    	
-	      	    	} else if (d.equals("Deposit Manager")) {
-	      	    		new DepositManager(f, id, d, e, sa, da, l, p, o);
-	      	    	} else if (d.equals("Private Customer Manager")) {
-	      	    		new PrivateCustomerManager(f, id, d, e, sa, da, l, p, o);	      	    		
-	      	    	} else if (d.equals("Teller")) {
-	      	    		new Teller(f, id, d, e, sa, da, l, p, o);
-	      	    	} else if (d.equals("Private Customer Manager Vip")) {
-	      	    		new PrivateCustomerManagerVip(f, id, d, e, sa, da, l, p, o);
-	      	    	} else if (d.equals("Private Customer Manager Delays")) {
-	      	    		new PrivateCustomerManagerDelays (f, id, d, e, sa, da, l, p, o);
-	      	    	} else if (d.equals("Business Customer Manager Vip")) {
-	      	    		new BusinessCustomerManagerVip (f, id, d, e, sa, da, l, p, o);	      	    		
-	      	    	} else if (d.equals("Business Customer Manager Delays")) {
-	      	    		new BusinessCustomerManagerDelays (f, id, d, e, sa, da, l, p, o);	      	    		
-	      	    	} else if (d.equals("Business Service Manager")) {
-	      	    		new BusinessServiceManager (f, id, d, e, sa, da, l, p, o);	      	    		
-	      	    	} 
-	      	    }
-	      	    
-	      	    
-	      	    s = "SELECT * FROM Business"; // +Business
-	            rs = stmt.executeQuery(s);
-	            while (rs.next()) {
-	            	int i = rs.getInt("idBusiness");
-	            	String n = rs.getString("name");
-	            	int nl = rs.getInt("nmbrLoans");
-	            	double a = rs.getDouble("amount");
-	            	int id = rs.getInt("idEmployee");
-	            	String t = rs.getString("type");
-	            	Business b = new Business(n, t, i, a, nl);
-	            	for(int c=0; c < Employee.getEmployees().size(); c++) {
-	            		Employee e = Employee.getEmployees().get(c);
-	            		if( e.getIdEmployee()== id &&
-	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager")) {
-	            			Business.cSM.add(b);
-	            			break;
-	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager Vip")) {
-	            			Business.cSMVip.add(b);
-	            			break;
-	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment().equals("Business Customer Manager Delays")) {
-	            			Business.cSMDelays.add(b);
-	            			break;
-	            		} else if(e.getIdEmployee() == id &&
-        				Employee.getEmployees().get(c).getDepartment().equals("Business Service Manager")) {
-	            			Business.bSM.add(b);
-	            			break;
-	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment().equals("Teller")) {
-	            			Business.tellerBusiness.add(b);
-	            		}
-	            	}
-	            }
-	            
-	            s = "SELECT * FROM Private"; // +Business
-	            rs = stmt.executeQuery(s);
-	            while (rs.next()) {
-	            	int i = rs.getInt("idPrivate");
-	            	String n = rs.getString("name");
-	            	int nl = rs.getInt("nmbrLoans");
-	            	double a = rs.getDouble("amount");
-	            	int id = rs.getInt("idEmployee");
-	            	int ca = rs.getInt("cards");
-	            	Private p = new Private(n, i, a, ca, nl);
-	            	for(int c=0; c < Employee.getEmployees().size(); c++) {
-	            		Employee e = Employee.getEmployees().get(c);
-	            		if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager")) {
-	            			Private.pCM.add(p);
-	            			break;
-	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager Vip")) {
-	            			Private.pCMVip.add(p);
-	            			break;
-	            		} else if(e.getIdEmployee() == id &&
-	            				Employee.getEmployees().get(c).getDepartment().equals("Private Customer Manager Delays")) {
-	            			Private.pCMDelays.add(p);
-	            			break;
-	            		} else if(e.getIdEmployee() == id &&
-        				Employee.getEmployees().get(c).getDepartment().equals("Teller")) {
-	            			Private.tellerPrivate.add(p);
-	            			break;
-	            		}
-	            	}
-	            }
-		      	rs.close();
-		      	System.out.println();
-		      	stmt.close();
-		        con.close();
-	            }
-	      	catch(SQLException e) {
-	      		System.out.print("SQLException: ");
-	      		System.out.println(e.getMessage());
-	      	} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
+	// variable that counts how many times Main.main has been loaded and makes sure database has been loaded once
+	static int loadMain = 0; 
 
-	    
 	public static void main(String[] args) {
-		loadmySQLDatabase();
-		Employee.reloadLeaves();		
+		if (loadMain == 0) {
+			Database.loadmySQLDatabase();
+		}
+		Employee.reloadLeaves();	
+		if (loadMain != 0) {
+			Database.savemysqlDatabase();
+		}		
 		Scanner sc = new Scanner(System.in);
 		int select=0;
 		boolean flag=true;
@@ -194,7 +74,7 @@ public class Main {
 			}while(flag);
 			System.out.printf("\nRegister form!"
 								+ "Fullname: ");
-			String inputFullname =sc.nextLine();
+			String inputFullname =sc.next();
 			sc.nextLine(); 
 			System.out.printf("\nE-mail: ");
 			String inputEmail = sc.next();
@@ -226,36 +106,47 @@ public class Main {
 			switch (selectDep) {
 			case 1:
 				new Manager (inputFullname, id, "Manager" ,inputEmail,2000,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Manager", inputEmail, 2000, startLeaves, inputPassword, 0);
 				break;
 			case 2:
 				new LoanManager(inputFullname, id, "Loan Manager" ,inputEmail,1700,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Loan Manager", inputEmail, 1700, startLeaves, inputPassword, 0);
 				break;
 			case 3:
 				new DepositManager(inputFullname, id, "Deposit Manager" ,inputEmail,1700,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Deposit Manager", inputEmail, 1700, startLeaves, inputPassword, 0);
 				break;
 			case 4:
 				new PrivateCustomerManager(inputFullname, id, "Private Customer Manager" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Private Customer Manager", inputEmail, 1400, startLeaves, inputPassword, 0);
 				break;
 			case 5:
 				new Teller(inputFullname, id, "Teller" ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Teller", inputEmail, 1500, startLeaves, inputPassword, 0);
 				break;
 			case 6:
 				new PrivateCustomerManagerVip(inputFullname, id, "Private costumer manager Vip" ,inputEmail,1300,firstday,startLeaves,inputPassword,0); 
+				Database.saveEmployee(inputFullname, id, "Private costumer manager Vip", inputEmail, 1300, startLeaves, inputPassword, 0);
 				break;
 			case 7:
 				new PrivateCustomerManagerDelays (inputFullname, id, "Private customer manager delays" ,inputEmail,1300,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Private customer manager delays", inputEmail, 1300, startLeaves, inputPassword, 0);
 				break;
 			case 8:
 				new BusinessCustomerManager (inputFullname, id, "Business customer manager" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Business customer manager", inputEmail, 1400, startLeaves, inputPassword, 0);
 				break;
 			case 9:
 				new BusinessCustomerManagerDelays (inputFullname, id, "Business customer manager delays" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Business customer manager delays", inputEmail, 1400, startLeaves, inputPassword, 0);
 				break;
 			case 10:
 				new BusinessCustomerManagerVip (inputFullname, id, "Business customer manager Vip " ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Business customer manager Vip", inputEmail, 1500, startLeaves, inputPassword, 0);
 				break;
 			case 11:
 				new BusinessServiceManager (inputFullname, id, "Business service manager" ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, id, "Business service manager", inputEmail, 1500, startLeaves, inputPassword, 0);
 			}		
 		}else {
 			boolean successLogIn = true;
