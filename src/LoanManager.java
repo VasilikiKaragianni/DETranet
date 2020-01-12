@@ -3,7 +3,7 @@
  * 
  */
 
-package gr.aueb.dmst.detranet;
+package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
