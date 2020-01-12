@@ -2,7 +2,7 @@
  * Employee
  */
  
-package detranet;
+package gr.aueb.dmst.detranet;
 
 
 import java.awt.Desktop;
