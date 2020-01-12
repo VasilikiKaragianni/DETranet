@@ -1,4 +1,4 @@
-package gr.dmst.aueb.gr;
+package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
  * and more specifically the one that manages the business's VIP customers.
@@ -42,6 +42,7 @@ public class BusinessCustomerManagerVip extends Employee {
       System.out.println("The id you gave is not valid");
     } else {
       Business.cSMVip.remove(index);
+      Database.deleteBusinessCust(index);
       System.out.println("The customer was deleted succesfuly");
     }
   }
@@ -89,6 +90,7 @@ public class BusinessCustomerManagerVip extends Employee {
         newCust.setAmount(amount);
         newCust.setNmbrLoans(nmbrLoans);
         newCust.addBusiness(3);
+        Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
         System.out.println("Your new customer was added succesfully");
         break;
 
@@ -143,7 +145,7 @@ public double computeBonus() {
  */
   @Override
 public void getMenu() {
-    Scanner sc = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);
     boolean value = true;
     int select = 0;
     do {
