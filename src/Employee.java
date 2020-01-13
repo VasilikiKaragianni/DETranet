@@ -1,8 +1,3 @@
-/* 
- * Employee
- */
- 
-package gr.aueb.dmst.detranet;
 
 
 import java.awt.Desktop;
@@ -181,12 +176,27 @@ public abstract class Employee {
   public abstract void getMenu();
 
   /**
- * This method connects the programm with urls from Internet.
+ * This method connects the program with urls from Internet.
  */
   public static void getNews() { 
     Desktop d = Desktop.getDesktop();
     try {
-      d.browse(new URI("http://www.gazzetta.gr"));
+      System.out.println("Please choose a site: 1.Forbes, 2.Bloomberg,"
+      		+ " 3. Financial Times, 4. CNN Business, 5. Reuters ");
+      int i = Main.sc.nextInt();
+      if (i == 1 ) {
+    	  d.browse(new URI("https://www.forbes.com"));
+      } else if (i == 2) {
+          d.browse(new URI("https://www.bloomberg.com/europe"));
+      } else if (i==3) {
+    	  d.browse(new URI("https://www.ft.com"));
+      } else if (i==4) {
+    	  d.browse(new URI("https://money.cnn.com/data/markets"));
+      } else if (i==5) {
+    	  d.browse(new URI("https://www.reuters.com"));
+      } else {
+    	  System.out.println("You didn't choose a site");
+      }
     } catch (IOException e) {
       e.printStackTrace();
     } catch (URISyntaxException e) {
@@ -200,14 +210,14 @@ public abstract class Employee {
   public void setGoals(String goals) {
     File file = new File(goals + ".txt");
     int select = 0;
-    Scanner sc = new Scanner(System.in);
+  
     boolean flag = true;
     /* select for adding more goals or writing goals in an empty file */
     do {
       try {
         System.out.print("1.Add goals"
             + "\n2.Set new goals\n");
-        select = sc.nextInt();
+        select = Main.sc.nextInt();
         if (select == 1 || select == 2) {
           flag = false;
         } else {
@@ -215,7 +225,7 @@ public abstract class Employee {
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        sc.nextLine();
+        Main.sc.nextLine();
         System.out.printf("Please insert an integer between 1-2.Try again...");
       }
     } while (flag);
@@ -229,8 +239,7 @@ public abstract class Employee {
       do {
         System.out.print("Add goal: ");
         String goal = "";
-        Scanner scanner = new Scanner(System.in);
-        goal = scanner.nextLine() + ""; 
+        goal = Main.sc.nextLine() + ""; 
         try {
           out.write(goal);
           out.write(System.getProperty("line.separator")); /* go to next line */
@@ -240,7 +249,7 @@ public abstract class Employee {
         String ans="";
         do {
           System.out.printf("End of procedure? (Y/N)");
-          ans = sc.next();
+          ans = Main.sc.next();
           ans = ans.toUpperCase();
           if (!ans.equals("Y")  && !ans.equals("N")) {
         	  System.out.println("Please press only 'y' or 'n'!");
@@ -269,12 +278,12 @@ public abstract class Employee {
     try {
       Scanner sc = new Scanner(file);
       while (sc.hasNext()) {
-        String data = sc.nextLine();
-        System.out.println(data);
-      }
+          String data = sc.nextLine();
+          System.out.println(data);
+        }
     } catch (FileNotFoundException e) {
       System.out.println("No goals exist!");
-    } 
+    }
   }
 
   /**
@@ -282,23 +291,22 @@ public abstract class Employee {
 * applying for leave.  
 */
   public void leaves() {
-    Scanner sc = new Scanner(System.in);
     int choice = 0;
     do {
       boolean loop = true;
       do {
         try {
           System.out.println("Please press 1 if you want to see the remaining leave days. \n "
-                                     + "Please press 2 if you want to aply for leave. \n"
+                                     + "Please press 2 if you want to apply for leave. \n"
                                      + "Please press 3 if you want to return to menu.");
-          choice = sc.nextInt();
+          choice = Main.sc.nextInt();
           if (choice < 1 || choice > 3) {
             System.out.println("Please insert either 1 or 2 or 3: ");
           }
           loop = false;
         } catch (InputMismatchException ex) {
           System.err.println("exception " + ex);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.println("Please insert an integer number! ");
         }
       } while (loop);
@@ -315,11 +323,11 @@ public abstract class Employee {
           do {
             try {
               System.out.print("Please insert the number of days of leave you want to take: ");
-              days = sc.nextInt();
+              days = Main.sc.nextInt();
               flag = false;
             } catch (InputMismatchException ex) {
               System.err.println("exception " + ex);
-              sc.nextLine();
+              Main.sc.nextLine();
               System.out.println("Please insert an integer number! ");
             }
           } while (flag);
@@ -330,16 +338,16 @@ public abstract class Employee {
               boolean cloop = true;
               do {
                 try {
-                  System.out.println("Please press 4 if you want to aply for leave again"
+                  System.out.println("Please press 4 if you want to apply for leave again"
                                            + " or press 5 if you want to return to menu.");
-                  ans = sc.nextInt();
+                  ans = Main.sc.nextInt();
                   if (ans != 4 && ans != 5) {
                     System.out.println("Please insert either 4 or 5: ");
                   }
                   cloop = false;
                 } catch (InputMismatchException ex) {
                   System.err.println("exception " + ex);
-                  sc.nextLine();
+                  Main.sc.nextLine();
                   System.out.println("Please insert an integer number! ");
                 }
               } while (cloop);
