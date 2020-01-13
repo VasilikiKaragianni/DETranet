@@ -1,4 +1,8 @@
+/* 
+ * Employee
+ */
 
+package gr.aueb.dmst.detranet;
 
 import java.awt.Desktop;
 import java.io.File;
