@@ -79,6 +79,7 @@ public class PrivateCustomerManager extends Employee {
     } while (flag);
     switch (option) {
       case 1:
+    	try {
         System.out.println("Give customer's name");
         String name = Main.sc.next();
         System.out.println("Give customer's id");
@@ -96,6 +97,11 @@ public class PrivateCustomerManager extends Employee {
         p.setNmbrLoans(loans);
         p.addPrivate(1);
         Database.createPrivateCust(name, id, amount, cards, loans);
+    	} catch (InputMismatchException inputmismatchexception) {
+   		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
+   	     Main.sc.nextLine();
+   	     System.out.printf("Please insert the right type of data.Try again...");
+   	}
         break;
       case 2:
         System.out.println("Give customer's id that you want to delete");
