@@ -70,30 +70,30 @@ who has 3 options to choose between*/
 
     switch (select) {
       case 1:
-    	try {
-        System.out.println("Give your new customer's name");
-        String name = Main.sc.nextLine();
-        System.out.println("Give the type of his/hers business");
-        String type = Main.sc.nextLine();
-        System.out.println("Give your new customer's id");
-        int businessId = Main.sc.nextInt();
-        System.out.println("Give the amount of his/hers depositions");
-        double amount = Main.sc.nextDouble();
-        System.out.println("Give the number of his/hers loans");
-        int nmbrLoans = Main.sc.nextInt();
-        Business newCust = new Business(name,type,businessId,amount,nmbrLoans);
-        newCust.setName(name);
-        newCust.setType(type);
-        newCust.setAmount(amount);
-        newCust.setNmbrLoans(nmbrLoans);
-        newCust.addBusiness(2);
-        Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
-        System.out.println("Your new customer was added succesfully");
-    	} catch (InputMismatchException inputmismatchexception) {
-      		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
-      	     Main.sc.nextLine();
-      	     System.out.printf("Please insert the right type of data.Try again...");
-      	}
+        try {
+          System.out.println("Give your new customer's name");
+          String name = Main.sc.nextLine();
+          System.out.println("Give the type of his/hers business");
+          String type = Main.sc.nextLine();
+          System.out.println("Give your new customer's id");
+          int businessId = Main.sc.nextInt();
+          System.out.println("Give the amount of his/hers depositions");
+          double amount = Main.sc.nextDouble();
+          System.out.println("Give the number of his/hers loans");
+          int nmbrLoans = Main.sc.nextInt();
+          Business newCust = new Business(name,type,businessId,amount,nmbrLoans);
+          newCust.setName(name);
+          newCust.setType(type);
+          newCust.setAmount(amount);
+          newCust.setNmbrLoans(nmbrLoans);
+          newCust.addBusiness(2);
+          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
+          System.out.println("Your new customer was added succesfully");
+        } catch (InputMismatchException inputmismatchexception) {
+          System.err.printf("%nException%n: %s%n",inputmismatchexception);
+          Main.sc.nextLine();
+          System.out.printf("Please insert the right type of data.Try again...");
+        }
         break;
 
       case 2:
@@ -146,58 +146,58 @@ can have
 */
   @Override
 public void getMenu() {
-	for (;;) {
-    boolean value = true;
-    int select = 0;
-    do {
-      try {
-        System.out.println("Menu"
-            + "\n1.Customer management"
-            + "\n2.Display of goals"
-            + "\n3.Bonus"
-            + "\n4.Permission for absence"
-            + "\n5.Display of bank's news"
-            + "\n6.Management of complaints"
-            + "\n7.Log Out");
-        select = Main.sc.nextInt();
-        if (select > 0 && select < 8) {
-          value = false;
-        } else {
+    for (;;) {
+      boolean value = true;
+      int select = 0;
+      do {
+        try {
+          System.out.println("Menu"
+              + "\n1.Customer management"
+              + "\n2.Display of goals"
+              + "\n3.Bonus"
+              + "\n4.Permission for absence"
+              + "\n5.Display of bank's news"
+              + "\n6.Management of complaints"
+              + "\n7.Log Out");
+          select = Main.sc.nextInt();
+          if (select > 0 && select < 8) {
+            value = false;
+          } else {
+            System.out.printf("You did't insert an integer between 1 and 7.Please try again..");
+          }
+        } catch (InputMismatchException inputmismatchexception) {
+          System.err.printf("%nException%n: %s%n", inputmismatchexception);
+          Main.sc.nextLine();
           System.out.printf("You did't insert an integer between 1 and 7.Please try again..");
         }
-      } catch (InputMismatchException inputmismatchexception) {
-        System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        Main.sc.nextLine();
-        System.out.printf("You did't insert an integer between 1 and 7.Please try again..");
+      } while (value);
+      switch (select) {
+        case 1:
+          employeeList();
+          break;
+        case 2:
+          goals("Customer service manager goals");
+          break;
+        case 3:
+          System.out.println(computeBonus());
+          break;
+        case 4:
+          leaves();
+          break;
+        case 5:
+          Employee.getNews();
+          break;
+        case 6:
+          System.out.println("Give file's path");
+          String path = Main.sc.next();
+          ReadComplaints(path);
+          break;
+        case 7:
+          Main.main(null);
+          break;
+        default:
+          break;
       }
-    } while (value);
-    switch (select) {
-      case 1:
-        employeeList();
-        break;
-      case 2:
-        goals("Customer service manager goals");
-        break;
-      case 3:
-        System.out.println(computeBonus());
-        break;
-      case 4:
-        leaves();
-        break;
-      case 5:
-        Employee.getNews();
-        break;
-      case 6:
-        System.out.println("Give file's path");
-        String path = Main.sc.next();
-        ReadComplaints(path);
-        break;
-      case 7:
-        Main.main(null);
-        break;
-      default:
-        break;
     }
-  }
   }
 }

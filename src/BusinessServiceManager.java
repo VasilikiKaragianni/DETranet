@@ -118,52 +118,52 @@ public double computeBonus() {
 */
   @Override
 public void getMenu() {
-	for(;;) {  
-    boolean value = true;
-    int select = 0;
-    do {
-      try {
-        System.out.println("Menu"
-            + "\n1.Customer management"
-            + "\n2.Display of goals"
-            + "\n3.Bonus"
-            + "\n4.Permission for absence"
-            + "\n5.Display of bank's news"
-            + "\n6.Log Out");
-        select = Main.sc.nextInt();
-        if (select > 0 && select < 7) {
-          value = false;
-        } else {
+    for (;;) {  
+      boolean value = true;
+      int select = 0;
+      do {
+        try {
+          System.out.println("Menu"
+              + "\n1.Customer management"
+              + "\n2.Display of goals"
+              + "\n3.Bonus"
+              + "\n4.Permission for absence"
+              + "\n5.Display of bank's news"
+              + "\n6.Log Out");
+          select = Main.sc.nextInt();
+          if (select > 0 && select < 7) {
+            value = false;
+          } else {
+            System.out.printf("You did't insert an integer between 1 and 6.Please try again..");
+          }
+        } catch (InputMismatchException inputmismatchexception) {
+          System.err.printf("%nException%n: %s%n", inputmismatchexception);
+          Main.sc.nextLine();
           System.out.printf("You did't insert an integer between 1 and 6.Please try again..");
         }
-      } catch (InputMismatchException inputmismatchexception) {
-        System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        Main.sc.nextLine();
-        System.out.printf("You did't insert an integer between 1 and 6.Please try again..");
+      } while (value);
+      switch (select) {
+        case 1:
+          employeeList();
+          break;
+        case 2:
+          goals("Business service manager goals");
+          break;
+        case 3:
+          System.out.println(computeBonus());
+          break;
+        case 4:
+          leaves();
+          break;
+        case 5:
+          Employee.getNews();
+          break;
+        case 6:
+          Main.main(null);
+          break;
+        default:
+          break;
       }
-    } while (value);
-    switch (select) {
-      case 1:
-        employeeList();
-        break;
-      case 2:
-        goals("Business service manager goals");
-        break;
-      case 3:
-        System.out.println(computeBonus());
-        break;
-      case 4:
-        leaves();
-        break;
-      case 5:
-        Employee.getNews();
-        break;
-      case 6:
-        Main.main(null);
-        break;
-      default:
-        break;
     }
-  }
   }
 }
