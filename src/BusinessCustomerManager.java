@@ -16,6 +16,7 @@ import java.util.Scanner;
 /*
  * Business Customer Manager
  */
+
 public class BusinessCustomerManager extends Employee {
   /**.
    * Constructor of class*/
@@ -55,20 +56,21 @@ who has 3 options to choose between*/
              + "\n2.Delete customer"
              + "\n3.View list of customers");
         select = Main.sc.nextInt();
-        if (select > 0 && select < 3) {
+        if (select > 0 && select < 4) {
           value = false;
         } else {
-          System.out.printf("You did't insert an integer between 1 and 3.Please try again");
+          System.out.printf("You did't insert an integer between 1 and 3.Please try again..");
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
         Main.sc.nextLine();
-        System.out.printf("You did't insert an integer between 1 and 3.Please try again");
+        System.out.printf("You did't insert an integer between 1 and 3.Please try again..");
       }
     } while (value);
 
     switch (select) {
       case 1:
+    	try {
         System.out.println("Give your new customer's name");
         String name = Main.sc.nextLine();
         System.out.println("Give the type of his/hers business");
@@ -87,6 +89,11 @@ who has 3 options to choose between*/
         newCust.addBusiness(2);
         Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
         System.out.println("Your new customer was added succesfully");
+    	} catch (InputMismatchException inputmismatchexception) {
+      		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
+      	     Main.sc.nextLine();
+      	     System.out.printf("Please insert the right type of data.Try again...");
+      	}
         break;
 
       case 2:
@@ -139,6 +146,7 @@ can have
 */
   @Override
 public void getMenu() {
+	for (;;) {
     boolean value = true;
     int select = 0;
     do {
@@ -155,12 +163,12 @@ public void getMenu() {
         if (select > 0 && select < 8) {
           value = false;
         } else {
-          System.out.printf("You did't insert an integer between 1 and 7.Please try again");
+          System.out.printf("You did't insert an integer between 1 and 7.Please try again..");
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
         Main.sc.nextLine();
-        System.out.printf("You did't insert an integer between 1 and 7.Please try again");
+        System.out.printf("You did't insert an integer between 1 and 7.Please try again..");
       }
     } while (value);
     switch (select) {
@@ -190,5 +198,6 @@ public void getMenu() {
       default:
         break;
     }
+  }
   }
 }
