@@ -122,6 +122,7 @@ public class PrivateCustomerManagerVip extends Employee {
  */
   @Override
   public void getMenu() {
+	for (;;) {
     boolean flag = true;
     int option = 0;
     do {
@@ -166,6 +167,7 @@ public class PrivateCustomerManagerVip extends Employee {
         break;
       default:
         break;
+      }
     }
   }
 }

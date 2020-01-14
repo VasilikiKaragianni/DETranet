@@ -144,6 +144,7 @@ public class PrivateCustomerManager extends Employee {
  */
   @Override
   public void getMenu() {
+	for (;;) {
     boolean flag = true;
     int option = 0;
     do {
@@ -194,6 +195,7 @@ public class PrivateCustomerManager extends Employee {
         break;
       default:
         break;
+      }
     }
   }
 }

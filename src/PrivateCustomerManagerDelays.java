@@ -124,6 +124,7 @@ public class PrivateCustomerManagerDelays extends Employee {
 */
   @Override
   public void getMenu() {
+    for (;;) {
     boolean flag = true;
     int option = 0;
     do {
@@ -168,6 +169,7 @@ public class PrivateCustomerManagerDelays extends Employee {
         break;
       default:
         break;
+      }
     }
   }
 }

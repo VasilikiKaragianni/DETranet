@@ -238,9 +238,9 @@ public void removePrivate(int id) {
 
   @Override
   public void getMenu() {
-    boolean flag = true;
-    int option = 0;
-    
+	  for (;;) {
+        boolean flag = true;
+        int option = 0;
     do {
       try {
         System.out.println("Menu"
@@ -283,6 +283,7 @@ public void removePrivate(int id) {
         break;
       default:
         break;
+      }
     }
   }
 }
