@@ -1,4 +1,4 @@
-package gr.aueb.dmst.DETranet
+package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
 and more specifically the one that manages the business's customers.
@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 /*
  * Business Customer Manager
  */
@@ -49,14 +48,13 @@ who has 3 options to choose between*/
   public void employeeList() {
     int select = 0;
     boolean value = true;
-    Scanner sc = new Scanner(System.in);
     do {
       try {
         System.out.println("Menu"
              + "\n1.Add customer"
              + "\n2.Delete customer"
              + "\n3.View list of customers");
-        select = sc.nextInt();
+        select = Main.sc.nextInt();
         if (select > 0 && select < 3) {
           value = false;
         } else {
@@ -64,7 +62,7 @@ who has 3 options to choose between*/
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        sc.nextLine();
+        Main.sc.nextLine();
         System.out.printf("You did't insert an integer between 1 and 3.Please try again");
       }
     } while (value);
@@ -72,15 +70,15 @@ who has 3 options to choose between*/
     switch (select) {
       case 1:
         System.out.println("Give your new customer's name");
-        String name = sc.nextLine();
+        String name = Main.sc.nextLine();
         System.out.println("Give the type of his/hers business");
-        String type = sc.nextLine();
+        String type = Main.sc.nextLine();
         System.out.println("Give your new customer's id");
-        int businessId = sc.nextInt();
+        int businessId = Main.sc.nextInt();
         System.out.println("Give the amount of his/hers depositions");
-        double amount = sc.nextDouble();
+        double amount = Main.sc.nextDouble();
         System.out.println("Give the number of his/hers loans");
-        int nmbrLoans = sc.nextInt();
+        int nmbrLoans = Main.sc.nextInt();
         Business newCust = new Business(name,type,businessId,amount,nmbrLoans);
         newCust.setName(name);
         newCust.setType(type);
@@ -93,7 +91,7 @@ who has 3 options to choose between*/
 
       case 2:
         System.out.println("Type the customer's id you would like to delete");
-        int id2 = sc.nextInt();
+        int id2 = Main.sc.nextInt();
         removeCust(id2);
         break;
 
@@ -105,7 +103,6 @@ who has 3 options to choose between*/
       default:
         break;
     }
-    sc.close();
   }
   /** This method reads a CSV file.
 which contains some complaints from the clients*/
@@ -144,7 +141,6 @@ can have
 public void getMenu() {
     boolean value = true;
     int select = 0;
-    Scanner sc = new Scanner(System.in);
     do {
       try {
         System.out.println("Menu"
@@ -155,7 +151,7 @@ public void getMenu() {
             + "\n5.Display of bank's news"
             + "\n6.Management of complaints"
             + "\n7.Log Out");
-        select = sc.nextInt();
+        select = Main.sc.nextInt();
         if (select > 0 && select < 8) {
           value = false;
         } else {
@@ -163,7 +159,7 @@ public void getMenu() {
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        sc.nextLine();
+        Main.sc.nextLine();
         System.out.printf("You did't insert an integer between 1 and 7.Please try again");
       }
     } while (value);
@@ -175,7 +171,7 @@ public void getMenu() {
         goals("Customer service manager goals");
         break;
       case 3:
-        computeBonus();
+        System.out.println(computeBonus());
         break;
       case 4:
         leaves();
@@ -185,7 +181,7 @@ public void getMenu() {
         break;
       case 6:
         System.out.println("Give file's path");
-        String path = sc.next();
+        String path = Main.sc.next();
         ReadComplaints(path);
         break;
       case 7:
@@ -194,6 +190,5 @@ public void getMenu() {
       default:
         break;
     }
-    sc.close();
   }
 }

@@ -1,5 +1,6 @@
 /*
- * Manager
+ * LoanManager
+ * 
  */
 
 package gr.aueb.dmst.DETranet;
@@ -7,15 +8,12 @@ package gr.aueb.dmst.DETranet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
  *  This class is for Manager of bank. He is responsible for setting goals
  *  to the Loan Manager and Deposit Manager. Moreover, he is able to evaluate 
  *  the whole of employees and to make redundants.
  */
-
-
 
 public class Manager extends Employee {
 
@@ -33,7 +31,6 @@ public class Manager extends Employee {
  * evaluating the employees.
  */
   public void evaluation() {
-    Scanner sc = new Scanner(System.in);
     int id = -1;
     double overall = -1.0;
     boolean loops = true;
@@ -43,14 +40,14 @@ public class Manager extends Employee {
         do {
           try {
             System.out.println("Please enter the id of employee you want to evaluate: ");
-            id = sc.nextInt();
+            id = Main.sc.nextInt();
             if (id < 0 || id > (idEmployees.size() - 1)) {
               System.out.println("Please insert an integer number which matches with an ID.");
             }
             flag = false;
           } catch (InputMismatchException ex) {
             System.err.println("exception " + ex);
-            sc.nextLine();
+            Main.sc.nextLine();
             System.out.println("Please insert an integer number! ");
           }
         } while (flag);
@@ -76,14 +73,14 @@ public class Manager extends Employee {
       do {
         try {
           System.out.println("Please enter the overall of employee: ");
-          overall = sc.nextDouble();
+          overall = Main.sc.nextDouble();
           if (overall < 0 || overall > 100) {
             System.out.println("Please insert an integer number between 0 and 100.");
           }
           loop = false;
         } catch (InputMismatchException ex) {
           System.err.println("exception " + ex);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.println("Please insert a double number! ");
         }
       } while (loop);
@@ -91,6 +88,7 @@ public class Manager extends Employee {
     int h = idEmployees.indexOf(id);
     idEmployees.set(h, id);
     overalls.set(h, overall);
+    Database.adjustOverall(h, overall);
   } // end of method evaluations
 
   /**
@@ -98,14 +96,13 @@ public class Manager extends Employee {
  * elements from lists.
  */
   public void dismissals() {
-    Scanner sc = new Scanner(System.in);
     int answear2 = -1;
     do {
       boolean loop = true;
       do {
         try {
           System.out.println("Please press the id of employee you want to make redundant: ");
-          answear2 = sc.nextInt();
+          answear2 = Main.sc.nextInt();
           if (answear2 < 0 || answear2 > employees.size()) {
             System.out.println("Please insert an integer number between 0 and "
                 + (employees.size() - 1) + ".");
@@ -113,7 +110,7 @@ public class Manager extends Employee {
           loop = false;
         } catch (InputMismatchException ex3) {
           System.err.println("exception " + ex3);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.println("Please insert an integer number! ");
         }
       } while (loop);
@@ -143,6 +140,7 @@ public class Manager extends Employee {
     employees2.remove(w);
     idEmployees.remove(l);
     overalls.remove(l);
+    Database.deleteEmployee(w);
     System.out.println("Successful removal!");
   } // end of method
 
@@ -228,7 +226,6 @@ public class Manager extends Employee {
   @Override
   public void getMenu() {
     System.out.println("Welcome to the Manager Menu!");
-    Scanner sc = new Scanner(System.in);
     int answear = 0;
     do {
       boolean loop = true;
@@ -242,14 +239,14 @@ public class Manager extends Employee {
                            +  "Please press 5 if you want to compute bonuses. \n"
                            +  "Please press 6 if you want to see the news. \n"
                            +  "Please press 7 if you want to log out. \n ");
-          answear = sc.nextInt();
+          answear = Main.sc.nextInt();
           if (answear < 1 || answear > 7) {
             System.out.println("Please insert either 1 or 2 or 3 or 4 or 5 or 6 or 7: ");
           }
           loop = false;
         } catch (InputMismatchException ex) {
           System.err.println("exception " + ex);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.println("Please insert an integer number! ");
         }
       } while (loop);
@@ -267,14 +264,14 @@ public class Manager extends Employee {
                                 +  "Please press 2 if you want to make redudnants. \n"
                                 +  "Please press 3 if you want to see efficiencies. \n"
                                 +  "Please press 4 if you want to return to menu.");
-                ans = sc.nextInt();
+                ans = Main.sc.nextInt();
                 if (ans < 1 || ans > 3) {
                   System.out.println("Please insert either 1 or 2 or 3 or 4: ");
                 }
                 loop = false;
               } catch (InputMismatchException ex2) {
                 System.err.println("exception " + ex2);
-                sc.nextLine();
+                Main.sc.nextLine();
                 System.out.println("Please insert an integer number! ");
               }
             } while (loop);
@@ -295,7 +292,6 @@ public class Manager extends Employee {
           }
           break;
         case 2:
-          Scanner in = new Scanner(System.in);
           System.out.println("set goals for:  ");
           int select = 0;
           do {
@@ -305,14 +301,14 @@ public class Manager extends Employee {
                 System.out.println("Please press 1 if you want to set goals for deposit Manager \n"
                                 +  "Please press 2 if you want to set goals for loan Manager. \n"
                                 +  "Please press 3 if you want to return to menu. \n");
-                select = in.nextInt();
+                select = Main.sc.nextInt();
                 if (select < 1 || select > 3) {
                   System.out.println("Please insert either 1 or 2 or 3 ");
                 }
                 loop = false;
               } catch (InputMismatchException ex) {
                 System.err.println("exception " + ex);
-                in.nextLine();
+                Main.sc.nextLine();
                 System.out.println("Please insert an integer number! ");
               }
             } while (loop);
@@ -331,7 +327,6 @@ public class Manager extends Employee {
           getMenu();
           break;
         case 3:
-          Scanner scanner = new Scanner(System.in);
           System.out.println("set goals for:  ");
           int selection = 0;
           do {
@@ -341,14 +336,14 @@ public class Manager extends Employee {
                 System.out.println("Please press 1 if you want to see goals for deposit Manager \n"
                                 +  "Please press 2 if you want to see goals for loan Manager. \n"
                                 +  "Please press 3 if you want to return to menu. \n");
-                selection = scanner.nextInt();
+                selection = Main.sc.nextInt();
                 if (selection < 1 || selection > 3) {
                   System.out.println("Please insert either 1 or 2 or 3");
                 }
                 loop = false;
               } catch (InputMismatchException ex) {
                 System.err.println("exception " + ex);
-                scanner.nextLine();
+                Main.sc.nextLine();
                 System.out.println("Please insert an integer number! ");
               }
             } while (loop);

@@ -3,7 +3,6 @@ package gr.aueb.dmst.DETranet;
 import java.util.Date;
 import java.util.InputMismatchException;
 
-import java.util.Scanner;
 
 /**
  * This class is for the Teller.The Teller is responsible for the cash transactions 
@@ -32,22 +31,22 @@ public class Teller extends Employee {
  */
   public void chooseCategory() {
     boolean flag = true;
-    Scanner sc = new Scanner(System.in);
+   
     int option = 0;
     do {
       try {
         System.out.println("Choose the category :"
             + "\n1.Business"
             + "\n2.Private");
-        option = sc.nextInt();
-        if (option == 1 || option == 1) {
+        option = Main.sc.nextInt();
+        if (option == 1 || option == 2) {
           flag = false;
         } else {
           System.out.println("Please enter 1 for Business or 2 for Private.Try again...");
         } 
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        sc.nextLine();
+        Main.sc.nextLine();
         System.out.println("Please enter 1 for Business or 2 for Private.Try again...");
       }
     } while (flag);
@@ -56,7 +55,6 @@ public class Teller extends Employee {
     }  else { 
       custMenu();
     }
-    sc.close();
   }
 
   /**
@@ -65,7 +63,7 @@ public class Teller extends Employee {
  */
   public void busMenu() {
     boolean flag =  true;
-    Scanner sc = new Scanner(System.in);
+    
     int option = 0;
     do {
       try {
@@ -73,30 +71,30 @@ public class Teller extends Employee {
             + "\n1.Addition of Business"
             + "\n2.Delete of Business"
             + "\n3.Display of Business");
-        option = sc.nextInt();
-        if (option > 0 && option < 3) {
+        option = Main.sc.nextInt();
+        if (option > 0 && option <= 3) {
           flag = false;
         } else {
           System.out.printf("Please insert an integer between 1-3.Try again...");
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        sc.nextLine();
+        Main.sc.nextLine();
         System.out.printf("Please insert an integer between 1-3.Try again...");
       }
     } while (flag);
     switch (option) {
       case 1:
         System.out.println("Give business's name");
-        String name =  sc.next();
+        String name =  Main.sc.next();
         System.out.println("Give business's id");
-        int id = sc.nextInt();
+        int id = Main.sc.nextInt();
         System.out.println("Give business's amount of deposit");
-        double amount = sc.nextDouble();
+        double amount = Main.sc.nextDouble();
         System.out.println("Give business's type");
-        String type = sc.next();
+        String type = Main.sc.next();
         System.out.println("Give business's number of loans");
-        int loans = sc.nextInt();
+        int loans = Main.sc.nextInt();
         Business b = new Business(name, type, id, amount, loans);
         b.setName(name);
         b.setAmount(amount);
@@ -107,7 +105,7 @@ public class Teller extends Employee {
         break;
       case 2:
         System.out.println("Give business's id that you want to delete");
-        int delid = sc.nextInt();
+        int delid = Main.sc.nextInt();
         removeBusiness(delid);
         Database.deleteBusinessCust(delid);
         break;
@@ -124,7 +122,8 @@ public class Teller extends Employee {
   /**
  * This method removes the private clients from the list.
  */
-  public void removePrivate(int id) {
+  @SuppressWarnings("unlikely-arg-type")
+public void removePrivate(int id) {
     int index = Private.pCM.indexOf(id);
     if (index == -1) {
       System.out.println("The id you gave is not valid");
@@ -138,7 +137,8 @@ public class Teller extends Employee {
  * This method removes the business clients from the list.
  */
   public void removeBusiness(int id) {
-    int index = Business.tellerBusiness.indexOf(id);
+    @SuppressWarnings("unlikely-arg-type")
+	int index = Business.tellerBusiness.indexOf(id);
     if (index == -1) {
       System.out.println("The id you gave is not valid");
     } else {
@@ -164,7 +164,7 @@ public class Teller extends Employee {
   
   public void custMenu() {
     boolean flag = true;
-    Scanner sc = new Scanner(System.in);
+   
     int option = 0;
     do {
       try {
@@ -172,7 +172,7 @@ public class Teller extends Employee {
             + "\n1.Addition of Customer"
             + "\n2.Delete of Customer"
             + "\n3.Display of Customer");
-        option = sc.nextInt();
+        option = Main.sc.nextInt();
         if (option > 0 && option < 3) {
           flag = false;
         } else {
@@ -180,22 +180,22 @@ public class Teller extends Employee {
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n",inputmismatchexception);
-        sc.nextLine();
+        Main.sc.nextLine();
         System.out.printf("Please insert an integer between 1-3.Try again...");
       }
     } while (flag);
     switch (option) {
       case 1:
         System.out.println("Give customer's name");
-        String name = sc.next();
+        String name = Main.sc.next();
         System.out.println("Give customer's id");
-        int id = sc.nextInt();
+        int id = Main.sc.nextInt();
         System.out.println("Give customer's amount of deposit");
-        double amount = sc.nextDouble();
-        System.out.println("Give customer's number of cars");
-        int cards = sc.nextInt();
+        double amount = Main.sc.nextDouble();
+        System.out.println("Give customer's number of cards");
+        int cards = Main.sc.nextInt();
         System.out.println("Give customer's number of loans");
-        int loans = sc.nextInt();
+        int loans = Main.sc.nextInt();
         Private p = new Private(name,id,amount,cards,loans);
         p.setName(name);
         p.setAmount(amount);
@@ -206,7 +206,7 @@ public class Teller extends Employee {
         break;
       case 2:
         System.out.println("Give customer's id that you want to delete");
-        int delid = sc.nextInt();
+        int delid = Main.sc.nextInt();
         removePrivate(delid);
         Database.deletePrivateCust(delid);
         break;
@@ -228,7 +228,7 @@ public class Teller extends Employee {
   public void getMenu() {
     boolean flag = true;
     int option = 0;
-    Scanner sc = new Scanner(System.in);
+    
     do {
       try {
         System.out.println("Menu"
@@ -238,7 +238,7 @@ public class Teller extends Employee {
             + "\n4.Leaves"
             + "\n5.Display of the bank's news"
             + "\n6.Log Out");
-        option = sc.nextInt();
+        option = Main.sc.nextInt();
         if (option > 0 && option <= 6) {
           flag = false;
         } else {
@@ -246,7 +246,7 @@ public class Teller extends Employee {
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n",inputmismatchexception);
-        sc.nextLine();
+        Main.sc.nextLine();
         System.out.printf("Please insert an integer between 1-6.Try again...");
       }
     } while (flag);
@@ -258,7 +258,7 @@ public class Teller extends Employee {
         goals("Teller goals");
         break;
       case 3:
-        computeBonus();
+    	System.out.println(computeBonus());
         break;
       case 4:
         leaves();

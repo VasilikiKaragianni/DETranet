@@ -1,7 +1,6 @@
 package gr.aueb.dmst.DETranet;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,16 +8,18 @@ public class Main {
 	
 	// variable that counts how many times Main.main has been loaded and makes sure database has been loaded once
 	static int loadMain = 0; 
+	
+	final static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		if (loadMain == 0) {
 			Database.loadmySQLDatabase();
 		}
-		Employee.reloadLeaves();	
-		if (loadMain != 0) {
+		Employee.reloadLeaves();
+		/*if (loadMain != 0) {
 			Database.savemysqlDatabase();
 		}		
-		Scanner sc = new Scanner(System.in);
+		loadMain++;*/
 		int select=0;
 		boolean flag=true;
 		do {
@@ -26,7 +27,7 @@ public class Main {
 				System.out.println("\nWelcome! "
 						+ "\n1.Create new user"
 						+ "\n2.Log in");
-				select=sc.nextInt();
+				select = sc.nextInt();
 				if (select==1 || select==2) {
 					flag=false;
 				}else {
@@ -87,8 +88,6 @@ public class Main {
 			cal.set(Calendar.MONTH, month);
 			cal.set(Calendar.DATE, date);
 			java.util.Date firstday = cal.getTime();
-			System.out.printf("\nUsername: ");
-			String inputUsername = sc.next();
 			flag=true;
 			System.out.printf("\nPassword: ");
 			do {
@@ -152,11 +151,11 @@ public class Main {
 			boolean successLogIn = true;
 			do {
 				System.out.println("Log In"
-						+ "\nUsername: ");
-				String inputUsername = sc.next();
+						+ "\nEmail: ");
+				String inputEmail = sc.next();
 				System.out.println("Password: ");
 				String logInInputPassword = sc.next();
-				if (Employee.logIn(inputUsername, logInInputPassword) == null) {
+				if (Employee.logIn(inputEmail, logInInputPassword) == null) {
 					System.out.println("Incorrect username or password. Try again..."
 							+ "\nDo you want to crate new user;(Y/N) ");
 					String ans;
@@ -167,7 +166,7 @@ public class Main {
 					if (ans.equals("Y")) successLogIn=false;
 				} else {
 					successLogIn=false;
-					Employee.logIn(inputUsername, logInInputPassword).getMenu();
+					Employee.logIn(inputEmail, logInInputPassword).getMenu();
 				}
 			}while (successLogIn);	
 		}

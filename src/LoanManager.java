@@ -7,7 +7,6 @@ package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /* Class for loan Manager */
 public class LoanManager extends Employee {
@@ -24,7 +23,6 @@ public class LoanManager extends Employee {
  * 
  */
   public void selectDepartmentForSetGoals() {
-    Scanner sc = new Scanner(System.in);
     boolean endOfProcedure = true;
     do {
       boolean flag = true;
@@ -34,7 +32,7 @@ public class LoanManager extends Employee {
           System.out.printf("\nGoals sharing for loans." + "\n1.Business service manager"
               + "\n2.Customer service manager" + "\n3.Customer service manager vip"
               + "\n4.Customer service manager delays" + "\n5.Εnd of procedure\n");
-          select = sc.nextInt();
+          select = Main.sc.nextInt();
           if (select > 0 && select < 6) {
             flag = false;
           } else {
@@ -42,7 +40,7 @@ public class LoanManager extends Employee {
           }
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n", inputmismatchexception);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.printf("Please insert an integer between 1-5.Try again...");
         }
       } while (flag);
@@ -131,7 +129,6 @@ public class LoanManager extends Employee {
   /* Display the menu for loan manager */
   @Override
   public void getMenu() {
-    Scanner sc = new Scanner(System.in);
     for (;;) {
       int select = 0;
       boolean flag = true;
@@ -140,7 +137,7 @@ public class LoanManager extends Employee {
           System.out.printf("\nWelcome to the Loan Manager menu!" + "\n1.Display department goals"
               + "\n2.Goals sharing" + "\n3.Leaves" 
               + "\n4.Compute BONUS" + "\n5.News" + "\n6.Log Out\n");
-          select = sc.nextInt();
+          select = Main.sc.nextInt();
           if (select > 0 && select < 7) {
             flag = false;
           } else {
@@ -148,7 +145,7 @@ public class LoanManager extends Employee {
           }
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n", inputmismatchexception);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.printf("Please insert an integer between 1-6.Try again...");
         }
       } while (flag);
