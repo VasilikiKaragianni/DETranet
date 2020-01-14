@@ -25,7 +25,7 @@ public class Private {
     return tellerPrivate;
   }
 
-  public static ArrayList<Private> getpCMGVip() {
+  public static ArrayList<Private> getpCMVip() {
     return pCMVip;
   }
 
