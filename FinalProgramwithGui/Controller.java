@@ -248,7 +248,7 @@ public class Controller implements Initializable {
 
     }
 
-
+/*Αυτη η μέθοδο; ελέγχει αν τα στοιχεία που βάζει ο χρήστση στο log in  είναι έγκυρα*/
     public String creds() throws IOException, SQLException {
         String email = logemail.getText();
         String password = logpass.getText();
@@ -298,7 +298,7 @@ public class Controller implements Initializable {
         return status;
     }
 
-
+    /*Αυτή η μέθοδος χρησιμοποιείται για να ανοίξει το παράθυρο του log in*/
     public void GotoLogIn(ActionEvent event) throws IOException {
         Parent tableViewParent = load(getClass().getResource("Log-in.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -308,7 +308,7 @@ public class Controller implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /*Αυτή η μέθοδος χρησιμοποιείται για να ανοίξει το παράθυρο του Sign up*/
     public void GotoSignUp(ActionEvent event) throws IOException {
         Parent tableViewParent = load(getClass().getResource("Sign up form.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -316,7 +316,7 @@ public class Controller implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    /*Αυτή η μέθοδο επιστρέφει  τον μισθό του κάθε υπαλλήλου με βάση το τμήμα του*/
     public static double getSalary(String department) {
         double salary;
 
@@ -347,7 +347,7 @@ public class Controller implements Initializable {
 
     }
 
-
+    /*Με αυτή τη μέθοδο υλοποιείται η εγγραφή του υπαλλήλου*/
     public void signed(ActionEvent actionEvent) throws SQLException {
 
         Database connectionClass = new Database();
@@ -420,7 +420,8 @@ public class Controller implements Initializable {
         }
         connection.close();
     }
-
+    /*Αυτή η μέθοδος καλείται κατά την αποσύνδεση του εκάστοτε υπαλλήλου, σε επιστρέφει στο μενού του log in
+     και διαγράφει κάποια συγκεκριμένα στοιχεία απο την βάση*/
     public void logOut(ActionEvent event) throws IOException, SQLException {
         Connection conn1 = Database.createConnection();
         String query = "Select id from keepId";
