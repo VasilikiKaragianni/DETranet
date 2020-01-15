@@ -1,4 +1,4 @@
-/**
+/**.
  * Business Customer Manager
  */
 package gr.aueb.dmst.DETranet;
@@ -34,20 +34,22 @@ public class BusinessCustomerManager extends Employee {
 * that the Business Customer Manager gives
 */
   public void removeCust(int id) {
-	boolean b = false;
-	if (id < 0) System.out.println("The id you gave is not valid");
-    for(int i = 0 ; i < Business.cSM.size(); i++) {
+    boolean b = false;
+    if (id < 0) {
+      System.out.println("The id you gave is not valid");
+    }
+    for (int i = 0; i < Business.cSM.size(); i++) {
       int k = Business.cSM.get(i).getIdBusiness();
       if (k == id) {
-    	Business.cSM.remove(Business.cSM.get(i));
+        Business.cSM.remove(Business.cSM.get(i));
         Database.deleteBusinessCust(id);
         System.out.println("The customer was deleted succesfuly");
         b = true;
         break;
       }
     }  
-    if (b == false ) {
-    	System.out.println("there is not such id");
+    if (b == false) {
+      System.out.println("there is not such id");
     }
   }
   
@@ -95,7 +97,8 @@ who has 3 options to choose between*/
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(2);
-          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans, this.getIdEmployee());
+          Database.createBusinessCust(name, type, businessId, 
+              amount, nmbrLoans, this.getIdEmployee());
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -110,11 +113,11 @@ who has 3 options to choose between*/
         break;
 
       case 3:
-    	int size = Business.cSM.size();
-    	if(size == 0) {
-    		System.out.println("Customers list: empty ");
-    	}
-        for (int i = 0; i < size ; i++) {
+        int size = Business.cSM.size();
+        if (size == 0) {
+          System.out.println("Customers list: empty ");
+        }
+        for (int i = 0; i < size; i++) {
           Business b = Business.cSM.get(i);
           System.out.println(b.toString());
         }

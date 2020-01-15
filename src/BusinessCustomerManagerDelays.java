@@ -1,4 +1,4 @@
-/**
+/**.
  *  Business Customer Manager Delays
  */
 package gr.aueb.dmst.DETranet;
@@ -12,11 +12,10 @@ package gr.aueb.dmst.DETranet;
 import java.util.Date;
 import java.util.InputMismatchException;
 
-/**.
- * Constructor of class
- * */
 public class BusinessCustomerManagerDelays extends Employee {
-
+  /**.
+* Constructor of class
+**/
   public BusinessCustomerManagerDelays(String fullname, int idEmployee, 
       String department, String email,double salary, Date firstDate, int leaves,
       String password, double overall) {
@@ -30,23 +29,25 @@ public class BusinessCustomerManagerDelays extends Employee {
  * that the Business Customer Manager of Delays gives */
   
   public void removeCust(int id) {
-		boolean b = false;
-		if (id < 0) System.out.println("The id you gave is not valid");
-	    for(int i = 0 ; i < Business.cSMDelays.size(); i++) {
-	      int k = Business.cSMDelays.get(i).getIdBusiness();
-	      System.out.println(k);
-	      if (k == id) {
-	    	Business.cSMDelays.remove(Business.cSMDelays.get(i));
-	        Database.deleteBusinessCust(id);
-	        System.out.println("The customer was deleted succesfuly");
-	        b = true;
-	        break;
-	      }
-	    }  
-	    if (b == false ) {
-	    	System.out.println("there is not such id");
-	    }
-	  }
+    boolean b = false;
+    if (id < 0) {
+      System.out.println("The id you gave is not valid");
+    }
+    for (int i = 0; i < Business.cSMDelays.size(); i++) {
+      int k = Business.cSMDelays.get(i).getIdBusiness();
+      System.out.println(k);
+      if (k == id) {
+        Business.cSMDelays.remove(Business.cSMDelays.get(i));
+        Database.deleteBusinessCust(id);
+        System.out.println("The customer was deleted succesfuly");
+        b = true;
+        break;
+      }
+    }  
+    if (b == false) {
+      System.out.println("there is not such id");
+    }
+  }
 
   /**This method displays the menu to the employee.
 * who has 3 options to choose between*/
@@ -91,7 +92,8 @@ public class BusinessCustomerManagerDelays extends Employee {
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(4);
-          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans, this.getIdEmployee());
+          Database.createBusinessCust(name, type, businessId, 
+              amount, nmbrLoans, this.getIdEmployee());
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -107,14 +109,14 @@ public class BusinessCustomerManagerDelays extends Employee {
         break;
 
       case 3:
-    	int size = Business.cSMDelays.size();
-      	if(size == 0) {
-      		System.out.println("Customers list: empty ");
-      	}
-          for (int i = 0; i < size ; i++) {
-            Business b = Business.cSMDelays.get(i);
-            System.out.println(b.toString());
-          }
+        int size = Business.cSMDelays.size();
+        if (size == 0) {
+          System.out.println("Customers list: empty ");
+        }
+        for (int i = 0; i < size; i++) {
+          Business b = Business.cSMDelays.get(i);
+          System.out.println(b.toString());
+        }
         break;
       default:
         break;

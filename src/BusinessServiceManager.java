@@ -27,22 +27,24 @@ public class BusinessServiceManager extends Employee {
 * that the Business Service Manager gives
 */
   public void removeCust(int id) {
-		boolean b = false;
-		if (id < 0) System.out.println("The id you gave is not valid");
-	    for(int i = 0 ; i < Business.bSM.size(); i++) {
-	      int k = Business.bSM.get(i).getIdBusiness();
-	      if (k == id) {
-	    	Business.bSM.remove(Business.bSM.get(i));
-	        Database.deleteBusinessCust(id);
-	        System.out.println("The customer was deleted succesfuly");
-	        b = true;
-	        break;
-	      }
-	    }  
-	    if (b == false ) {
-	    	System.out.println("there is not such id");
-	    }
-	  }
+    boolean b = false;
+    if (id < 0) { 
+      System.out.println("The id you gave is not valid");
+    }
+    for (int i = 0; i < Business.bSM.size(); i++) {
+      int k = Business.bSM.get(i).getIdBusiness();
+      if (k == id) {
+        Business.bSM.remove(Business.bSM.get(i));
+        Database.deleteBusinessCust(id);
+        System.out.println("The customer was deleted succesfuly");
+        b = true;
+        break;
+      }
+    }  
+    if (b == false) {
+      System.out.println("there is not such id");
+    }
+  }
 
   /**This method displays the menu to the employee.
 * who has 3 options to choose between*/
@@ -87,7 +89,8 @@ public class BusinessServiceManager extends Employee {
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(1);
-          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans, this.getIdEmployee());
+          Database.createBusinessCust(name, type, businessId, 
+               amount, nmbrLoans, this.getIdEmployee());
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -102,15 +105,15 @@ public class BusinessServiceManager extends Employee {
         removeCust(id2);
         break;
       case 3:
-    	int size = Business.bSM.size();
-      	if(size == 0) {
-      		System.out.println("Customers list: empty ");
-      	}
-          for (int i = 0; i < size ; i++) {
-            Business b = Business.bSM.get(i);
-            System.out.println(b.toString());
-          }
-          break;
+        int size = Business.bSM.size();
+        if (size == 0) {
+          System.out.println("Customers list: empty ");
+        }
+        for (int i = 0; i < size; i++) {
+          Business b = Business.bSM.get(i);
+          System.out.println(b.toString());
+        }
+        break;
       default:
         break;
     }

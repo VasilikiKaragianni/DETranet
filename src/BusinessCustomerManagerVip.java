@@ -1,4 +1,4 @@
-/**
+/**.
  * Business Customer Manager Vip
  */
 package gr.aueb.dmst.DETranet;
@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class BusinessCustomerManagerVip extends Employee {
 
- /**.
+  /**.
  * Constructor of class
  **/
   public BusinessCustomerManagerVip(String fullname, int idEmployee, 
@@ -35,20 +35,22 @@ public class BusinessCustomerManagerVip extends Employee {
  **/
   
   public void removeCust(int id) {
-	boolean b = false;
-	if (id < 0) System.out.println("The id you gave is not valid");
-    for(int i = 0 ; i < Business.cSMVip.size(); i++) {
+    boolean b = false;
+    if (id < 0) {
+      System.out.println("The id you gave is not valid");
+    }
+    for (int i = 0; i < Business.cSMVip.size(); i++) {
       int k = Business.cSMVip.get(i).getIdBusiness();
       if (k == id) {
-    	Business.cSMVip.remove(Business.cSMVip.get(i));
+        Business.cSMVip.remove(Business.cSMVip.get(i));
         Database.deleteBusinessCust(id);
         System.out.println("The customer was deleted succesfuly");
         b = true;
         break;
       }
     }  
-    if (b == false ) {
-    	System.out.println("there is not such id");
+    if (b == false) {
+      System.out.println("there is not such id");
     }
   }
   
@@ -111,14 +113,14 @@ public class BusinessCustomerManagerVip extends Employee {
         removeCust(id2 - 2);
         break;
       case 3:
-    	int size = Business.cSMVip.size();
-      	if(size == 0) {
-      		System.out.println("Customers list: empty ");
-      	}
-          for (int i = 0; i < size ; i++) {
-            Business b = Business.cSMVip.get(i);
-            System.out.println(b.toString());
-          }
+        int size = Business.cSMVip.size();
+        if (size == 0) {
+          System.out.println("Customers list: empty ");
+        }
+        for (int i = 0; i < size; i++) {
+          Business b = Business.cSMVip.get(i);
+          System.out.println(b.toString());
+        }
         break;
       default:
         break;
