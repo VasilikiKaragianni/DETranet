@@ -43,7 +43,7 @@ public class EmployeesController {
 
     private ObservableList<EmployeesList> data;
 
-
+    /*Μεθοδος για την διαγραφή του επιλεγμένου υπαλλήλου*/
     @FXML
     void DeleteEmployee(ActionEvent event) throws SQLException {
         error.setText("");
@@ -102,7 +102,7 @@ public class EmployeesController {
     }
 
     PreparedStatement ps = null;
-
+    /*Μέθοδος για την ανανέωση του πίνακα των υπαλλήλων*/
     @FXML
     void loadEmployees(ActionEvent event) throws SQLException {
         Connection conn = Database.createConnection();
