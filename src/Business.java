@@ -11,11 +11,16 @@ public class Business {
   private int idBusiness;
   private double amount;
   private int nmbrLoans;
-  /* Lists for each employee */
+  /* Lists for each employee that serves Business customers*/
+  // List of customers for Business Service Manager
   public static ArrayList<Business> bSM = new ArrayList<Business>();
+//List of customers for Business Customer Manager
   public static ArrayList<Business> cSM = new ArrayList<Business>();
+//List of customers for Business Customer Manager Vip
   public static ArrayList<Business> cSMVip = new ArrayList<Business>();
+//List of customers for Business Customer Manager Delays
   public static ArrayList<Business> cSMDelays = new ArrayList<Business>();
+//List of customers for Teller
   public static ArrayList<Business> tellerBusiness = new ArrayList<Business>();
 
   public static ArrayList<Business> getTellerBusiness() {
@@ -108,7 +113,7 @@ public class Business {
 
   /* Method return customer's characteristics */
   public String toString() {
-    return ("Costumer information:\nName: " + getName() + getType() 
+    return ("Costumer information:\nName: " + getName() + "\nType: " + getType() 
         + "\nID: " + getIdBusiness() + "\nAmount: "
         + getAmount() + "\nLoans: " + getNmbrLoans());
   }

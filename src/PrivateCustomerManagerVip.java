@@ -1,3 +1,6 @@
+/** 
+ * Private Customer Manager Vip
+ */
 package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
@@ -8,8 +11,6 @@ import java.util.InputMismatchException;
  *  of the Bank who are Vip,which means that they have some more benefits that the other clients.
  * It includes a Menu that Manager chooses what actions 
  * want to make and by this way Manager can control his customers,his leaves and his bonuses.
- *
- * 
  */
 
 public class PrivateCustomerManagerVip extends Employee {
@@ -29,15 +30,22 @@ public class PrivateCustomerManagerVip extends Employee {
 * This method removes the private Vip clients from the list.
 */
   public void removePrivate(int id) {
-    int index = Private.pCMDelays.indexOf(id);
-    if (index == -1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Private.pCMVip.remove(index);
-      Database.deletePrivateCust(index);
-      System.out.println("The customer is deleted successfully");
-    }
-  }
+		boolean b = false;
+		if (id < 0) System.out.println("The id you gave is not valid");
+	    for(int i = 0 ; i < Private.pCMVip.size(); i++) {
+	      int k = Private.pCMVip.get(i).getIdPrivate();
+	      if (k == id) {
+	    	Private.pCMVip.remove(Private.pCMVip.get(i));
+	        Database.deletePrivateCust(id);
+	        System.out.println("The customer was deleted succesfuly");
+	        b = true;
+	        break;
+	      }
+	    }  
+	  if (b == false ) {
+	    System.out.println("there is not such id");
+	  }
+	}
 
   /**
  * This method is inherited by the class Employee and it returns the bonus 
@@ -93,7 +101,7 @@ public class PrivateCustomerManagerVip extends Employee {
         p.setCards(cards);
         p.setNmbrLoans(loans);
         p.addPrivate(1);
-        Database.createPrivateCust(name, id, amount, cards, loans);
+        Database.createPrivateCust(name, id, amount, cards, loans, this.getIdEmployee());
     	} catch (InputMismatchException inputmismatchexception) {
    		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
    	     Main.sc.nextLine();
@@ -114,7 +122,6 @@ public class PrivateCustomerManagerVip extends Employee {
         break;
     }
   }
-
 
   /**
  *This method includes the main menu which shows all the functions 
@@ -151,7 +158,7 @@ public class PrivateCustomerManagerVip extends Employee {
         custMenu();
         break;
       case 2:
-        goals("Private Customer Manager of Vip goals");
+        goals("Private Customer Manager Vip Goals");
         break;
       case 3:
     	System.out.println(computeBonus());

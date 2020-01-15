@@ -1,3 +1,6 @@
+/**
+ *  Business Customer Manager Delays
+ */
 package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
@@ -8,14 +11,12 @@ package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
-/*
- * Business Customer Manager of Delays
- */
 
+/**.
+ * Constructor of class
+ * */
 public class BusinessCustomerManagerDelays extends Employee {
-  /**.
-* Constructor of class
-*/
+
   public BusinessCustomerManagerDelays(String fullname, int idEmployee, 
       String department, String email,double salary, Date firstDate, int leaves,
       String password, double overall) {
@@ -29,16 +30,23 @@ public class BusinessCustomerManagerDelays extends Employee {
  * that the Business Customer Manager of Delays gives */
   
   public void removeCust(int id) {
-    @SuppressWarnings("unlikely-arg-type")
-int index = Business.cSMDelays.indexOf(id);
-    if (index == -1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Business.bSM.remove(index);
-      Database.deleteBusinessCust(index);
-      System.out.println("The customer was deleted succesfuly");
-    }
-  }
+		boolean b = false;
+		if (id < 0) System.out.println("The id you gave is not valid");
+	    for(int i = 0 ; i < Business.cSMDelays.size(); i++) {
+	      int k = Business.cSMDelays.get(i).getIdBusiness();
+	      System.out.println(k);
+	      if (k == id) {
+	    	Business.cSMDelays.remove(Business.cSMDelays.get(i));
+	        Database.deleteBusinessCust(id);
+	        System.out.println("The customer was deleted succesfuly");
+	        b = true;
+	        break;
+	      }
+	    }  
+	    if (b == false ) {
+	    	System.out.println("there is not such id");
+	    }
+	  }
 
   /**This method displays the menu to the employee.
 * who has 3 options to choose between*/
@@ -55,7 +63,7 @@ int index = Business.cSMDelays.indexOf(id);
         if (select > 0 && select < 4) {
           value = false;
         } else {
-          System.out.printf("You did't insert an integer between 1 and 3.Please try again..");
+          System.out.printf("You did't insert an integer between 1 and 3.Please try again.. ");
         }
       } catch (InputMismatchException inputmismatchexception) {
         System.err.printf("%nException%n: %s%n", inputmismatchexception);
@@ -67,7 +75,8 @@ int index = Business.cSMDelays.indexOf(id);
       case 1:
         try {  
           System.out.println("Give your new customer's name");
-          String name = Main.sc.nextLine();
+          String name = Main.sc.next();
+          Main.sc.nextLine();
           System.out.println("Give the type of his/hers business");
           String type = Main.sc.nextLine();
           System.out.println("Give your new customer's id");
@@ -82,7 +91,7 @@ int index = Business.cSMDelays.indexOf(id);
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(4);
-          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
+          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans, this.getIdEmployee());
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -98,9 +107,14 @@ int index = Business.cSMDelays.indexOf(id);
         break;
 
       case 3:
-        for (int i = 0; i <= Business.cSMDelays.size(); i++) {
-          toString();
-        }
+    	int size = Business.cSMDelays.size();
+      	if(size == 0) {
+      		System.out.println("Customers list: empty ");
+      	}
+          for (int i = 0; i < size ; i++) {
+            Business b = Business.cSMDelays.get(i);
+            System.out.println(b.toString());
+          }
         break;
       default:
         break;
@@ -142,7 +156,7 @@ public void getMenu() {
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n", inputmismatchexception);
           Main.sc.nextLine();
-          System.out.printf("You did't insert an integer between 1 and 6.Please try again..");
+          System.out.printf("You didn't insert an integer between 1 and 6.Please try again..");
         }
       } while (value);
       switch (select) {
@@ -150,7 +164,7 @@ public void getMenu() {
           employeeList();
           break;
         case 2:
-          goals("Customer service manager delays goals");
+          goals("Customer Service Manager Delays Goals");
           break;
         case 3:
           System.out.println(computeBonus());

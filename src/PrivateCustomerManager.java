@@ -31,16 +31,22 @@ public class PrivateCustomerManager extends Employee {
  * This method removes the private clients from the list.
  */
   public void removePrivate(int id) {
-    @SuppressWarnings("unlikely-arg-type")
-    int index = Private.pCM.indexOf(id);
-    if (index == - 1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Private.pCM.remove(index);
-      Database.deletePrivateCust(index);
-      System.out.println("The customer is deleted successfully");
-    }
-  }
+		boolean b = false;
+		if (id < 0) System.out.println("The id you gave is not valid");
+	    for(int i = 0 ; i < Private.pCM.size(); i++) {
+	      int k = Private.pCM.get(i).getIdPrivate();
+	      if (k == id) {
+	    	Private.pCM.remove(Private.pCM.get(i));
+	        Database.deletePrivateCust(id);
+	        System.out.println("The customer was deleted succesfuly");
+	        b = true;
+	        break;
+	      }
+	    }  
+	  if (b == false ) {
+	    System.out.println("there is not such id");
+	  }
+	}
 
   /**
  * This method is inherited by the class Employee and it returns 
@@ -86,7 +92,7 @@ public class PrivateCustomerManager extends Employee {
         int id = Main.sc.nextInt();
         System.out.println("Give customer's amount of deposit");
         double amount = Main.sc.nextDouble();
-        System.out.println("Give customer's number of cars");
+        System.out.println("Give customer's number of cards");
         int cards = Main.sc.nextInt();
         System.out.println("Give customer's number of loans");
         int loans = Main.sc.nextInt();
@@ -96,7 +102,7 @@ public class PrivateCustomerManager extends Employee {
         p.setCards(cards);
         p.setNmbrLoans(loans);
         p.addPrivate(1);
-        Database.createPrivateCust(name, id, amount, cards, loans);
+        Database.createPrivateCust(name, id, amount, cards, loans, this.getIdEmployee());
     	} catch (InputMismatchException inputmismatchexception) {
    		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
    	     Main.sc.nextLine();
@@ -109,14 +115,16 @@ public class PrivateCustomerManager extends Employee {
         removePrivate(delid);
         break;
       case 3:
-        for (int i = 0; i <= Private.pCM.size(); i++) {
-          toString(); 
+    	int size = Private.pCM.size();
+      	if(size == 0) {
+      		System.out.println("Customers list: empty ");
+      	}
+        for (int i = 0; i < size ; i++) {
+          Private p = Private.pCM.get(i);
+          System.out.println(p.toString());
         }
-        break;
-      default:
-        break;
+      }
     }
-  }
   
   /**
  * This method is responsible for opening and reading a csv file which includes the complains
@@ -132,6 +140,7 @@ public class PrivateCustomerManager extends Employee {
         String data = sc.nextLine();
         System.out.println(data);
       }
+      sc.close();
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } 

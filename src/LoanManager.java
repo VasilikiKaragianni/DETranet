@@ -1,4 +1,4 @@
-/*
+/**
  * LoanManager
  * 
  */
@@ -47,20 +47,20 @@ public class LoanManager extends Employee {
       /* create or open and write a new file for chosen employee */
       switch (select) {
         case 1:
-          System.out.printf("Business service manager goals:\n");
-          setGoals("Business service manager goals");
+          System.out.printf("Business Service Manager Goals:\n");
+          setGoals("Business Service Manager Goals");
           break;
         case 2:
-          System.out.printf("Customer service manager goals:\n");
-          setGoals("Customer service manager goals");
+          System.out.printf("Customer Service Manager Goals:\n");
+          setGoals("Customer Service Manager Goals");
           break;
         case 3:
-          System.out.printf("Customer service manager Vip goals:\n");
-          setGoals("Customer service manager vip goals");
+          System.out.printf("Customer Service Manager Vip Goals:\n");
+          setGoals("Customer Service Manager Vip Goals");
           break;
         case 4:
-          System.out.printf("Customer service manager delays goals:\n");
-          setGoals("Customer service manager delays goals");
+          System.out.printf("Customer Service Manager Delays Goals:\n");
+          setGoals("Customer Service Manager Delays Goals");
           break;
         case 5:
           endOfProcedure = false;
@@ -115,6 +115,7 @@ public class LoanManager extends Employee {
       Employee empLM = employees.get(j);
       if (empLM.getDepartment() == "Loan Manager") {
         empLM.setOverall(rate);
+        Database.adjustOverall(empLM.getIdEmployee(), rate);
         idEmployees.add(empLM.getIdEmployee());
         overalls.add(rate);
         break;
@@ -123,7 +124,9 @@ public class LoanManager extends Employee {
   }
 
   public double finalSalary() {
-    return (this.getSalary() + computeBonus());
+    double finalsal = (this.getSalary() + computeBonus());
+    Database.computeSalary(this.getIdEmployee(),finalsal);
+    return finalsal;
   }
 
   /* Display the menu for loan manager */
@@ -151,7 +154,7 @@ public class LoanManager extends Employee {
       } while (flag);
       switch (select) {
         case 1:
-          goals("Loan manager goals");
+          goals("Loan Manager Goals");
           break;
         case 2:
           selectDepartmentForSetGoals();

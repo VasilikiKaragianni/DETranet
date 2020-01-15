@@ -1,3 +1,6 @@
+/**
+ * Private Customer Manager Delays
+ */
 package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
@@ -11,8 +14,6 @@ import java.util.InputMismatchException;
  *
  * 
  */
-
-
 
 public class PrivateCustomerManagerDelays extends Employee {
 
@@ -31,16 +32,22 @@ public class PrivateCustomerManagerDelays extends Employee {
  * This method removes the private clients from the list with the clients with delays.
  */
   public void removePrivate(int id) {
-    @SuppressWarnings("unlikely-arg-type")
-	int index = Private.pCMDelays.indexOf(id);
-    if (index == -1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Private.pCMDelays.remove(index);
-      Database.deletePrivateCust(index);
-      System.out.println("The customer is deleted successfully");
-    }
-  }
+		boolean b = false;
+		if (id < 0) System.out.println("The id you gave is not valid");
+	    for(int i = 0 ; i < Private.pCMDelays.size(); i++) {
+	      int k = Private.pCMDelays.get(i).getIdPrivate();
+	      if (k == id) {
+	    	Private.pCMDelays.remove(Private.pCMDelays.get(i));
+	        Database.deletePrivateCust(id);
+	        System.out.println("The customer was deleted succesfuly");
+	        b = true;
+	        break;
+	      }
+	    }  
+	  if (b == false ) {
+	    System.out.println("there is not such id");
+	  }
+	}
 
   /**
 * This method is inherited by the class Employee and it returns the bonus
@@ -66,7 +73,7 @@ public class PrivateCustomerManagerDelays extends Employee {
             + "\n2.Delete of Customer"
             + "\n3.Display of Customer");
         option = Main.sc.nextInt();
-        if (option > 0 && option < 3) {
+        if (option > 0 && option <= 3) {
           flag = false;
         } else {
           System.out.printf("Please insert an integer between 1-3.Try again...");
@@ -86,7 +93,7 @@ public class PrivateCustomerManagerDelays extends Employee {
         int id = Main.sc.nextInt();
         System.out.println("Give customer's amount of deposit");
         double amount = Main.sc.nextDouble();
-        System.out.println("Give customer's number of cars");
+        System.out.println("Give customer's number of cards");
         int cards = Main.sc.nextInt();
         System.out.println("Give customer's number of loans");
         int loans = Main.sc.nextInt();
@@ -96,7 +103,7 @@ public class PrivateCustomerManagerDelays extends Employee {
         p.setCards(cards);
         p.setNmbrLoans(loans);
         p.addPrivate(1);
-        Database.createPrivateCust(name, id, amount, cards, loans);
+        Database.createPrivateCust(name, id, amount, cards, loans, this.getIdEmployee());
     	} catch (InputMismatchException inputmismatchexception) {
    		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
    	     Main.sc.nextLine();
@@ -153,7 +160,7 @@ public class PrivateCustomerManagerDelays extends Employee {
         custMenu();
         break;
       case 2:
-        goals("Private Customer Manager Delays goals");
+        goals("Private Customer Manager Delays Goals");
         break;
       case 3:
     	System.out.println(computeBonus());

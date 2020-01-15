@@ -1,16 +1,16 @@
+/**
+ *  Teller
+ */
 package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
-
 
 /**
  * This class is for the Teller.The Teller is responsible for the cash transactions 
  * of the private customers and also the business customers.
  * It includes a Menu that Manager chooses what actions want to make and
  *  by this way Manager can control his customers,his leaves and his bonuses.
- *
- * 
  */
 
 public class Teller extends Employee {
@@ -102,7 +102,7 @@ public class Teller extends Employee {
         b.setType(type);
         b.setNmbrLoans(loans);
         b.addBusiness(5);
-        Database.createBusinessCust(name, type, id, amount, loans);
+        Database.createBusinessCust(name, type, id, amount, loans, this.getIdEmployee());
     	} catch (InputMismatchException inputmismatchexception) {
    		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
    	     Main.sc.nextLine();
@@ -113,29 +113,18 @@ public class Teller extends Employee {
         System.out.println("Give business's id that you want to delete");
         int delid = Main.sc.nextInt();
         removeBusiness(delid);
-        Database.deleteBusinessCust(delid);
         break;
       case 3:
-        for (int i = 0; i <= Business.tellerBusiness.size(); i++) {
-          toString();
-        }
-        break;
+    	int size = Business.tellerBusiness.size();
+      	if(size == 0) {
+      		System.out.println("Customers list: empty ");
+      	}
+          for (int i = 0; i < size ; i++) {
+            Business b = Business.tellerBusiness.get(i);
+            System.out.println(b.toString());
+          }
       default:
         break;
-    }
-  }
-
-  /**
- * This method removes the private clients from the list.
- */
-  @SuppressWarnings("unlikely-arg-type")
-public void removePrivate(int id) {
-    int index = Private.pCM.indexOf(id);
-    if (index == -1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Private.pCM.remove(index);
-      System.out.println("The customer is deleted successfully");
     }
   }
 
@@ -143,14 +132,42 @@ public void removePrivate(int id) {
  * This method removes the business clients from the list.
  */
   public void removeBusiness(int id) {
-    @SuppressWarnings("unlikely-arg-type")
-	int index = Business.tellerBusiness.indexOf(id);
-    if (index == -1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Business.tellerBusiness.remove(index);
-      System.out.println("The business is deleted successfully");
-    }
+		boolean b = false;
+		if (id < 0) System.out.println("The id you gave is not valid");
+	    for(int i = 0 ; i < Business.tellerBusiness.size(); i++) {
+	      int k = Business.tellerBusiness.get(i).getIdBusiness();
+	      if (k == id) {
+	    	Business.tellerBusiness.remove(Business.tellerBusiness.get(i));
+	        Database.deleteBusinessCust(id);
+	        System.out.println("The customer was deleted succesfuly");
+	        b = true;
+	        break;
+	      }
+	    }  
+	    if (b == false ) {
+	    	System.out.println("there is not such id");
+	    }
+	  }
+
+  /**
+ * This method removes the private clients from the list.
+ */
+  public void removePrivate(int id) {
+	boolean b = false;
+	if (id < 0) System.out.println("The id you gave is not valid");
+	  for(int i = 0 ; i < Private.tellerPrivate.size(); i++) {
+	    int k = Private.tellerPrivate.get(i).getIdPrivate();
+	     if (k == id) {
+	        Private.tellerPrivate.remove(Private.tellerPrivate.get(i));
+	        Database.deletePrivateCust(id);
+	        System.out.println("The customer was deleted succesfuly");
+	        b = true;
+	        break;
+	     }
+	   }  
+	 if (b == false ) {
+	   System.out.println("there is not such id");
+	 }
   }
 
   /* 
@@ -179,7 +196,7 @@ public void removePrivate(int id) {
             + "\n2.Delete of Customer"
             + "\n3.Display of Customer");
         option = Main.sc.nextInt();
-        if (option > 0 && option < 3) {
+        if (option > 0 && option <= 3) {
           flag = false;
         } else {
           System.out.printf("Please insert an integer between 1-3.Try again...");
@@ -209,7 +226,7 @@ public void removePrivate(int id) {
         p.setCards(cards);
         p.setNmbrLoans(loans);
         p.addPrivate(1);
-        Database.createPrivateCust(name, id, amount, cards, loans);
+        Database.createPrivateCust(name, id, amount, cards, loans, this.getIdEmployee());
     	} catch (InputMismatchException inputmismatchexception) {
    		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
    	     Main.sc.nextLine();

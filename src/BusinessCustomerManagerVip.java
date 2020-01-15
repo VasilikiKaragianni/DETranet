@@ -1,3 +1,6 @@
+/**
+ * Business Customer Manager Vip
+ */
 package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
@@ -14,13 +17,9 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/*
- * Business Customer Manager Vip
- */
-
 public class BusinessCustomerManagerVip extends Employee {
 
-  /**.
+ /**.
  * Constructor of class
  **/
   public BusinessCustomerManagerVip(String fullname, int idEmployee, 
@@ -34,17 +33,25 @@ public class BusinessCustomerManagerVip extends Employee {
   /** This method deletes an already existing customer based on the id.
  * that the Business Customer Manager of Vip clients gives
  **/
+  
   public void removeCust(int id) {
-    @SuppressWarnings("unlikely-arg-type")
-    int index = Business.cSMVip.indexOf(id);
-    if (index == -1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Business.cSMVip.remove(index);
-      Database.deleteBusinessCust(index);
-      System.out.println("The customer was deleted succesfuly");
+	boolean b = false;
+	if (id < 0) System.out.println("The id you gave is not valid");
+    for(int i = 0 ; i < Business.cSMVip.size(); i++) {
+      int k = Business.cSMVip.get(i).getIdBusiness();
+      if (k == id) {
+    	Business.cSMVip.remove(Business.cSMVip.get(i));
+        Database.deleteBusinessCust(id);
+        System.out.println("The customer was deleted succesfuly");
+        b = true;
+        break;
+      }
+    }  
+    if (b == false ) {
+    	System.out.println("there is not such id");
     }
   }
+  
 
   /**This method displays the menu to the employee.
 * who has 3 options to choose between**/
@@ -74,7 +81,8 @@ public class BusinessCustomerManagerVip extends Employee {
       case 1:
         try { 
           System.out.println("Give your new customer's name");
-          String name = Main.sc.nextLine();
+          String name = Main.sc.next();
+          Main.sc.nextLine();
           System.out.println("Give the type of his/hers business");
           String type = Main.sc.nextLine();
           System.out.println("Give your new customer's id");
@@ -89,7 +97,7 @@ public class BusinessCustomerManagerVip extends Employee {
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(3);
-          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
+          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans, this.getIdEmployee() + 2);
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -100,12 +108,17 @@ public class BusinessCustomerManagerVip extends Employee {
       case 2:
         System.out.println("Type the customer's id you would like to delete");
         int id2 = Main.sc.nextInt();
-        removeCust(id2);
+        removeCust(id2 - 2);
         break;
       case 3:
-        for (int i = 0; i <= Business.cSMVip.size(); i++) {
-          toString();
-        }
+    	int size = Business.cSMVip.size();
+      	if(size == 0) {
+      		System.out.println("Customers list: empty ");
+      	}
+          for (int i = 0; i < size ; i++) {
+            Business b = Business.cSMVip.get(i);
+            System.out.println(b.toString());
+          }
         break;
       default:
         break;
@@ -164,7 +177,7 @@ public void getMenu() {
           if (select > 0 && select < 8) {
             value = false;
           } else {
-            System.out.printf("You did't insert an integer between 1 and 7.Please try again...");
+            System.out.printf("You didn't insert an integer between 1 and 7.Please try again...");
           }
         }  catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n", inputmismatchexception);
@@ -177,7 +190,7 @@ public void getMenu() {
           employeeList();
           break;
         case 2:
-          goals("Customer service manager vip goals");
+          goals("Customer Service Manager Vip Goals");
           break;
         case 3:
           System.out.println(computeBonus());

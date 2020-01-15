@@ -1,8 +1,8 @@
-/* 
+/** 
  * Employee
  */
 
-package gr.aueb.dmst.detranet;
+package gr.aueb.dmst.DETranet;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -26,7 +26,7 @@ import java.util.Scanner;
 public abstract class Employee {
 
   private String fullname;
-  public static int count = 0;
+  public static int count = 1;
   private int idEmployee;
   private String department;
   private String email;
@@ -45,7 +45,7 @@ public abstract class Employee {
   public static ArrayList<Integer> idEmployees = new ArrayList<Integer>();
   public static ArrayList<Double> overalls = new ArrayList<Double>();
 
-  /**
+ /**
 *  10-argument constructor. 
 */
   public Employee(String fullname, int idEmployee, String department, String email,double salary,
@@ -58,7 +58,6 @@ public abstract class Employee {
     this.salary = salary;
     this.firstDate = firstDate;
     this.leaves = leaves;
-    
     this.password = password;
     this.overall = overall;
     // The list is filled with all arguments.
@@ -285,6 +284,7 @@ public abstract class Employee {
           String data = sc.nextLine();
           System.out.println(data);
         }
+      sc.close();
     } catch (FileNotFoundException e) {
       System.out.println("No goals exist!");
     }
@@ -300,7 +300,7 @@ public abstract class Employee {
       boolean loop = true;
       do {
         try {
-          System.out.println("Please press 1 if you want to see the remaining leave days. \n "
+          System.out.println("Please press 1 if you want to see the remaining leave days.\n "
                                      + "Please press 2 if you want to apply for leave. \n"
                                      + "Please press 3 if you want to return to menu.");
           choice = Main.sc.nextInt();
@@ -363,6 +363,8 @@ public abstract class Employee {
             }
           } else {
             this.setLeaves(this.getLeaves() - days);
+            int k = this.getLeaves();
+            Database.updateLeaves(this.getIdEmployee(), k);
             System.out.println("Your request has been accepted! \n"
                                    + "remaining days of leave: " + this.getLeaves());
             loop = false;
@@ -388,6 +390,7 @@ public abstract class Employee {
     if ((cal.get(Calendar.MONTH) == 0) && (cal.get(Calendar.DAY_OF_MONTH) == 4)) {
       for (Employee emp : employees) {
         emp.setLeaves(31);
+        Database.updateLeaves(emp.getIdEmployee(), 31);
       }
     }
   }

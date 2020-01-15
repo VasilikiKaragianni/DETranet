@@ -11,10 +11,14 @@ public class Private {
   private int cards;
   private int nmbrLoans;
   private static int count = 1;
-  /* Lists for each employee */
+  /* Lists for each employee that serves Private Customer*/
+  // List of customers for Private Customer Manager
   public static ArrayList<Private> pCM = new ArrayList<Private>();
+  // List of customers for Teller
   public static ArrayList<Private> tellerPrivate = new ArrayList<Private>();
+  //List of customers for Private Customer Manager Vip
   public static ArrayList<Private> pCMVip = new ArrayList<Private>();
+  //List of customers for Private Customer Manager Delays
   public static ArrayList<Private> pCMDelays = new ArrayList<Private>();
 
   public static ArrayList<Private> getpCM() {

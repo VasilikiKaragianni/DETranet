@@ -1,7 +1,7 @@
-/*
- * DepositManager
- * 
- */
+/**
+* DepositManager
+* 
+*/
 
 package gr.aueb.dmst.DETranet;
 
@@ -19,7 +19,7 @@ public class DepositManager extends Employee {
   }
 
   /**
-  * Method for select employees of deposit department.
+  * Method for selecting employees of deposit department.
   *  
   */
   public void selectDepartmentForSetGoals() {
@@ -48,20 +48,20 @@ public class DepositManager extends Employee {
       /* create or open and write a new file for chosen employee */
       switch (select) {
         case 1:
-          System.out.printf("Private service manager goals:\n");
-          setGoals("Private customer manager goals");
+          System.out.printf("Private Service Manager Goals:\n");
+          setGoals("Private Customer Manager Goals");
           break;
         case 2:
-          System.out.printf("Teller goals:\n");
+          System.out.printf("Teller Goals:\n");
           setGoals("Teller Goals");
           break;
         case 3:
-          System.out.printf("Private customer manager Vip goals:\n");
-          setGoals("Private customer manager vip goals");
+          System.out.printf("Private Customer Manager Vip goals:\n");
+          setGoals("Private Customer Μanager Vip Goals");
           break;
         case 4:
-          System.out.printf("Private customer manager delays goals:\n");
-          setGoals("Private customer manager delays goals");
+          System.out.printf("Private Customer Manager Delays Goals:\n");
+          setGoals("Private Customer Manager Delays Goals");
           break;
         case 5:
           endOfProcedure = false;
@@ -116,6 +116,7 @@ public class DepositManager extends Employee {
       Employee empLM = employees.get(j);
       if (empLM.getDepartment() == "Deposit Manager") {
         empLM.setOverall(rate);
+        Database.adjustOverall(empLM.getIdEmployee(), rate);
         idEmployees.add(empLM.getIdEmployee());
         overalls.add(rate);
         break;
@@ -124,7 +125,9 @@ public class DepositManager extends Employee {
   }
 
   public double finalSalary() {
-    return (this.getSalary() + computeBonus());
+	double finalsal = (this.getSalary() + computeBonus());
+	Database.computeSalary(this.getIdEmployee(),finalsal);
+	return finalsal;
   }
 
   /* Display the menu for deposit manager */
@@ -152,7 +155,7 @@ public class DepositManager extends Employee {
       } while (flag);
       switch (select) {
         case 1:
-          goals("Deposit manager goals");
+          goals("Deposit Manager Goals");
           break;
         case 2:
           selectDepartmentForSetGoals();

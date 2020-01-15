@@ -1,3 +1,6 @@
+/**
+ * Business Customer Manager
+ */
 package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
@@ -13,13 +16,11 @@ import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-/*
- * Business Customer Manager
- */
 
 public class BusinessCustomerManager extends Employee {
   /**.
-   * Constructor of class*/
+   * Constructor of class
+   * */
   public BusinessCustomerManager(String fullname, int idEmployee, 
       String department, String email, double salary,
       Date firstDate, int leaves, String password, double overall) {
@@ -33,14 +34,20 @@ public class BusinessCustomerManager extends Employee {
 * that the Business Customer Manager gives
 */
   public void removeCust(int id) {
-    @SuppressWarnings("unlikely-arg-type")
-    int index = Business.cSM.indexOf(id);
-    if (index == -1) {
-      System.out.println("The id you gave is not valid");
-    } else {
-      Business.cSM.remove(index);
-      Database.deleteBusinessCust(index);
-      System.out.println("The customer was deleted succesfuly");
+	boolean b = false;
+	if (id < 0) System.out.println("The id you gave is not valid");
+    for(int i = 0 ; i < Business.cSM.size(); i++) {
+      int k = Business.cSM.get(i).getIdBusiness();
+      if (k == id) {
+    	Business.cSM.remove(Business.cSM.get(i));
+        Database.deleteBusinessCust(id);
+        System.out.println("The customer was deleted succesfuly");
+        b = true;
+        break;
+      }
+    }  
+    if (b == false ) {
+    	System.out.println("there is not such id");
     }
   }
   
@@ -72,7 +79,8 @@ who has 3 options to choose between*/
       case 1:
         try {
           System.out.println("Give your new customer's name");
-          String name = Main.sc.nextLine();
+          String name = Main.sc.next();
+          Main.sc.nextLine();
           System.out.println("Give the type of his/hers business");
           String type = Main.sc.nextLine();
           System.out.println("Give your new customer's id");
@@ -87,7 +95,7 @@ who has 3 options to choose between*/
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(2);
-          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans);
+          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans, this.getIdEmployee());
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -95,7 +103,6 @@ who has 3 options to choose between*/
           System.out.printf("Please insert the right type of data.Try again...");
         }
         break;
-
       case 2:
         System.out.println("Type the customer's id you would like to delete");
         int id2 = Main.sc.nextInt();
@@ -103,8 +110,13 @@ who has 3 options to choose between*/
         break;
 
       case 3:
-        for (int i = 0; i <= Business.cSM.size(); i++) {
-          toString();
+    	int size = Business.cSM.size();
+    	if(size == 0) {
+    		System.out.println("Customers list: empty ");
+    	}
+        for (int i = 0; i < size ; i++) {
+          Business b = Business.cSM.get(i);
+          System.out.println(b.toString());
         }
         break;
       default:
@@ -163,7 +175,7 @@ public void getMenu() {
           if (select > 0 && select < 8) {
             value = false;
           } else {
-            System.out.printf("You did't insert an integer between 1 and 7.Please try again..");
+            System.out.printf("You didn't insert an integer between 1 and 7.Please try again..");
           }
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n", inputmismatchexception);
@@ -176,7 +188,7 @@ public void getMenu() {
           employeeList();
           break;
         case 2:
-          goals("Customer service manager goals");
+          goals("Customer Service Manager Goals");
           break;
         case 3:
           System.out.println(computeBonus());
