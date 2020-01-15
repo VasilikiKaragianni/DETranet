@@ -1,6 +1,3 @@
-/** 
- * Private Customer Manager Vip
- */
 package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
@@ -30,22 +27,24 @@ public class PrivateCustomerManagerVip extends Employee {
 * This method removes the private Vip clients from the list.
 */
   public void removePrivate(int id) {
-		boolean b = false;
-		if (id < 0) System.out.println("The id you gave is not valid");
-	    for(int i = 0 ; i < Private.pCMVip.size(); i++) {
-	      int k = Private.pCMVip.get(i).getIdPrivate();
-	      if (k == id) {
-	    	Private.pCMVip.remove(Private.pCMVip.get(i));
-	        Database.deletePrivateCust(id);
-	        System.out.println("The customer was deleted succesfuly");
-	        b = true;
-	        break;
-	      }
-	    }  
-	  if (b == false ) {
-	    System.out.println("there is not such id");
-	  }
-	}
+    boolean b = false;
+    if (id < 0) {
+      System.out.println("The id you gave is not valid");
+    }
+    for (int i = 0; i < Private.pCMVip.size(); i++) {
+      int k = Private.pCMVip.get(i).getIdPrivate();
+      if (k == id) {
+        Private.pCMVip.remove(Private.pCMVip.get(i));
+        Database.deletePrivateCust(id);
+        System.out.println("The customer was deleted succesfuly");
+        b = true;
+        break;
+      }
+    }
+    if (b == false) {
+      System.out.println("there is not such id");
+    }
+  }
 
   /**
  * This method is inherited by the class Employee and it returns the bonus 
@@ -84,29 +83,29 @@ public class PrivateCustomerManagerVip extends Employee {
     } while (flag);
     switch (option) {
       case 1:
-    	try {
-        System.out.println("Give customer's name");
-        String name = Main.sc.next();
-        System.out.println("Give customer's id");
-        int id = Main.sc.nextInt();
-        System.out.println("Give customer's amount of deposit");
-        double amount = Main.sc.nextDouble();
-        System.out.println("Give customer's number of cars");
-        int cards = Main.sc.nextInt();
-        System.out.println("Give customer's number of loans");
-        int loans = Main.sc.nextInt();
-        Private p = new Private(name,id,amount,cards,loans);
-        p.setName(name);
-        p.setAmount(amount);
-        p.setCards(cards);
-        p.setNmbrLoans(loans);
-        p.addPrivate(1);
-        Database.createPrivateCust(name, id, amount, cards, loans, this.getIdEmployee());
-    	} catch (InputMismatchException inputmismatchexception) {
-   		 System.err.printf("%nException%n: %s%n",inputmismatchexception);
-   	     Main.sc.nextLine();
-   	     System.out.printf("Please insert the right type of data.Try again...");
-   	}
+        try {
+          System.out.println("Give customer's name");
+          String name = Main.sc.next();
+          System.out.println("Give customer's id");
+          int id = Main.sc.nextInt();
+          System.out.println("Give customer's amount of deposit");
+          double amount = Main.sc.nextDouble();
+          System.out.println("Give customer's number of cars");
+          int cards = Main.sc.nextInt();
+          System.out.println("Give customer's number of loans");
+          int loans = Main.sc.nextInt();
+          Private p = new Private(name,id,amount,cards,loans);
+          p.setName(name);
+          p.setAmount(amount);
+          p.setCards(cards);
+          p.setNmbrLoans(loans);
+          p.addPrivate(1);
+          Database.createPrivateCust(name, id, amount, cards, loans, this.getIdEmployee());
+        } catch (InputMismatchException inputmismatchexception) {
+          System.err.printf("%nException%n: %s%n",inputmismatchexception);
+          Main.sc.nextLine();
+          System.out.printf("Please insert the right type of data.Try again...");
+        }
         break;
       case 2:
         System.out.println("Give customer's id that you want to delete");
@@ -129,51 +128,51 @@ public class PrivateCustomerManagerVip extends Employee {
  */
   @Override
   public void getMenu() {
-	for (;;) {
-    boolean flag = true;
-    int option = 0;
-    do {
-      try {
-        System.out.println("Menu"
-            + "\n1.Customers' management"
-            + "\n2.Goals'display"
-            + "\n3.Bonus"
-            + "\n4.Leaves"
-            + "\n5.Display of the bank's news"
-            + "\n6.Log Out");
-        option = Main.sc.nextInt();
-        if (option > 0 && option <= 6) {
-          flag = false;
-        } else {
+    for (;;) {
+      boolean flag = true;
+      int option = 0;
+      do {
+        try {
+          System.out.println("Menu"
+              + "\n1.Customers' management"
+              + "\n2.Goals'display"
+              + "\n3.Bonus"
+              + "\n4.Leaves"
+              + "\n5.Display of the bank's news"
+              + "\n6.Log Out");
+          option = Main.sc.nextInt();
+          if (option > 0 && option <= 6) {
+            flag = false;
+          } else {
+            System.out.printf("Please insert an integer between 1-6.Try again...");
+          }
+        } catch (InputMismatchException inputmismatchexception) {
+          System.err.printf("%nException%n: %s%n", inputmismatchexception);
+          Main.sc.nextLine();
           System.out.printf("Please insert an integer between 1-6.Try again...");
         }
-      } catch (InputMismatchException inputmismatchexception) {
-        System.err.printf("%nException%n: %s%n", inputmismatchexception);
-        Main.sc.nextLine();
-        System.out.printf("Please insert an integer between 1-6.Try again...");
-      }
-    } while (flag);
-    switch (option) {
-      case 1:
-        custMenu();
-        break;
-      case 2:
-        goals("Private Customer Manager Vip Goals");
-        break;
-      case 3:
-    	System.out.println(computeBonus());
-        break;
-      case 4:
-        leaves();
-        break;
-      case 5:
-        PrivateCustomerManager.getNews();
-        break;
-      case 6:
-        Main.main(null);
-        break;
-      default:
-        break;
+      } while (flag);
+      switch (option) {
+        case 1:
+          custMenu();
+          break;
+        case 2:
+          goals("Private Customer Manager Vip Goals");
+          break;
+        case 3:
+          System.out.println(computeBonus());
+          break;
+        case 4:
+          leaves();
+          break;
+        case 5:
+          PrivateCustomerManager.getNews();
+          break;
+        case 6:
+          Main.main(null);
+          break;
+        default:
+          break;
       }
     }
   }
