@@ -315,10 +315,10 @@ public class Manager extends Employee {
           } while (select < 1 || select > 3);
           switch (select) {
             case 1:
-              setGoals("Deposit manager goals");
+              setGoals("Deposit Manager Goals");
               break;
             case 2:
-              setGoals("Loan manager goals");
+              setGoals("Loan Manager Goals");
               break;
             default:
               getMenu();
