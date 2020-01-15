@@ -107,7 +107,7 @@ public class CustomersController implements Initializable {
     @FXML
     private JFXTextField error;
     
-    /*Αυτη τη μέθοδος προσθέτει πελάτες με δεδομένα που δίνει ο εκάστοτε υπάλληλος*/
+    /*Αυτη η μέθοδος προσθέτει πελάτες με δεδομένα που δίνει ο εκάστοτε υπάλληλος*/
     @FXML
     void addCustomer(ActionEvent event) throws SQLException {
         error.setText("");
