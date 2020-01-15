@@ -109,6 +109,8 @@ public class Main extends Application {
         window.setTitle("DETranet");
         window.setScene(new Scene(root, 1078, 590));
         window.setResizable(false);
+        Image icon = new Image("white1.png");
+        window.getIcons().add(icon);
         window.show();
     }
 
