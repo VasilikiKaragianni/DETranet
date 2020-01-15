@@ -1,5 +1,4 @@
 /**
- *
  * LoanManager
  * 
  */
@@ -8,7 +7,6 @@ package gr.aueb.dmst.DETranet;
 
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /* Class for loan Manager */
 public class LoanManager extends Employee {
@@ -25,7 +23,6 @@ public class LoanManager extends Employee {
  * 
  */
   public void selectDepartmentForSetGoals() {
-    Scanner sc = new Scanner(System.in);
     boolean endOfProcedure = true;
     do {
       boolean flag = true;
@@ -33,9 +30,9 @@ public class LoanManager extends Employee {
       do {
         try {
           System.out.printf("\nGoals sharing for loans." + "\n1.Business service manager"
-              + "\n2.Business Customer Manager" + "\n3.Business Customer Manager Vip"
-              + "\n4.Business Customer Manager Delays" + "\n5.Εnd of procedure\n");
-          select = sc.nextInt();
+              + "\n2.Customer service manager" + "\n3.Customer service manager vip"
+              + "\n4.Customer service manager delays" + "\n5.Εnd of procedure\n");
+          select = Main.sc.nextInt();
           if (select > 0 && select < 6) {
             flag = false;
           } else {
@@ -43,27 +40,27 @@ public class LoanManager extends Employee {
           }
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n", inputmismatchexception);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.printf("Please insert an integer between 1-5.Try again...");
         }
       } while (flag);
       /* create or open and write a new file for chosen employee */
       switch (select) {
         case 1:
-          System.out.printf("Business service manager goals:\n");
+          System.out.printf("Business Service Manager Goals:\n");
           setGoals("Business Service Manager Goals");
           break;
         case 2:
-          System.out.printf("Busineess customer manager goals:\n");
-          setGoals("Busineess Customer Manager Goals");
+          System.out.printf("Customer Service Manager Goals:\n");
+          setGoals("Customer Service Manager Goals");
           break;
         case 3:
-          System.out.printf("Business customer manager Vip goals:\n");
-          setGoals("Business Customer Manager Vip Goals");
+          System.out.printf("Customer Service Manager Vip Goals:\n");
+          setGoals("Customer Service Manager Vip Goals");
           break;
         case 4:
-          System.out.printf("Business customer manager delays goals:\n");
-          setGoals("Business Customer Manager Delays Goals");
+          System.out.printf("Customer Service Manager Delays Goals:\n");
+          setGoals("Customer Service Manager Delays Goals");
           break;
         case 5:
           endOfProcedure = false;
@@ -87,10 +84,10 @@ public class LoanManager extends Employee {
     /* Find loan employees and sum overalls */
     for (int i = 0; i < employees.size(); i++) {
       Employee emp = employees.get(i);
-      if (emp.getDepartment() == "Business Customer Manager" 
-          || emp.getDepartment() == "Business Service Manager"
-          || emp.getDepartment() == "Business Customer Manager Vip"
-          || emp.getDepartment() == "Business Customer Manager Delays") {
+      if (emp.getDepartment() == "Business Service Manager" 
+          || emp.getDepartment() == "Custumer Service Manager"
+          || emp.getDepartment() == "Customer Service Manager Vip"
+          || emp.getDepartment() == "Customer Service Manager Delays") {
         int idCurrEmployee = emp.getIdEmployee();
         nmbrOfEmployees += 1;
         for (int j = 0; j < idEmployees.size(); j++) {
@@ -118,6 +115,7 @@ public class LoanManager extends Employee {
       Employee empLM = employees.get(j);
       if (empLM.getDepartment() == "Loan Manager") {
         empLM.setOverall(rate);
+        Database.adjustOverall(empLM.getIdEmployee(), rate);
         idEmployees.add(empLM.getIdEmployee());
         overalls.add(rate);
         break;
@@ -126,13 +124,14 @@ public class LoanManager extends Employee {
   }
 
   public double finalSalary() {
-    return (this.getSalary() + computeBonus());
+    double finalsal = (this.getSalary() + computeBonus());
+    Database.computeSalary(this.getIdEmployee(),finalsal);
+    return finalsal;
   }
 
   /* Display the menu for loan manager */
   @Override
   public void getMenu() {
-    Scanner sc = new Scanner(System.in);
     for (;;) {
       int select = 0;
       boolean flag = true;
@@ -141,7 +140,7 @@ public class LoanManager extends Employee {
           System.out.printf("\nWelcome to the Loan Manager menu!" + "\n1.Display department goals"
               + "\n2.Goals sharing" + "\n3.Leaves" 
               + "\n4.Compute BONUS" + "\n5.News" + "\n6.Log Out\n");
-          select = sc.nextInt();
+          select = Main.sc.nextInt();
           if (select > 0 && select < 7) {
             flag = false;
           } else {
@@ -149,13 +148,13 @@ public class LoanManager extends Employee {
           }
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n", inputmismatchexception);
-          sc.nextLine();
+          Main.sc.nextLine();
           System.out.printf("Please insert an integer between 1-6.Try again...");
         }
       } while (flag);
       switch (select) {
         case 1:
-          goals("Loan manager goals");
+          goals("Loan Manager Goals");
           break;
         case 2:
           selectDepartmentForSetGoals();
@@ -165,7 +164,7 @@ public class LoanManager extends Employee {
           break;
         case 4:
           evaluationLoanManager();
-          System.out.println("Goals achievment rate for loan manager: "
+          System.out.println("Goals achievement rate for loan manager: "
               + (computeBonus() / 3) + "%" + "\nBonus: "
               + computeBonus() + "$" + "\nFinal salary: " + finalSalary() + "$");
           break;
