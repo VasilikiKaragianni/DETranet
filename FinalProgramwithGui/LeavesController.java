@@ -49,6 +49,7 @@ public class LeavesController implements Initializable {
     private ObservableList<LeavesList>data;
 
     PreparedStatement ps = null;
+    /*Μέθοδος για την ανανέωση του πίνακα των αδειών των υπαλλήλων*/
     @FXML
     public void loadLeaves(ActionEvent actionEvent) throws SQLException , IOException {
         error.setText("");
@@ -96,7 +97,7 @@ public class LeavesController implements Initializable {
 
     @FXML
     private JFXTextField error;
-
+    /*Μέθοδος η οποία καλείται όταν ένας υπάλληλος ζήταει άδεια και στέλνεται για έγκριση*/
    @FXML
     void requestLeave(ActionEvent actionEvent) throws SQLException {
        error.setText("");
@@ -202,7 +203,7 @@ public class LeavesController implements Initializable {
 
     }
 
-
+    /*Μέθοδος η οποία διαγράφει την επιλεγμένη άδεια*/ 
     @FXML
     void deleteRequest(ActionEvent event) throws SQLException {
         error.setText("");
