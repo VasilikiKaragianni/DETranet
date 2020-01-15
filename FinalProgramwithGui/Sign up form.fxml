@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="603.0" maxWidth="1078.0" minHeight="603.0" minWidth="1078.0" prefHeight="603.0" prefWidth="1078.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <AnchorPane fx:id="combobox" layoutX="153.0" prefHeight="603.0" prefWidth="396.0" style="-fx-background-color: #15bcd8;">
+         <children>
+            <Label layoutX="119.0" layoutY="34.0" text="Sign up Form" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="30.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="email" layoutX="60.0" layoutY="90.0" prefHeight="25.0" prefWidth="278.0" promptText="Email" style="-fx-text-inner-color: white;" unFocusColor="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="pass1" layoutX="60.0" layoutY="150.0" prefHeight="25.0" prefWidth="278.0" promptText="Password" style="-fx-text-inner-color: white;" unFocusColor="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="pass2" layoutX="60.0" layoutY="210.0" prefHeight="25.0" prefWidth="278.0" promptText="Confirm Password" style="-fx-text-inner-color: white;" unFocusColor="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXDatePicker fx:id="date" defaultColor="WHITE" layoutX="60.0" layoutY="270.0" prefHeight="25.0" prefWidth="278.0" promptText="Date of Hire" style="-fx-font-size: 18px; -fx-text-inner-color: white; -jfx-default-color: #2d3447;" stylesheets="@../css/datepicker.css" />
+            <JFXTextField fx:id="fullname" layoutX="60.0" layoutY="390.0" prefHeight="25.0" prefWidth="278.0" promptText="Full Name" style="-fx-text-inner-color: white;" unFocusColor="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="59.0" layoutY="483.0" onAction="#signed" prefHeight="54.0" prefWidth="278.0" style="-fx-background-color: #2d3447;" text="Submit" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="168.0" layoutY="552.0" onAction="#GotoLogIn" prefHeight="37.0" prefWidth="221.0" text="Already a Colleague? Log in" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXComboBox fx:id="comboBox" layoutX="60.0" layoutY="330.0" prefHeight="25.0" prefWidth="278.0" promptText="Department" style="-fx-font-size: 18px;" stylesheets="@../css/combobox.css" unFocusColor="WHITE" visibleRowCount="11">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></JFXComboBox>
+            <JFXTextField fx:id="error2" focusColor="#15bcd8" layoutX="60.0" layoutY="437.0" prefHeight="25.0" prefWidth="278.0" style="-fx-text-inner-color: #eb1515;" unFocusColor="#15bcd8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="140.0" fitWidth="96.0" layoutX="881.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../detranet.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="672.0" layoutY="233.0" text="Banking" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="753.0" layoutY="275.0" text="Reinvented" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="876.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SetGoalController">
+   <children>
+      <Label layoutX="166.0" layoutY="104.0" prefHeight="98.0" prefWidth="415.0" text="Only Store Managers " textFill="#15bcd8">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="309.0" layoutY="167.0" prefHeight="98.0" prefWidth="415.0" text="are allowed to Set Goals" textFill="#15bcd8">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Line endX="243.0" endY="-184.0" layoutX="633.0" layoutY="428.0" startX="-102.5355224609375" startY="115.0" stroke="#15bcd8" strokeWidth="5.0" />
+      <Line endX="132.0" endY="-162.5355224609375" layoutX="744.0" layoutY="446.0" startX="-167.5355224609375" startY="97.0" stroke="#15bcd8" strokeWidth="4.0" />
+      <Line endX="132.0" endY="-176.5355224609375" layoutX="744.0" layoutY="498.0" startX="-124.5355224609375" startY="45.0" stroke="#15bcd8" strokeWidth="3.0" />
+   </children>
+</AnchorPane>

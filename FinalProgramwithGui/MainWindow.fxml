@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="1078.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <top>
+      <HBox prefHeight="60.0" prefWidth="1078.0" style="-fx-background-color: #2d3447;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="99.0" />
+            <AnchorPane prefHeight="64.0" prefWidth="1245.0">
+               <children>
+                  <Label fx:id="name" layoutX="820.0" layoutY="10.0" prefHeight="32.0" prefWidth="258.0" text="name" textAlignment="CENTER" textFill="#15bcd8">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="depart" layoutX="847.0" layoutY="34.0" prefHeight="35.0" prefWidth="205.0" text="department" textAlignment="CENTER" textFill="#15bcd8">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="57.0" layoutY="14.0" prefHeight="36.0" prefWidth="118.0" text="Detranet" textFill="#15bcd8">
+                     <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font></Label>
+                  <ImageView fitHeight="60.0" fitWidth="52.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../detranet.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <AnchorPane prefHeight="529.0" prefWidth="202.0" style="-fx-background-color: #2d3447;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutY="7.0" prefHeight="536.0" prefWidth="195.0" style="-fx-background-color: #15bcd8; -fx-background-radius: 2 60 0 0;">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutY="20.0" prefHeight="523.0" prefWidth="202.0">
+                     <children>
+                        <JFXButton onMouseClicked="#employees" prefHeight="45.0" prefWidth="180.0" text="Employees" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <padding>
+                              <Insets left="-15.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="36.0" fitWidth="40.0">
+                                 <image>
+                                    <Image url="@../employeesIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton onMouseClicked="#customers" prefHeight="45.0" prefWidth="180.0" text="Customers" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="50.0">
+                                 <image>
+                                    <Image url="@../icons8-customer-insight-80.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="-15.0" />
+                           </padding>
+                        </JFXButton>
+                        <JFXButton onMouseClicked="#setGoals" prefHeight="45.0" prefWidth="180.0" text="Set Goals" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <padding>
+                              <Insets left="-30.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="46.0" fitWidth="55.0">
+                                 <image>
+                                    <Image url="@../icons8-goal-100.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton onMouseClicked="#bonus" prefHeight="45.0" prefWidth="180.0" text="Bonus" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <padding>
+                              <Insets left="-60.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="36.0" fitWidth="42.0">
+                                 <image>
+                                    <Image url="@../icons8-gift-32.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton onMouseClicked="#efficiency" prefHeight="45.0" prefWidth="180.0" text="Efficiency" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="37.0" fitWidth="39.0">
+                                 <image>
+                                    <Image url="@../icons8-combo-chart-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="-25.0" />
+                           </padding>
+                        </JFXButton>
+                        <JFXButton onMouseClicked="#leaves" prefHeight="45.0" prefWidth="180.0" text="Leaves" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="50.0">
+                                 <image>
+                                    <Image url="@../icons8-id-not-verified-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="-60.0" />
+                           </padding>
+                        </JFXButton>
+                        <JFXButton onMouseClicked="#news" prefHeight="45.0" prefWidth="180.0" text="News" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="34.0" fitWidth="40.0">
+                                 <image>
+                                    <Image url="@../icons8-news-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="-65.0" />
+                           </padding>
+                        </JFXButton>
+                        <JFXButton onMouseClicked="#email" prefHeight="45.0" prefWidth="180.0" text="Email" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="41.0" fitWidth="39.0">
+                                 <image>
+                                    <Image url="@../envelope.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="-65.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton onAction="#logOut" prefHeight="45.0" prefWidth="180.0" text="Log Out" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="40.0">
+                                 <image>
+                                    <Image url="@../icons8-exit-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="-50.0" />
+                           </padding>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

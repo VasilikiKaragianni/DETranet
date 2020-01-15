@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="859.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProgressIndicatorController">
+   <children>
+      <Label layoutX="343.0" layoutY="43.0" text="Bonus Progress" textFill="#15bcd8">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="473.0" layoutY="234.0" onAction="#getprogress" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: #15bcd8;" text="Load your Progress">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <Circle fill="#414d68" layoutX="211.0" layoutY="259.0" radius="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+      <ProgressIndicator fx:id="pi" layoutX="103.0" layoutY="161.0" prefHeight="207.0" prefWidth="216.0" progress="0.0" />
+      <Label fx:id="label" layoutX="399.0" layoutY="383.0" prefHeight="35.0" prefWidth="379.0" textFill="#15bcd8">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
