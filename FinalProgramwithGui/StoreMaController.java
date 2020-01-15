@@ -48,7 +48,7 @@ public class StoreMaController implements Initializable {
     private ObservableList<LeavesList> data;
 
     PreparedStatement ps = null;
-
+    /*Μέθοδος για την ανανέωση του πίνακα των αδειών των υπαλλήλων*/
     @FXML
     public void loadLeaves(ActionEvent actionEvent) throws SQLException, IOException {
         error.setText("");
@@ -87,7 +87,7 @@ public class StoreMaController implements Initializable {
 
 
     }
-
+    /*Μέθοδος για την διαγραφή μη εγκεκριμένων αδειών από τον manager*/
     @FXML
     void deleteRequest(ActionEvent event) throws SQLException {
         error.setText("");
