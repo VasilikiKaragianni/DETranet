@@ -30,8 +30,8 @@ public class DepositManager extends Employee {
       do {
         try {
           System.out.printf("\nGoals sharing for depositors." 
-              + "\n1.Private customer manager." + "\n2.Teller"
-              + "\n3.Private customer manager vip" + "\n4.Private customer manager delays"
+              + "\n1.Private Customer Manager." + "\n2.Teller"
+              + "\n3.Private Customer Manager Vip" + "\n4.Private Customer Manager Delays"
               + "\n5.Εnd of procedure\n");
           select = Main.sc.nextInt();
           if (select > 0 && select < 6) {
@@ -56,7 +56,7 @@ public class DepositManager extends Employee {
           setGoals("Teller Goals");
           break;
         case 3:
-          System.out.printf("Private Customer Manager Vip goals:\n");
+          System.out.printf("Private Customer Manager Vip Goals:\n");
           setGoals("Private Customer Μanager Vip Goals");
           break;
         case 4:
@@ -85,9 +85,9 @@ public class DepositManager extends Employee {
     /* Find deposit employees and sum overalls */
     for (int i = 0; i < employees.size(); i++) {
       Employee emp = employees.get(i);
-      if (emp.getDepartment() == "Private Customer Manager" || emp.getDepartment() == "Teller"
-          || emp.getDepartment() == "Private Customer Manager Vip"
-          || emp.getDepartment() == "Private Customer Manager Delays") {
+      if (emp.getDepartment().equals("Private Customer Manager") || emp.getDepartment().equals("Teller")
+          || emp.getDepartment().equals("Private Customer Manager Vip")
+          || emp.getDepartment().equals("Private Customer Manager Delays")) {
         int idCurrEmployee = emp.getIdEmployee();
         nmbrOfEmployees += 1;
         for (int j = 0; j < idEmployees.size(); j++) { 
@@ -114,7 +114,7 @@ public class DepositManager extends Employee {
     double rate = (computeBonus() / 3);
     for (int j = 0; j < employees.size(); j++) {
       Employee empLM = employees.get(j);
-      if (empLM.getDepartment() == "Deposit Manager") {
+      if (empLM.getDepartment().equals("Deposit Manager")) {
         empLM.setOverall(rate);
         Database.adjustOverall(empLM.getIdEmployee(), rate);
         idEmployees.add(empLM.getIdEmployee());

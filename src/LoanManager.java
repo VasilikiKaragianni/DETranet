@@ -29,9 +29,9 @@ public class LoanManager extends Employee {
       int select = 0;
       do {
         try {
-          System.out.printf("\nGoals sharing for loans." + "\n1.Business service manager"
-              + "\n2.Customer service manager" + "\n3.Customer service manager vip"
-              + "\n4.Customer service manager delays" + "\n5.Εnd of procedure\n");
+          System.out.printf("\nGoals sharing for loans." + "\n1.Business Sevice Manager"
+              + "\n2.Business Customer Manager" + "\n3.Business Customer Manager Vip"
+              + "\n4.Business Customer Manager Delays" + "\n5.Εnd of procedure\n");
           select = Main.sc.nextInt();
           if (select > 0 && select < 6) {
             flag = false;
@@ -51,16 +51,16 @@ public class LoanManager extends Employee {
           setGoals("Business Service Manager Goals");
           break;
         case 2:
-          System.out.printf("Customer Service Manager Goals:\n");
-          setGoals("Customer Service Manager Goals");
+          System.out.printf("Busineess Customer Manager Goals:\n");
+          setGoals("Busineess Customer Manager Goals");
           break;
         case 3:
-          System.out.printf("Customer Service Manager Vip Goals:\n");
-          setGoals("Customer Service Manager Vip Goals");
+          System.out.printf("Business Customer Manager Vip Goals:\n");
+          setGoals("Business Customer Manager Vip Goals");
           break;
         case 4:
-          System.out.printf("Customer Service Manager Delays Goals:\n");
-          setGoals("Customer Service Manager Delays Goals");
+          System.out.printf("Business Customer Manager Delays Goals:\n");
+          setGoals("Business Customer Manager Delays Goals");
           break;
         case 5:
           endOfProcedure = false;
@@ -84,10 +84,10 @@ public class LoanManager extends Employee {
     /* Find loan employees and sum overalls */
     for (int i = 0; i < employees.size(); i++) {
       Employee emp = employees.get(i);
-      if (emp.getDepartment() == "Business Service Manager" 
-          || emp.getDepartment() == "Custumer Service Manager"
-          || emp.getDepartment() == "Customer Service Manager Vip"
-          || emp.getDepartment() == "Customer Service Manager Delays") {
+      if (emp.getDepartment().equals("Business Service Manager") 
+          || emp.getDepartment().equals("Business Customer Manager")
+          || emp.getDepartment().equals("Business Customer Manager Vip")
+          || emp.getDepartment().equals("Business Customer Manager Delays")) {
         int idCurrEmployee = emp.getIdEmployee();
         nmbrOfEmployees += 1;
         for (int j = 0; j < idEmployees.size(); j++) {
@@ -113,7 +113,7 @@ public class LoanManager extends Employee {
     double rate = (computeBonus() / 3);
     for (int j = 0; j < employees.size(); j++) {
       Employee empLM = employees.get(j);
-      if (empLM.getDepartment() == "Loan Manager") {
+      if (empLM.getDepartment().equals("Loan Manager")) {
         empLM.setOverall(rate);
         Database.adjustOverall(empLM.getIdEmployee(), rate);
         idEmployees.add(empLM.getIdEmployee());
