@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="529.0" prefWidth="859.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EfficiencyController">
+   <children>
+      <LineChart fx:id="chart" layoutX="-7.0" layoutY="51.0" prefHeight="291.0" prefWidth="885.0" stylesheets="@../css/color.css">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" tickLabelFill="WHITE">
+               <tickLabelFont>
+                  <Font size="10.0" />
+               </tickLabelFont></CategoryAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" tickLabelFill="#f8f4f4">
+               <tickLabelFont>
+                  <Font size="10.0" />
+               </tickLabelFont></NumberAxis>
+        </yAxis>
+      </LineChart>
+      <JFXButton fx:id="butoon1" layoutX="64.0" layoutY="362.0" onAction="#currentemployee" prefHeight="38.0" prefWidth="157.0" style="-fx-background-color: #15bcd8;" text="Employee Average">
+         <font>
+            <Font name="Lucida Sans Regular" size="12.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="current" layoutX="370.0" layoutY="362.0" onAction="#compare" prefHeight="38.0" prefWidth="157.0" style="-fx-background-color: #15bcd8;" text="Compare">
+         <font>
+            <Font name="Lucida Sans Regular" size="12.0" />
+         </font></JFXButton>
+      <Label layoutX="395.0" layoutY="14.0" prefHeight="32.0" prefWidth="108.0" text="Efficiency" textAlignment="JUSTIFY" textFill="#15bcd8">
+         <font>
+            <Font name="Segoe UI Black" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="eff1" layoutX="67.0" layoutY="458.0" prefHeight="25.0" prefWidth="767.0" textFill="#15bcd8">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="current1" layoutX="677.0" layoutY="362.0" onAction="#Average" prefHeight="38.0" prefWidth="157.0" style="-fx-background-color: #15bcd8;" text="Store Average">
+         <font>
+            <Font name="Lucida Sans Regular" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

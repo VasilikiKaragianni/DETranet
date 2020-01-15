@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="529.0" prefWidth="859.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EmployeesController">
+   <children>
+      <TableView fx:id="tableEmployees" layoutX="44.0" layoutY="106.0" prefHeight="396.0" prefWidth="607.0" stylesheets="@../css/TableDataCenter.css" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="208.0" AnchorPane.topAnchor="96.0">
+         <columns>
+            <TableColumn fx:id="columnId" editable="false" prefWidth="54.0" resizable="false" text="id" />
+            <TableColumn fx:id="columnFullName" editable="false" prefWidth="133.0" resizable="false" text="Fullname" />
+            <TableColumn fx:id="columnDepartment" editable="false" prefWidth="141.0" resizable="false" text="Department" />
+            <TableColumn fx:id="columnDateofHire" editable="false" prefWidth="121.0" resizable="false" text="Date Of Hire" />
+            <TableColumn fx:id="columnEmail" editable="false" minWidth="0.0" prefWidth="192.0" resizable="false" text="Email" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="358.0" layoutY="37.0" prefHeight="31.0" prefWidth="149.0" text="Employee List" textFill="WHITE" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="358.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="27.0">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="687.0" layoutY="314.0" onAction="#loadEmployees" prefHeight="32.0" prefWidth="135.0" ripplerFill="#15bcd8" style="-fx-background-color: #15bcd8;" text="Load Employees" textFill="WHITE" />
+      <JFXButton layoutX="687.0" layoutY="230.0" onAction="#DeleteEmployee" prefHeight="32.0" prefWidth="135.0" style="-fx-background-color: #15bcd8;" text="Delete Employee" textFill="WHITE" />
+      <JFXTextField fx:id="error" focusColor="#2d3447" layoutX="690.0" layoutY="438.0" prefHeight="32.0" prefWidth="150.0" style="-fx-text-inner-color: #eb1515;" unFocusColor="#2d3447" />
+      <JFXTextField fx:id="error1" focusColor="#2d3447" layoutX="690.0" layoutY="393.0" prefHeight="32.0" prefWidth="150.0" style="-fx-text-inner-color: #eb1515;" unFocusColor="#2d3447" />
+   </children>
+</AnchorPane>
