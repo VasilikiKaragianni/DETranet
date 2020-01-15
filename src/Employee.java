@@ -184,8 +184,8 @@ public abstract class Employee {
   public static void getNews() { 
     Desktop d = Desktop.getDesktop();
     try {
-      System.out.println("Please choose a site: 1.Forbes, 2.Bloomberg,"
-      		+ " 3. Financial Times, 4. CNN Business, 5. Reuters ");
+      System.out.println("Please choose a site: \n1. Forbes, \n2. Bloomberg,"
+      		+ "\n3. Financial Times, \n4. CNN Business,\n5. Reuters ");
       int i = Main.sc.nextInt();
       if (i == 1 ) {
     	  d.browse(new URI("https://www.forbes.com"));

@@ -164,7 +164,7 @@ public class LoanManager extends Employee {
           break;
         case 4:
           evaluationLoanManager();
-          System.out.println("Goals achievment rate for loan manager: "
+          System.out.println("Goals achievement rate for loan manager: "
               + (computeBonus() / 3) + "%" + "\nBonus: "
               + computeBonus() + "$" + "\nFinal salary: " + finalSalary() + "$");
           break;

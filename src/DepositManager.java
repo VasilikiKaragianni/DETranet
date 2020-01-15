@@ -48,7 +48,7 @@ public class DepositManager extends Employee {
       /* create or open and write a new file for chosen employee */
       switch (select) {
         case 1:
-          System.out.printf("Private Service Manager Goals:\n");
+          System.out.printf("Private Customer Manager Goals:\n");
           setGoals("Private Customer Manager Goals");
           break;
         case 2:

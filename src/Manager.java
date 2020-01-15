@@ -177,18 +177,18 @@ public class Manager extends Employee {
     double sum = 0;
     int i = 0;
     while (num < 2) {
-      Employee man = employees.get(i);
-      if (man.getDepartment() == "Loan manager"
-           || man.getDepartment() == "Deposit manager") {
-        int idCurrEmployee = man.getIdEmployee();
-        num += 1;
-        for (int j = 0; j < idEmployees.size(); j++) {
-          if (idCurrEmployee == idEmployees.get(j)) {
-            sum += overalls.get(j);
+        Employee man = employees.get(i);
+        if (man.getDepartment().equals("Loan Manager")
+             || man.getDepartment().equals("Deposit Manager")) {
+          int idCurrEmployee = man.getIdEmployee();
+          num += 1;
+          for (int j = 0; j < idEmployees.size(); j++) {
+            if (idCurrEmployee == idEmployees.get(j)) {
+              sum += overalls.get(j);
+            }
           }
         }
-      }
-      i++;
+        i++;
     }
     rate = (sum / num);
     if (rate > 75) {
@@ -212,7 +212,7 @@ public class Manager extends Employee {
     int num = 0;
     while (num < 1) {
       Employee empM = employees.get(j);
-      if (empM.getDepartment() == "Manager") {
+      if (empM.getDepartment().equals("Manager")) {
         empM.setOverall(rate);
         idEmployees.add(empM.getIdEmployee());
         overalls.add(rate);
@@ -327,7 +327,7 @@ public class Manager extends Employee {
           getMenu();
           break;
         case 3:
-          System.out.println("set goals for:  ");
+          System.out.println("see goals for:  ");
           int selection = 0;
           do {
             boolean loop = true;
@@ -367,7 +367,9 @@ public class Manager extends Employee {
         case 5:
           evaluationManager();
           System.out.println("The bonus is: " + computeBonus());
-          System.out.println("The final salary is: " + finalSalary(getSalary()));
+          double fs =finalSalary(getSalary());
+          System.out.println("The final salary is: " + fs);
+          Database.computeSalary(this.getIdEmployee(), fs);
           getMenu();
           break;
         case 6:
