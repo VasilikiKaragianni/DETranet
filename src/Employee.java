@@ -242,7 +242,7 @@ public abstract class Employee {
       do {
         System.out.print("Add goal: ");
         String goal = "";
-        goal = Main.sc.nextLine() + ""; 
+        goal = Main.sc.next() + ""; 
         try {
           out.write(goal);
           out.write(System.getProperty("line.separator")); /* go to next line */
