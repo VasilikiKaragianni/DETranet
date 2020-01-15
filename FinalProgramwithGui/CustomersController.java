@@ -58,7 +58,7 @@ public class CustomersController implements Initializable {
     ObservableList<String> list = FXCollections.observableArrayList("Private", "Business");
 
 
-
+    /*Αυτή η μέθοδος ανανεώνει τον πίνακα των πελατών με τα στοιχεία που υπάρχουν στη βάση*/
     @FXML
     public  void loadCustomers(ActionEvent event) throws SQLException, IOException {
 
@@ -106,7 +106,8 @@ public class CustomersController implements Initializable {
 
     @FXML
     private JFXTextField error;
-
+    
+    /*Αυτη τη μέθοδος προσθέτει πελάτες με δεδομένα που δίνει ο εκάστοτε υπάλληλος*/
     @FXML
     void addCustomer(ActionEvent event) throws SQLException {
         error.setText("");
@@ -168,7 +169,7 @@ public class CustomersController implements Initializable {
 
 
     }
-
+    /*Αυτή η μέθοδος διαγράφει τον επιλεγμένο υπάλληλο*/
     @FXML
     void DeleteCustomer(ActionEvent event) throws SQLException {
         CustomersList customersList = tableCustomers.getSelectionModel().getSelectedItem();
