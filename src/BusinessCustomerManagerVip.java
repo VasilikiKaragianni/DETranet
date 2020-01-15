@@ -190,7 +190,7 @@ public void getMenu() {
           employeeList();
           break;
         case 2:
-          goals("Customer Service Manager Vip Goals");
+          goals("Business Customer Manager Vip Goals");
           break;
         case 3:
           System.out.println(computeBonus());

@@ -188,7 +188,7 @@ public void getMenu() {
           employeeList();
           break;
         case 2:
-          goals("Customer Service Manager Goals");
+          goals("Busineess Customer Manager Goals");
           break;
         case 3:
           System.out.println(computeBonus());
