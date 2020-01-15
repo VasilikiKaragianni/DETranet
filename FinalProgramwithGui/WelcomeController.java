@@ -18,7 +18,8 @@ public class WelcomeController implements Initializable {
     private Label setname;
 
 
-
+    /*Μέθοδος που καλείται όταν ανοίγει τον κύριο παράθυρο και θέτει το όνομα και
+    το department του εκάστοτε συνδεδεμένου υπαλλήλου πάνω δεξιά*/
     PreparedStatement ps = null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
