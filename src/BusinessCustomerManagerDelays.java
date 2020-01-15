@@ -1,14 +1,13 @@
 /**.
  *  Business Customer Manager Delays
  */
-package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
  * and more specifically the one that manages the business's customers delays.
  * He/She can see the list of customers,delete an old customer or add a new one.
  * He/She can also see the goals that he/she must accomplish, the bonus that he/she deserves, 
  * the remaining days of leaves or ask for a new leave and the news of the bank */
-
+package gr.aueb.dmst.DETranet;
 import java.util.Date;
 import java.util.InputMismatchException;
 
@@ -16,10 +15,10 @@ public class BusinessCustomerManagerDelays extends Employee {
   /**.
 * Constructor of class
 **/
-  public BusinessCustomerManagerDelays(String fullname, int idEmployee, 
+  public BusinessCustomerManagerDelays(String fullname, 
       String department, String email,double salary, Date firstDate, int leaves,
       String password, double overall) {
-    super(fullname, idEmployee, department, email, salary, 
+    super(fullname, department, email, salary, 
         firstDate, leaves, password, overall);
         // TODO Auto-generated constructor stub
   }
@@ -80,19 +79,17 @@ public class BusinessCustomerManagerDelays extends Employee {
           Main.sc.nextLine();
           System.out.println("Give the type of his/hers business");
           String type = Main.sc.nextLine();
-          System.out.println("Give your new customer's id");
-          int businessId = Main.sc.nextInt();
           System.out.println("Give the amount of his/hers depositions");
           double amount = Main.sc.nextDouble();
           System.out.println("Give the number of his/hers loans");
           int nmbrLoans = Main.sc.nextInt();
-          Business newCust = new Business(name,type,businessId,amount,nmbrLoans);
+          Business newCust = new Business(name,type,amount,nmbrLoans);
           newCust.setName(name);
           newCust.setType(type);
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(4);
-          Database.createBusinessCust(name, type, businessId, 
+          Database.createBusinessCust(name, type, newCust.getIdBusiness(), 
               amount, nmbrLoans, this.getIdEmployee());
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {

@@ -1,5 +1,4 @@
 package gr.aueb.dmst.DETranet;
-
 import java.util.ArrayList;
 
 /* Class for business customers */
@@ -43,7 +42,7 @@ public class Business {
     return cSMDelays;
   }
 
-  public Business(String name, String type, int idBusiness, double amount, int nmbrLoans) {
+  public Business(String name, String type, double amount, int nmbrLoans) {
     super();
     this.name = name;
     this.type = type;

@@ -1,5 +1,4 @@
 package gr.aueb.dmst.DETranet;
-
 /*This class is about one of the Business's employees 
  * and more specifically the one who deals mostly with the transaction processing.
  * He/She can see the list of customers,delete an old customer or add a new one.
@@ -14,10 +13,10 @@ public class BusinessServiceManager extends Employee {
 
   /**.
  * Constructor of the class*/
-  public BusinessServiceManager(String fullname, int idEmployee, 
+  public BusinessServiceManager(String fullname, 
       String department, String email, double salary,
       Date firstDate, int leaves, String password, double overall) {
-    super(fullname, idEmployee, department, email, salary, 
+    super(fullname, department, email, salary, 
         firstDate, leaves, password, overall);
         // TODO Auto-generated constructor stub
   }
@@ -27,24 +26,22 @@ public class BusinessServiceManager extends Employee {
 * that the Business Service Manager gives
 */
   public void removeCust(int id) {
-    boolean b = false;
-    if (id < 0) { 
-      System.out.println("The id you gave is not valid");
-    }
-    for (int i = 0; i < Business.bSM.size(); i++) {
-      int k = Business.bSM.get(i).getIdBusiness();
-      if (k == id) {
-        Business.bSM.remove(Business.bSM.get(i));
-        Database.deleteBusinessCust(id);
-        System.out.println("The customer was deleted succesfuly");
-        b = true;
-        break;
-      }
-    }  
-    if (b == false) {
-      System.out.println("there is not such id");
-    }
-  }
+		boolean b = false;
+		if (id < 0) System.out.println("The id you gave is not valid");
+	    for(int i = 0 ; i < Business.bSM.size(); i++) {
+	      int k = Business.bSM.get(i).getIdBusiness();
+	      if (k == id) {
+	    	Business.bSM.remove(Business.bSM.get(i));
+	        Database.deleteBusinessCust(id);
+	        System.out.println("The customer was deleted succesfuly");
+	        b = true;
+	        break;
+	      }
+	    }  
+	    if (b == false ) {
+	    	System.out.println("there is not such id");
+	    }
+	  }
 
   /**This method displays the menu to the employee.
 * who has 3 options to choose between*/
@@ -77,20 +74,17 @@ public class BusinessServiceManager extends Employee {
           Main.sc.nextLine();
           System.out.println("Give the type of his/hers business");
           String type = Main.sc.nextLine();
-          System.out.println("Give your new customer's id");
-          int businessId = Main.sc.nextInt();
           System.out.println("Give the amount of his/hers depositions");
           double amount = Main.sc.nextDouble();
           System.out.println("Give the number of his/hers loans");
           int nmbrLoans = Main.sc.nextInt();
-          Business newCust = new Business(name,type,businessId,amount,nmbrLoans);
+          Business newCust = new Business(name,type,amount,nmbrLoans);
           newCust.setName(name);
           newCust.setType(type);
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(1);
-          Database.createBusinessCust(name, type, businessId, 
-               amount, nmbrLoans, this.getIdEmployee());
+          Database.createBusinessCust(name, type, newCust.getIdBusiness(), amount, nmbrLoans, this.getIdEmployee());
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -105,15 +99,15 @@ public class BusinessServiceManager extends Employee {
         removeCust(id2);
         break;
       case 3:
-        int size = Business.bSM.size();
-        if (size == 0) {
-          System.out.println("Customers list: empty ");
-        }
-        for (int i = 0; i < size; i++) {
-          Business b = Business.bSM.get(i);
-          System.out.println(b.toString());
-        }
-        break;
+    	int size = Business.bSM.size();
+      	if(size == 0) {
+      		System.out.println("Customers list: empty ");
+      	}
+          for (int i = 0; i < size ; i++) {
+            Business b = Business.bSM.get(i);
+            System.out.println(b.toString());
+          }
+          break;
       default:
         break;
     }

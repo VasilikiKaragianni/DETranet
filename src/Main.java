@@ -2,7 +2,6 @@
  * Main class
  */
 package gr.aueb.dmst.DETranet;
-
 import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -18,10 +17,10 @@ public class Main {
 		if (loadMain == 0) {
 			Database.loadmySQLDatabase();
 		}
-		/*for ( Employee e : Employee.getEmployees()) {
+		for ( Employee e : Employee.getEmployees()) {
 			System.out.printf(e.getEmail()+ e.getPassword());
-			System.out.println();
-		}*/
+			System.out.println(e.getIdEmployee());
+		}
 		Employee.reloadLeaves();
 		loadMain++;
 		int select=0;
@@ -108,48 +107,48 @@ public class Main {
 			}while(flag);
 			switch (selectDep) {
 			case 1:
-				new Manager (inputFullname, id, "Manager" ,inputEmail,2000,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Manager", inputEmail, 2000, startLeaves, inputPassword, 0);
+				Manager m = new Manager (inputFullname, "Manager" ,inputEmail,2000,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, m.getIdEmployee(), "Manager", inputEmail, 2000, startLeaves, inputPassword, 0);
 				break;
 			case 2:
-				new LoanManager(inputFullname, id, "Loan Manager" ,inputEmail,1700,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Loan Manager", inputEmail, 1700, startLeaves, inputPassword, 0);
+				LoanManager lm = new LoanManager(inputFullname, "Loan Manager" ,inputEmail,1700,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, lm.getIdEmployee(), "Loan Manager", inputEmail, 1700, startLeaves, inputPassword, 0);
 				break;
 			case 3:
-				new DepositManager(inputFullname, id, "Deposit Manager" ,inputEmail,1700,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Deposit Manager", inputEmail, 1700, startLeaves, inputPassword, 0);
+				DepositManager dm = new DepositManager(inputFullname, "Deposit Manager" ,inputEmail,1700,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, dm.getIdEmployee(), "Deposit Manager", inputEmail, 1700, startLeaves, inputPassword, 0);
 				break;
 			case 4:
-				new PrivateCustomerManager(inputFullname, id, "Private Customer Manager" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Private Customer Manager", inputEmail, 1400, startLeaves, inputPassword, 0);
+				PrivateCustomerManager pcm = new PrivateCustomerManager(inputFullname, "Private Customer Manager" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, pcm.getIdEmployee(), "Private Customer Manager", inputEmail, 1400, startLeaves, inputPassword, 0);
 				break;
 			case 5:
-				new Teller(inputFullname, id, "Teller" ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Teller", inputEmail, 1500, startLeaves, inputPassword, 0);
+				Teller t = new Teller(inputFullname, "Teller" ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, t.getIdEmployee(), "Teller", inputEmail, 1500, startLeaves, inputPassword, 0);
 				break;
 			case 6:
-				new PrivateCustomerManagerVip(inputFullname, id, "Private Customer Manager Vip" ,inputEmail,1300,firstday,startLeaves,inputPassword,0); 
-				Database.saveEmployee(inputFullname, id + 3, "Private Customer Manager Vip", inputEmail, 1300, startLeaves, inputPassword, 0);
+				PrivateCustomerManagerVip pcmv = new PrivateCustomerManagerVip(inputFullname, "Private Customer Manager Vip" ,inputEmail,1300,firstday,startLeaves,inputPassword,0); 
+				Database.saveEmployee(inputFullname, pcmv.getIdEmployee(), "Private Customer Manager Vip", inputEmail, 1300, startLeaves, inputPassword, 0);
 				break;
 			case 7:
-				new PrivateCustomerManagerDelays (inputFullname, id, "Private Customer Manager Delays" ,inputEmail,1300,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Private Customer Manager Delays", inputEmail, 1300, startLeaves, inputPassword, 0);
+				PrivateCustomerManagerDelays pcmd = new PrivateCustomerManagerDelays (inputFullname, "Private Customer Manager Delays" ,inputEmail,1300,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, pcmd.getIdEmployee(), "Private Customer Manager Delays", inputEmail, 1300, startLeaves, inputPassword, 0);
 				break;
 			case 8:
-				new BusinessCustomerManager (inputFullname, id, "Business Customer Manager" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Business Customer Manager", inputEmail, 1400, startLeaves, inputPassword, 0);
+				BusinessCustomerManager bcm = new BusinessCustomerManager (inputFullname, "Business Customer Manager" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, bcm.getIdEmployee(), "Business Customer Manager", inputEmail, 1400, startLeaves, inputPassword, 0);
 				break;
 			case 9:
-				new BusinessCustomerManagerDelays (inputFullname, id, "Business Customer Manager Delays" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Business Customer Manager Delays", inputEmail, 1400, startLeaves, inputPassword, 0);
+				BusinessCustomerManagerDelays bcmd = new BusinessCustomerManagerDelays (inputFullname, "Business Customer Manager Delays" ,inputEmail,1400,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, bcmd.getIdEmployee(), "Business Customer Manager Delays", inputEmail, 1400, startLeaves, inputPassword, 0);
 				break;
 			case 10:
-				new BusinessCustomerManagerVip (inputFullname, id, "Business Customer Manager Vip " ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Business Customer Manager Vip", inputEmail, 1500, startLeaves, inputPassword, 0);
+				BusinessCustomerManagerVip bcmv = new BusinessCustomerManagerVip (inputFullname, "Business Customer Manager Vip" ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, bcmv.getIdEmployee(), "Business Customer Manager Vip", inputEmail, 1500, startLeaves, inputPassword, 0);
 				break;
 			case 11:
-				new BusinessServiceManager (inputFullname, id, "Business Service Manager" ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
-				Database.saveEmployee(inputFullname, id + 3, "Business Service Manager", inputEmail, 1500, startLeaves, inputPassword, 0);
+				BusinessServiceManager bsm = new BusinessServiceManager (inputFullname, "Business Service Manager" ,inputEmail,1500,firstday,startLeaves,inputPassword,0);
+				Database.saveEmployee(inputFullname, bsm.getIdEmployee(), "Business Service Manager", inputEmail, 1500, startLeaves, inputPassword, 0);
 			}
 		}else {
 			boolean successLogIn = true;

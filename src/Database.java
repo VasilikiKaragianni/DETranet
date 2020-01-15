@@ -1,9 +1,7 @@
 /**
  *  This class connects the program with the mySQL database
  */
-
 package gr.aueb.dmst.DETranet;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,27 +31,27 @@ public class Database {
 		    String p = rs.getString("password");
 		    double o = rs.getDouble("overall");   
 		    if (d.equals("Manager")) {
-		      new Manager (f, id, d, e, sa, da, l, p, o);
+		      new Manager (f, d, e, sa, da, l, p, o);
 		    } else if (d.equals("Loan Manager")) {
-		      new LoanManager(f, id, d, e, sa, da, l, p, o);	      	    	
+		      new LoanManager(f, d, e, sa, da, l, p, o);	      	    	
 		    } else if (d.equals("Deposit Manager")) {
-		      new DepositManager(f, id, d, e, sa, da, l, p, o);
+		      new DepositManager(f, d, e, sa, da, l, p, o);
 		    } else if (d.equals("Business Customer Manager")) {
-		      new BusinessCustomerManager(f, id, d, e, sa, da, l, p, o);	      	    		
+		      new BusinessCustomerManager(f, d, e, sa, da, l, p, o);	      	    		
 		    } else if (d.equals("Teller")) {
-		      new Teller(f, id, d, e, sa, da, l, p, o);
+		      new Teller(f,  d, e, sa, da, l, p, o);
 		    } else if (d.equals("Private Customer Manager")) {
-		      new PrivateCustomerManager(f, id, d, e, sa, da, l, p, o);
+		      new PrivateCustomerManager(f, d, e, sa, da, l, p, o);
 		    } else if (d.equals("Private Customer Manager Vip")) {
-			      new PrivateCustomerManagerVip(f, id, d, e, sa, da, l, p, o);
+			      new PrivateCustomerManagerVip(f, d, e, sa, da, l, p, o);
 		    } else if (d.equals("Private Customer Manager Delays")) {
-		      new PrivateCustomerManagerDelays (f, id, d, e, sa, da, l, p, o);
+		      new PrivateCustomerManagerDelays (f, d, e, sa, da, l, p, o);
 		    } else if (d.equals("Business Customer Manager Vip")) {
-		      new BusinessCustomerManagerVip (f, id, d, e, sa, da, l, p, o);	      	    		
+		      new BusinessCustomerManagerVip (f, d, e, sa, da, l, p, o);	      	    		
 		    } else if (d.equals("Business Customer Manager Delays")) {
-		      new BusinessCustomerManagerDelays (f, id, d, e, sa, da, l, p, o);	      	    		
+		      new BusinessCustomerManagerDelays (f, d, e, sa, da, l, p, o);	      	    		
 		    } else if (d.equals("Business Service Manager")) {
-		      new BusinessServiceManager (f, id, d, e, sa, da, l, p, o);	      	    		
+		      new BusinessServiceManager (f, d, e, sa, da, l, p, o);	      	    		
 		    } 
 		  }
 		  
@@ -66,7 +64,7 @@ public class Database {
 		    double a = rs.getDouble("amount");
 		    int id = rs.getInt("idEmployee");
 		    String t = rs.getString("type");
-		    Business b = new Business(n, t, i, a, nl);
+		    Business b = new Business(n, t, a, nl);
 		    for(int c=0; c < Employee.getEmployees().size(); c++) {
 		      Employee e = Employee.getEmployees().get(c);
 		      if( e.getIdEmployee()== id &&
@@ -101,7 +99,7 @@ public class Database {
 		     double a = rs.getDouble("amount");
 		     int id = rs.getInt("idEmployee");
 		     int ca = rs.getInt("cards");
-		     Private p = new Private(n, i, a, ca, nl);
+		     Private p = new Private(n, a, ca, nl);
 		     for(int c = 0; c < Employee.getEmployees().size(); c++) {
 		       Employee e = Employee.getEmployees().get(c);
 		       if(e.getIdEmployee() == id &&

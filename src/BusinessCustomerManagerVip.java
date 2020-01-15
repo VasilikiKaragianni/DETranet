@@ -1,7 +1,6 @@
 /**.
  * Business Customer Manager Vip
  */
-package gr.aueb.dmst.DETranet;
 
 /*This class is about one of the Business's employees 
  * and more specifically the one that manages the business's VIP customers.
@@ -10,7 +9,7 @@ package gr.aueb.dmst.DETranet;
  * the remaining days of leaves or ask for a new leave, the news of the bank 
  * and he/she can manages any complaints 
  * given by the VIPcustomers*/
-
+package gr.aueb.dmst.DETranet;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
@@ -22,10 +21,10 @@ public class BusinessCustomerManagerVip extends Employee {
   /**.
  * Constructor of class
  **/
-  public BusinessCustomerManagerVip(String fullname, int idEmployee, 
+  public BusinessCustomerManagerVip(String fullname,  
       String department, String email, double salary,
       Date firstDate, int leaves, String password, double overall) {
-    super(fullname, idEmployee, department, email, salary, 
+    super(fullname, department, email, salary, 
         firstDate, leaves, password, overall);
         // TODO Auto-generated constructor stub
   }
@@ -87,19 +86,17 @@ public class BusinessCustomerManagerVip extends Employee {
           Main.sc.nextLine();
           System.out.println("Give the type of his/hers business");
           String type = Main.sc.nextLine();
-          System.out.println("Give your new customer's id");
-          int businessId = Main.sc.nextInt();
           System.out.println("Give the amount of his/hers depositions");
           double amount = Main.sc.nextDouble();
           System.out.println("Give the number of his/hers loans");
           int nmbrLoans = Main.sc.nextInt();
-          Business newCust = new Business(name,type,businessId,amount,nmbrLoans);
+          Business newCust = new Business(name,type,amount,nmbrLoans);
           newCust.setName(name);
           newCust.setType(type);
           newCust.setAmount(amount);
           newCust.setNmbrLoans(nmbrLoans);
           newCust.addBusiness(3);
-          Database.createBusinessCust(name, type, businessId, amount, nmbrLoans, this.getIdEmployee() + 2);
+          Database.createBusinessCust(name, type, newCust.getIdBusiness(), amount, nmbrLoans, this.getIdEmployee() + 2);
           System.out.println("Your new customer was added succesfully");
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
@@ -110,7 +107,7 @@ public class BusinessCustomerManagerVip extends Employee {
       case 2:
         System.out.println("Type the customer's id you would like to delete");
         int id2 = Main.sc.nextInt();
-        removeCust(id2 - 2);
+        removeCust(id2);
         break;
       case 3:
         int size = Business.cSMVip.size();

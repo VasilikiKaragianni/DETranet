@@ -1,5 +1,4 @@
 package gr.aueb.dmst.DETranet;
-
 import java.util.Date;
 import java.util.InputMismatchException;
 
@@ -16,10 +15,10 @@ public class PrivateCustomerManagerVip extends Employee {
  * This is the constructor of the class.
  *
  */
-  public PrivateCustomerManagerVip(String fullname, int idEmployee, String department, 
+  public PrivateCustomerManagerVip(String fullname, String department, 
         String email, double salary,
       Date firstDate, int leaves, String password, double overall) {
-    super(fullname, idEmployee, department, email, salary, firstDate, leaves, 
+    super(fullname, department, email, salary, firstDate, leaves, 
              password, overall);
   }
 
@@ -86,21 +85,19 @@ public class PrivateCustomerManagerVip extends Employee {
         try {
           System.out.println("Give customer's name");
           String name = Main.sc.next();
-          System.out.println("Give customer's id");
-          int id = Main.sc.nextInt();
           System.out.println("Give customer's amount of deposit");
           double amount = Main.sc.nextDouble();
           System.out.println("Give customer's number of cars");
           int cards = Main.sc.nextInt();
           System.out.println("Give customer's number of loans");
           int loans = Main.sc.nextInt();
-          Private p = new Private(name,id,amount,cards,loans);
+          Private p = new Private(name,amount,cards,loans);
           p.setName(name);
           p.setAmount(amount);
           p.setCards(cards);
           p.setNmbrLoans(loans);
           p.addPrivate(1);
-          Database.createPrivateCust(name, id, amount, cards, loans, this.getIdEmployee());
+          Database.createPrivateCust(name,p.getIdPrivate(), amount, cards, loans, this.getIdEmployee());
         } catch (InputMismatchException inputmismatchexception) {
           System.err.printf("%nException%n: %s%n",inputmismatchexception);
           Main.sc.nextLine();
@@ -113,9 +110,14 @@ public class PrivateCustomerManagerVip extends Employee {
         removePrivate(delid);
         break;
       case 3:
-        for (int i = 0; i <= Private.pCMVip.size(); i++) {
-          toString();
-        }
+    	  int size = Private.pCMVip.size();
+          if (size == 0) {
+            System.out.println("Customers list: empty ");
+          }
+          for (int i = 0; i < size; i++) {
+            Private p = Private.pCMVip.get(i);
+            System.out.println(p.toString());
+          }
         break;
       default:
         break;

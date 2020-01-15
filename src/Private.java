@@ -1,5 +1,4 @@
 package gr.aueb.dmst.DETranet;
-
 import java.util.ArrayList;
 
 /* Class for private customers */
@@ -37,7 +36,7 @@ public class Private {
     return pCMDelays;
   }
 
-  public Private(String name, int idPrivate, double amountOfDeposit, int cards, int nmbrLoans) {
+  public Private(String name, double amountOfDeposit, int cards, int nmbrLoans) {
     super();
     this.name = name;
     this.idPrivate = count++;

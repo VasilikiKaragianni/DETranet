@@ -2,19 +2,17 @@
 * DepositManager
 * 
 */
-
 package gr.aueb.dmst.DETranet;
-
 import java.util.Date;
 import java.util.InputMismatchException;
 
 /* Class for deposit Manager */
 public class DepositManager extends Employee {
 
-  public DepositManager(String fullname, int idEmployee, 
+  public DepositManager(String fullname, 
       String department, String email, double salary,
       Date firstDate, int leaves, String password, double overall) {
-    super(fullname, idEmployee, department, email, salary, 
+    super(fullname, department, email, salary, 
         firstDate, leaves, password, overall);
   }
 

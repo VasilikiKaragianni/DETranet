@@ -2,19 +2,17 @@
  * LoanManager
  * 
  */
-
 package gr.aueb.dmst.DETranet;
-
 import java.util.Date;
 import java.util.InputMismatchException;
 
 /* Class for loan Manager */
 public class LoanManager extends Employee {
 
-  public LoanManager(String fullname, int idEmployee, 
+  public LoanManager(String fullname, 
       String department, String email, double salary, Date firstDate,
       int leaves, String password, double overall) {
-    super(fullname, idEmployee, department, email, 
+    super(fullname, department, email, 
         salary, firstDate, leaves, password, overall);
   }
 

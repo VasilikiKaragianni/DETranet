@@ -1,9 +1,7 @@
 /** 
  * Employee
  */
-
 package gr.aueb.dmst.DETranet;
-
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,7 +46,7 @@ public abstract class Employee {
  /**
 *  10-argument constructor. 
 */
-  public Employee(String fullname, int idEmployee, String department, String email,double salary,
+  public Employee(String fullname, String department, String email,double salary,
           Date firstDate,int leaves, String password, double overall) {
     super();
     this.fullname = fullname;

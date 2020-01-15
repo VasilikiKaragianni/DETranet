@@ -2,9 +2,7 @@
  * Manager
  * 
  */
-
 package gr.aueb.dmst.DETranet;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -20,9 +18,9 @@ public class Manager extends Employee {
   public static ArrayList<Integer> managersOverall = new ArrayList<Integer>();
 
   //10-argument constructor
-  public Manager(String fullname, int idEmployee, String department, String email, double salary,
+  public Manager(String fullname, String department, String email, double salary,
           Date firstDate, int leaves, String password, double overall) {
-    super(fullname, idEmployee, department, email, salary,
+    super(fullname, department, email, salary,
             firstDate, leaves, password, overall);
   }
  
