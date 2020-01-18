@@ -28,7 +28,7 @@ If you desire to see the graphical user interface there are two options.
 You can either use the code that exists in the [FinalProgramwithGui file](https://github.com/VasilikiKaragianni/DETranet/tree/master/FinalProgramwithGui) and run it at your computer, or you can download our application directly as a .jar file. ([Click here](https://github.com/VasilikiKaragianni/DETranet/blob/master/DETranet.jar/DETranet.jar))
 
 #### Manual 
-Inside the repository you can also find the [manual](https://github.com/VasilikiKaragianni/DETranet/blob/master/DETranetΜanual%20.pdf) with instructions rgarding the application.
+Inside the repository you can also find the [manual](https://github.com/VasilikiKaragianni/DETranet/blob/master/DETranetΜanual%20.pdf) with instructions regarding the application.
 
 ## Contributors
 | Full Name | Github Account | Mail |
