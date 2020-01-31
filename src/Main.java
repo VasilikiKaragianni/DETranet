@@ -17,10 +17,6 @@ public class Main {
 		if (loadMain == 0) {
 			Database.loadmySQLDatabase();
 		}
-		for ( Employee e : Employee.getEmployees()) {
-			System.out.printf(e.getEmail()+ e.getPassword());
-			System.out.println(e.getIdEmployee());
-		}
 		Employee.reloadLeaves();
 		loadMain++;
 		int select=0;
