@@ -1,5 +1,5 @@
 # DETranet
-A group of inspired college students decided to make an application for bank employees and decided to call it DETranet. The ERP module will help the employees edit, save, learn, delete or share data regarding their profession. This project was created for the course "Java II" of the Department of Management Science and Technology (Athens University of Economics and Business) which was taught by Diomidis Spinellis.
+A group of inspired college students decided to make an application for bank employees and decided to call it DETranet. The ERP module will help the employees edit, save, learn, delete or share data regarding their profession. This project was created for the course "Programming II" of the Department of Management Science and Technology (Athens University of Economics and Business) which was taught by Diomidis Spinellis.
 
 ## Description 
 The application will be used only by the employees of the bank (customers will not have access).
